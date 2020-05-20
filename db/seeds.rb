@@ -60,6 +60,8 @@ User.all.each do |user|
 end
 puts "------------"
 
+puts "Creating Fabrics: image download can take some time..."
+
 Fabric.create!(
 	name: "Edelweiss",
 	colour: "Branco",
