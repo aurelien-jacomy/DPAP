@@ -19,8 +19,7 @@
 		<div class="col-3 pr-2">
 			<%= image_tag "textile", alt: "alttext", class: "thumbnail d-flex" %>
 			<p>Tecelagens que respeitam seus colaboradores, e tecelagens artesanais</p>
-		</div>	
-		<div class="col-3 pr-2">
+		</div>		<div class="col-3 pr-2">
 			<%= image_tag "pigment", alt: "alttext", class: "thumbnail d-flex" %>
 			<p>Tingimento consciente, ou de pigmentação natural</p>
 		</div>
@@ -29,10 +28,12 @@
 			<p>Cuidamos da logística e garantimos a qualidade dos produtos </p>
 		</div>	
 	</div>
+
+	<div class="row my-5">
+		<div class="col-12">
+			<%= render "./shared/search" %>
+		</div>
+	</div>
 </div>
 
-
-
-
-
-
+<%= render "./shared/footer" %>
