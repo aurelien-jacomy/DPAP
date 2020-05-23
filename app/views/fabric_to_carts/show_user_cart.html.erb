@@ -1,5 +1,8 @@
 <div class="container my-4">
 	<h1>Meu Carrinho</h1>
+	<% if @cart.empty? %>
+		<p>Você não adicinou nenhum elemento ao seu carrinho</p>
+	<% end %>
 	<% @cart.keys.each do |company| %>
 
 		<div class="wrapp-supplier">
@@ -13,7 +16,15 @@
 					<% end %>
 					<h2 class="mx-2"><%= company.name %></h2>
 				</div>
-				<p>R$ <%= FabricToCart.total_price(@cart[company]).fdiv(100) %></p>			
+				<p><%= number_to_currency(
+						FabricToCart.total_price(@cart[company]).fdiv(100),
+						unit: 'R$',
+						separator: ".",
+						delimitor: ",",
+						format: "%u %n"
+						)
+					%>
+				</p>
 			</div>
 				
 			<hr>
@@ -32,7 +43,33 @@
 									<h3><%= fabric_to_cart.fabric.name %></h3>
 									<p>Qtd: <%= fabric_to_cart.quantity %>m</p>
 								</div>
-								<p>R$ <%= fabric_to_cart.price.fdiv(100) %></p>	
+								<div class="card-options">
+									<p>
+										<%= number_to_currency(
+												fabric_to_cart.price.fdiv(100),
+												unit: 'R$',
+												separator: ".",
+												delimitor: ",",
+												format: "%u %n"
+											) 
+										%>
+									</p>	
+									
+									<div class="d-flex align-items-center justify-content-end my-1">
+										<%= form_for fabric_to_cart, remote: true do |f| %>
+											<%= f.hidden_field :quantity, value: (fabric_to_cart.quantity - 5) %>
+											<%= f.submit "-", class: "btn-add mr-1", disabled: true if (fabric_to_cart.quantity >= fabric_to_cart.fabric.minimum_qty + 5) %>
+										<% end %>
+										<%= form_for fabric_to_cart, remote: true do |f| %>
+											<%= f.hidden_field :quantity, value: (fabric_to_cart.quantity + 5) %>
+											<i><%= f.submit "+", class: "btn-add" %></i>
+										<% end %>
+									</div>
+
+									<%= link_to fabric_to_cart, method: :delete, data: {confirm: "Deseja apagar esse item?"} do  %>
+										<i class="fas fa-trash mx-2"></i>
+									<% end %>
+								</div>
 							</div>
 						</div>	
 					</div>

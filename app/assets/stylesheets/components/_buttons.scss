@@ -1,0 +1,11 @@
+.btn-add {
+	width: 2em;
+	height: 2em;
+	border-radius: 50%;
+	color: gray;
+	border: 1px solid gray;
+	&:hover {
+		color: black;
+		border: 1px solid gray;
+	}
+}
