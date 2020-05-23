@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :fabrics, only: :index 
 
-  get 'cart', to: 'orders#show_user_cart'
+  get 'cart', to: 'fabric_to_carts#show_user_cart'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
