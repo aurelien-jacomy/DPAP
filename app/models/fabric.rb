@@ -12,7 +12,7 @@ class Fabric < ApplicationRecord
   pg_search_scope :search_by_name_colour_width_gramatura_composition_and_fabric_type,
     against: [ :name, :colour, :width, :gramatura, :composition, :fabric_type ],
     using: {
-      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+      tsearch: { prefix: true } 
     }
 
 
