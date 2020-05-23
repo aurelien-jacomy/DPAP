@@ -1,43 +1,45 @@
 <div class="container">
 	<h1>Meu Carrinho</h1>
 	<% @cart.keys.each do |company| %>
-		<div class="d-flex justify-content-between align-items-center">
-			<div class="d-flex align-items-center">
-				<% if current_user.photo.attached? %>
-				<!-- mudar para empresa -->
-					<%= cl_image_tag current_user.photo.key, alt: "#{company.name} logo", class: "mr-1" %>
-				<% else %>
-					<i class="fas fa-building"></i>
-				<% end %>
-				<h2 class="mx-2"><%= company.name %></h2>
+
+		<div class="wrapp-supplier">
+			<div class="d-flex justify-content-between align-items-center header">
+				<div class="d-flex align-items-center">
+					<% if current_user.photo.attached? %>
+					<!-- mudar para empresa -->
+						<%= cl_image_tag current_user.photo.key, alt: "#{company.name} logo", class: "mr-1" %>
+					<% else %>
+						<i class="fas fa-building"></i>
+					<% end %>
+					<h2 class="mx-2"><%= company.name %></h2>
+				</div>
+				<p>R$ <%= FabricToCart.total_price(@cart[company]).fdiv(100) %></p>			
 			</div>
-			<p><%= FabricToCart.total_price(@cart[company]).fdiv(100) %> R$</p>			
+				
+			<hr>
+
+			<% @cart[company].each do |fabric_to_cart| %>
+				<div class="row justify-content-end">
+					<div class="col-11">
+						<div class="card-product">
+							<% if fabric_to_cart.fabric.photos.attached? %>
+								<%= cl_image_tag fabric_to_cart.fabric.photos[0].key, alt: "textile picture" %>
+							<% else %>
+								<%= image_tag "textile_roll", alt: "undefined textile" %>
+							<% end %>
+							<div class="card-product-infos">
+								<div>
+									<h3><%= fabric_to_cart.fabric.name %></h3>
+									<p>Qtd: <%= fabric_to_cart.quantity %>m</p>
+								</div>
+								<p>R$ <%= fabric_to_cart.price.fdiv(100) %></p>	
+							</div>
+						</div>	
+					</div>
+				</div>
+			<% end %>
+
 		</div>
 
-		<% @cart[company].each do |fabric_to_cart| %>
-			<div class="card-product">
-				<% if fabric_to_cart.fabric.photos.attached? %>
-					<%= cl_image_tag fabric_to_cart.fabric.photos[0].key, alt: "textile picture" %>
-				<% else %>
-					<%= image_tag "textile_roll", alt: "undefined textile" %>
-				<% end %>
-				<div class="card-product-infos">
-					<div>
-						<h3><%= fabric_to_cart.fabric.name %></h3>
-						<p>Qtd: <%= fabric_to_cart.quantity %>m</p>
-					</div>
-					<p><strong>R$ <%= fabric_to_cart.price.fdiv(100) %></strong></p>	
-				</div>
-			</div>
-		<% end %>
 	<% end %>
-</div>
-
-
-<div class="card-product">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-  <div class="card-product-infos">
-    <h2>Product name</h2>
-    <p>Product description with <strong>relevant info</strong> only.</p>
-  </div>
 </div>

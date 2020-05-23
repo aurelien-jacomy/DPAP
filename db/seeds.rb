@@ -161,7 +161,13 @@ puts "------------"
 
 FabricToCart.create!(
 	user: User.first,
-	fabric: Fabric.first,
+	fabric: Company.first.fabrics[0],
+	quantity: 60
+)
+
+FabricToCart.create!(
+	user: User.first,
+	fabric: Company.first.fabrics[1],
 	quantity: 60
 )
 
