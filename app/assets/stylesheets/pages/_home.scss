@@ -1,1 +1,44 @@
+.container-background {
+	background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), asset-url("background_home.jpg");
+	background-size: cover;
+  	background-position: center;
+  	width: 100vw;
+  	height: 80vh;
+	color: $cotton-white;
+	padding: 30vh 10px;
+  	margin-bottom: 20px;
+  	
+  	img {
+  		width: 60px;
+  	}
+
+  	h1 {
+  		font-size: 48px;
+  		font-weight: bolder;
+  	}
+
+  	h2 {
+  		font-size: 24px;
+  	}
+
+  	.home-content {
+  		width: 60vw;
+  		margin: 0 auto;
+  		text-align: center;
+  	}
+
+  	p {
+  		margin-bottom: 32px;
+  	}
+}
+
+h2 {
+	margin: 24px 0;
+}
+
+img.thumbnail {
+	height: 88px;
+	justify-content: center;
+	margin: 56px auto;
+}
 // Specific CSS for your home-page
