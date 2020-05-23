@@ -30,7 +30,14 @@ Company.create!(
 	description: "Produzimos roupas a partir de algodão orgânico do Brasil"
 )
 
-puts "Created 2 companies: #{Company.first.name} and #{Company.last.name}"
+Company.create!(
+	name: "Texstyle",
+	billing_address: "Largo da batata Sao Paulo",
+	cep: "01415-000",
+	description: "Produzimos tecidos de uma incrível qualidade, a partir de algodão BCI"
+)
+
+puts "Created #{Company.count} companies"
 puts "------------"
 
 User.create!(
@@ -113,7 +120,25 @@ file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/AGNES.jpeg')
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'black_velvet.jpg', content_type: 'image/jpg')
 
-puts "Created 3 fabrics:"
+Fabric.create!(
+	name: "Green Hornet",
+	colour: "Verde",
+	width: 110,
+	gramatura: 185,
+	fabric_type: "Tecido plano estampado",
+	composition: "100% algodão",
+	company: Company.last,
+	price: 20000,
+	shipment_time: 5,
+	minimum_qty: 100
+)
+
+file = URI.open('https://d26lpennugtm8s.cloudfront.net/stores/994/149/products/artigo-marselha1-832ca871874872cf0e15886905775436-320-0.jpeg')
+fabric = Fabric.last
+fabric.photos.attach(io: file, filename: 'green_hornet.jpg', content_type: 'image/jpg')
+
+
+puts "Created #{Fabric.count} fabrics:"
 Fabric.all.each do |item|
 	puts "  - #{item.name}"
 end
