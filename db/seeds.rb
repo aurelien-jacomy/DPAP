@@ -15,50 +15,73 @@ puts "Database empty"
 
 puts "Creating MVP Elements"
 puts "------------"
-
-Company.create!(
-	name: "Sou de Algodão",
-	billing_address: "Rua Groenlândia 808 Sao Paulo",
-	cep: "01415-000",
-	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil"
-)
-
-Company.create!(
-	name: "Tecidou",
-	billing_address: "Largo do Arouche 270 Sao Paulo",
-	cep: "01219-010",
-	description: "Produzimos roupas a partir de algodão orgânico do Brasil"
-)
-
-puts "Created 2 companies: #{Company.first.name} and #{Company.last.name}"
-puts "------------"
-
-User.create!(
+aurelian = User.create!(
 	name: "Aurelien Jacomy",
 	email: "jacomya@gmail.com",
 	password: "123456",
-	company: Company.first
 )
 
-User.create!(
+
+
+gabriel = User.create!(
 	name: "Gabriel Antonini",
 	email: "gabriel.antonini@gmail.com",
 	password: "123456",
-	company: Company.last
 )
 
-User.create!(
+victor = User.create!(
 	name: "Victor Albanezi",
 	email: "victor.albanezi@gmail.com",
 	password: "123456",
-	company: Company.last
 )
 
+samuel = User.create!(
+	name: "Samuel",
+	email: "samuel@gmail.com",
+	password: "123456",
+)
 puts "Created 3 users:"
 User.all.each do |user|
 	puts "  - #{user.name}"
 end
 puts "------------"
+
+algodao = Company.create!(
+	name: "Sou de Algodão",
+	billing_address: "Rua Groenlândia 808 Sao Paulo",
+	cep: "01415-000",
+	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil",
+	user: aurelian
+)
+
+tecidou = Company.create!(
+	name: "Tecidou",
+	billing_address: "Largo do Arouche 270 Sao Paulo",
+	cep: "01219-010",
+	description: "Produzimos roupas a partir de algodão orgânico do Brasil",
+	user: gabriel
+)
+
+puts "Created 2 companies: #{Company.first.name} and #{Company.last.name}"
+puts "------------"
+
+CompanyUser.create!(
+	user: samuel,
+	company: tecidou,
+	status: :active,
+	role: :standard
+
+)
+
+CompanyUser.create!(
+	user: victor,
+	company: tecidou,
+	status: :active,
+	role: :standard
+
+)
+
+
 
 puts "Creating Fabrics: image download can take some time..."
 
