@@ -134,24 +134,16 @@ Label.all.each do |item|
 end
 puts "------------"
 
+FabricToCart.create!(
+	user: User.first,
+	fabric: Fabric.first,
+	quantity: 60
+)
 
+FabricToCart.create!(
+	user: User.first,
+	fabric: Fabric.last,
+	quantity: 100
+)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+puts "Added #{FabricToCart.count} fabrics to user #{FabricToCart.first.user.name}"

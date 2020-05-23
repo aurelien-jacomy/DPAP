@@ -1,0 +1,2 @@
+class FabricToCartsController < ApplicationController
+end
