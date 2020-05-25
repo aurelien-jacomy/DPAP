@@ -15,6 +15,7 @@ puts "Database empty"
 
 puts "Creating MVP Elements"
 puts "------------"
+
 aurelien = User.create!(
 	name: "Aurelien Jacomy",
 	email: "jacomya@gmail.com",
@@ -136,7 +137,25 @@ file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/AGNES.jpeg')
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'black_velvet.jpg', content_type: 'image/jpg')
 
-puts "Created 3 fabrics:"
+Fabric.create!(
+	name: "Green Hornet",
+	colour: "Verde",
+	width: 110,
+	gramatura: 185,
+	fabric_type: "Tecido plano estampado",
+	composition: "100% algodão",
+	company: Company.last,
+	price: 20000,
+	shipment_time: 5,
+	minimum_qty: 100
+)
+
+file = URI.open('https://d26lpennugtm8s.cloudfront.net/stores/994/149/products/artigo-marselha1-832ca871874872cf0e15886905775436-320-0.jpeg')
+fabric = Fabric.last
+fabric.photos.attach(io: file, filename: 'green_hornet.jpg', content_type: 'image/jpg')
+
+
+puts "Created #{Fabric.count} fabrics:"
 Fabric.all.each do |item|
 	puts "  - #{item.name}"
 end
@@ -159,7 +178,13 @@ puts "------------"
 
 FabricToCart.create!(
 	user: User.first,
-	fabric: Fabric.first,
+	fabric: Company.first.fabrics[0],
+	quantity: 60
+)
+
+FabricToCart.create!(
+	user: User.first,
+	fabric: Company.first.fabrics[1],
 	quantity: 60
 )
 
