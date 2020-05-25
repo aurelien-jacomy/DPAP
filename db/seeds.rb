@@ -16,60 +16,73 @@ puts "Database empty"
 puts "Creating MVP Elements"
 puts "------------"
 
-puts "Creating Companies: logo download can take some time..."
-puts "------------"
-
-Company.create!(
-	name: "Sou de Algodão",
-	billing_address: "Rua Groenlândia 808 Sao Paulo",
-	cep: "01415-000",
-	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil"
-)
-
-file = URI.open('https://i.pinimg.com/474x/06/14/a1/0614a1ec120f36cdc42a90c2d241e799--bespoke-boutiques.jpg')
-company = Company.last
-company.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
-
-Company.create!(
-	name: "Tecidou",
-	billing_address: "Largo do Arouche 270 Sao Paulo",
-	cep: "01219-010",
-	description: "Produzimos roupas a partir de algodão orgânico do Brasil"
-)
-
-file = URI.open('https://i.pinimg.com/474x/be/6c/2e/be6c2e31f300ce0a1f6b44738aa6f9e5--vector-icons-beauty-tips.jpg')
-company = Company.last
-company.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
-
-puts "Created 2 companies: #{Company.first.name} and #{Company.last.name}"
-puts "------------"
-
-User.create!(
+aurelien = User.create!(
 	name: "Aurelien Jacomy",
 	email: "jacomya@gmail.com",
 	password: "123456",
-	company: Company.first
 )
 
-User.create!(
+
+
+gabriel = User.create!(
 	name: "Gabriel Antonini",
 	email: "gabriel.antonini@gmail.com",
 	password: "123456",
-	company: Company.last
 )
 
-User.create!(
+victor = User.create!(
 	name: "Victor Albanezi",
 	email: "victor.albanezi@gmail.com",
 	password: "123456",
-	company: Company.last
 )
 
+samuel = User.create!(
+	name: "Samuel",
+	email: "samuel@gmail.com",
+	password: "123456",
+)
 puts "Created 3 users:"
 User.all.each do |user|
 	puts "  - #{user.name}"
 end
 puts "------------"
+
+algodao = Company.create!(
+	name: "Sou de Algodão",
+	billing_address: "Rua Groenlândia 808 Sao Paulo",
+	cep: "01415-000",
+	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil",
+	owner: aurelien
+)
+
+tecidou = Company.create!(
+	name: "Tecidou",
+	billing_address: "Largo do Arouche 270 Sao Paulo",
+	cep: "01219-010",
+	description: "Produzimos roupas a partir de algodão orgânico do Brasil",
+	owner: gabriel
+)
+
+puts "Created 2 companies: #{Company.first.name} and #{Company.last.name}"
+puts "------------"
+
+CompanyUser.create!(
+	user: samuel,
+	company: tecidou,
+	status: :active,
+	role: :standard
+
+)
+
+CompanyUser.create!(
+	user: victor,
+	company: tecidou,
+	status: :active,
+	role: :standard
+
+)
+
+
 
 puts "Creating Fabrics: image download can take some time..."
 
@@ -124,7 +137,25 @@ file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/AGNES.jpeg')
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'black_velvet.jpg', content_type: 'image/jpg')
 
-puts "Created 3 fabrics:"
+Fabric.create!(
+	name: "Green Hornet",
+	colour: "Verde",
+	width: 110,
+	gramatura: 185,
+	fabric_type: "Tecido plano estampado",
+	composition: "100% algodão",
+	company: Company.last,
+	price: 20000,
+	shipment_time: 5,
+	minimum_qty: 100
+)
+
+file = URI.open('https://d26lpennugtm8s.cloudfront.net/stores/994/149/products/artigo-marselha1-832ca871874872cf0e15886905775436-320-0.jpeg')
+fabric = Fabric.last
+fabric.photos.attach(io: file, filename: 'green_hornet.jpg', content_type: 'image/jpg')
+
+
+puts "Created #{Fabric.count} fabrics:"
 Fabric.all.each do |item|
 	puts "  - #{item.name}"
 end
@@ -145,24 +176,22 @@ Label.all.each do |item|
 end
 puts "------------"
 
+FabricToCart.create!(
+	user: User.first,
+	fabric: Company.first.fabrics[0],
+	quantity: 60
+)
 
+FabricToCart.create!(
+	user: User.first,
+	fabric: Company.first.fabrics[1],
+	quantity: 60
+)
 
+FabricToCart.create!(
+	user: User.first,
+	fabric: Fabric.last,
+	quantity: 100
+)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+puts "Added #{FabricToCart.count} fabrics to user #{FabricToCart.first.user.name}"
