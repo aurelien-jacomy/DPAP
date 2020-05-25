@@ -15,7 +15,7 @@ puts "Database empty"
 
 puts "Creating MVP Elements"
 puts "------------"
-aurelian = User.create!(
+aurelien = User.create!(
 	name: "Aurelien Jacomy",
 	email: "jacomya@gmail.com",
 	password: "123456",
