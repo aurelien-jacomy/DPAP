@@ -4,4 +4,5 @@ class Company < ApplicationRecord
 
 	validates_format_of :cep, :with => /\A^\d{5}[-]?\d{3}$\Z/i
 	validates :name, presence: true
+	has_one_attached :logo, dependent: :destroy
 end

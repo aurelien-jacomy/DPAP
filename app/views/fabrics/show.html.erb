@@ -1,3 +1,27 @@
-<div class="">
-	
+<div class="container d-flex mt-4">
+	<%= cl_image_tag @fabric.company.logo.key, height: 150, width: 150, crop: :fill %>
+	<h1 class="ml-4 align-self-center"><%= @fabric.company.name %></h1>
+</div>
+<div class="container mt-3 mb-4">
+	<p><%= @fabric.company.description %></p>
+</div>
+<hr>
+<div class="container d-flex justify-content-between my-5">
+	<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill %>
+	<div class="card w-50 bg-transparent border-1">
+		<div class="card-body">
+			<h5 class="card-title"><%= @fabric.name %></h5>
+		    <h5 class="card-title"><strong>R$ <%= @fabric.price %></strong></h5>
+		    <hr>
+			<%= render "./shared/buy_form", fabric_to_cart: @fabric_to_cart %>
+		    <a href="#" class="btn btn-primary">Button</a>
+		    <p class="card-text">Cor: <%= @fabric.colour %></p>
+		    <p class="card-text">Largura: <%= @fabric.width %></p>
+		    <p class="card-text">Gramatura: <%= @fabric.gramatura %></p>
+		    <p class="card-text">Tipo: <%= @fabric.fabric_type %></p>
+		   	<p class="card-text">Composição: <%= @fabric.composition %></p>
+		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %></p>		    
+		    <p class="card-text">Pedido minimo: <%= @fabric.minimum_qty %></p>
+		</div>
+	</div>
 </div>

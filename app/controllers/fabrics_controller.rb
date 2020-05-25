@@ -6,6 +6,10 @@ class FabricsController < ApplicationController
     end
 
     def show
+        @fabric_to_cart = FabricToCart.new
+        @fabric_to_cart.user = current_user
+        @fabric_to_cart.fabric = @fabric
+        @fabric_to_cart.quantity = @fabric.minimum_qty
     end
 
     private

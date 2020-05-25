@@ -16,6 +16,9 @@ puts "Database empty"
 puts "Creating MVP Elements"
 puts "------------"
 
+puts "Creating Companies: logo download can take some time..."
+puts "------------"
+
 Company.create!(
 	name: "Sou de Algodão",
 	billing_address: "Rua Groenlândia 808 Sao Paulo",
@@ -23,12 +26,20 @@ Company.create!(
 	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil"
 )
 
+file = URI.open('https://i.pinimg.com/474x/06/14/a1/0614a1ec120f36cdc42a90c2d241e799--bespoke-boutiques.jpg')
+company = Company.last
+company.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
+
 Company.create!(
 	name: "Tecidou",
 	billing_address: "Largo do Arouche 270 Sao Paulo",
 	cep: "01219-010",
 	description: "Produzimos roupas a partir de algodão orgânico do Brasil"
 )
+
+file = URI.open('https://i.pinimg.com/474x/be/6c/2e/be6c2e31f300ce0a1f6b44738aa6f9e5--vector-icons-beauty-tips.jpg')
+company = Company.last
+company.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
 
 puts "Created 2 companies: #{Company.first.name} and #{Company.last.name}"
 puts "------------"
