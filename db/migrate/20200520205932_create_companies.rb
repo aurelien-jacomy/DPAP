@@ -5,6 +5,7 @@ class CreateCompanies < ActiveRecord::Migration[6.0]
       t.string :billing_address
       t.string :cep
       t.text :description
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
