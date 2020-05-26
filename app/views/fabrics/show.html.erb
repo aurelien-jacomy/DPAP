@@ -7,21 +7,43 @@
 </div>
 <hr>
 <div class="container d-flex justify-content-between my-5">
-	<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill %>
-	<div class="card w-50 bg-transparent border-1">
+	<div>
+		<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill %>
+		<% next_photos = @fabric.photos[1..6] %>
+		<% next_photos.each do |photo| %>
+			<div class="mt-3">
+				<%= cl_image_tag photo.key, height: 90, width: 60, crop: :fill %>
+			</div>
+		<% end %>
+	</div>
+	<div class="card w-50 bg-transparent border-0 align-items-center">
 		<div class="card-body">
 			<h5 class="card-title"><%= @fabric.name %></h5>
 		    <h5 class="card-title"><strong>R$ <%= @fabric.price %></strong></h5>
 		    <hr>
 <!-- 			<%= render "./shared/buy_form", fabric_to_cart: @fabric_to_cart %>
  -->		    <a href="#" class="btn btn-primary">Button</a>
-		    <p class="card-text">Cor: <%= @fabric.colour %></p>
-		    <p class="card-text">Largura: <%= @fabric.width %></p>
-		    <p class="card-text">Gramatura: <%= @fabric.gramatura %></p>
-		    <p class="card-text">Tipo: <%= @fabric.fabric_type %></p>
-		   	<p class="card-text">Composição: <%= @fabric.composition %></p>
-		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %></p>		    
-		    <p class="card-text">Pedido minimo: <%= @fabric.minimum_qty %></p>
+		    <p class="card-text mt-3">Cor: <%= @fabric.colour %></p>
+		    <p class="card-text">Largura: <%= @fabric.width %> - Gramatura: <%= @fabric.gramatura %></p>
+		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>
+		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido minimo: <%= @fabric.minimum_qty %></p>
+		    <% @fabric.label_to_fabrics.each do |label_to_fabric| %>
+		    	<p><%= label_to_fabric.label.name %></p>
+		    <% end %>		    
 		</div>
+	</div>
+</div>
+<div class="container">
+	<h3>Produtos Relacionados</h3>
+	<hr>
+	<div class="d-flex">
+		<% @fabric.company.fabrics.each do |fabric| %>
+			<% if fabric != @fabric %>
+				<div class="flex-item mr-4">
+					<%= cl_image_tag fabric.photos[0].key, height: 150, width: 200, crop: :fill %>
+					<p><%= fabric.name %></p>
+				</div>
+			<% end %>
+		<% end %>
 	</div>
 </div>
