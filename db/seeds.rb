@@ -45,6 +45,8 @@ puts "Created 3 users:"
 User.all.each do |user|
 	puts "  - #{user.name}"
 end
+
+puts "Creating Companies: logo download can take some time..."
 puts "------------"
 
 algodao = Company.create!(
@@ -55,6 +57,9 @@ algodao = Company.create!(
 	owner: aurelien
 )
 
+file = URI.open('https://i.pinimg.com/474x/06/14/a1/0614a1ec120f36cdc42a90c2d241e799--bespoke-boutiques.jpg')
+algodao.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
+
 tecidou = Company.create!(
 	name: "Tecidou",
 	billing_address: "Largo do Arouche 270 Sao Paulo",
@@ -62,6 +67,9 @@ tecidou = Company.create!(
 	description: "Produzimos roupas a partir de algodão orgânico do Brasil",
 	owner: gabriel
 )
+
+file = URI.open('https://i.pinimg.com/474x/be/6c/2e/be6c2e31f300ce0a1f6b44738aa6f9e5--vector-icons-beauty-tips.jpg')
+tecidou.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
 
 puts "Created 2 companies: #{Company.first.name} and #{Company.last.name}"
 puts "------------"
@@ -103,6 +111,11 @@ file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/08/splendor.jpg
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
 
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/08/liana-cel.jpg')
+fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+puts "Fabric ##{Fabric.count} done"
+
 Fabric.create!(
 	name: "Red Tulip",
 	colour: "Vermelho",
@@ -119,6 +132,11 @@ Fabric.create!(
 file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/ASPEN.jpeg')
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/BRI%C3%81TICO-VERMELHO.jpg')
+fabric.photos.attach(io: file, filename: 'black_velvet.jpg', content_type: 'image/jpg')
+
+puts "Fabric ##{Fabric.count} done"
 
 Fabric.create!(
 	name: "Black Velvet",
@@ -137,6 +155,11 @@ file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/AGNES.jpeg')
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'black_velvet.jpg', content_type: 'image/jpg')
 
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/VERSUS-PRETO.jpg')
+fabric.photos.attach(io: file, filename: 'green_hornet.jpg', content_type: 'image/jpg')
+
+puts "Fabric ##{Fabric.count} done"
+
 Fabric.create!(
 	name: "Green Hornet",
 	colour: "Verde",
@@ -154,6 +177,10 @@ file = URI.open('https://d26lpennugtm8s.cloudfront.net/stores/994/149/products/a
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'green_hornet.jpg', content_type: 'image/jpg')
 
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/LINDISSIMA.jpeg')
+fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+puts "Fabric ##{Fabric.count} done"
 
 puts "Created #{Fabric.count} fabrics:"
 Fabric.all.each do |item|
