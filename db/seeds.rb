@@ -52,7 +52,7 @@ algodao = Company.create!(
 	billing_address: "Rua Groenlândia 808 Sao Paulo",
 	cep: "01415-000",
 	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil",
-	user: aurelian
+	owner: aurelien
 )
 
 tecidou = Company.create!(
@@ -60,7 +60,7 @@ tecidou = Company.create!(
 	billing_address: "Largo do Arouche 270 Sao Paulo",
 	cep: "01219-010",
 	description: "Produzimos roupas a partir de algodão orgânico do Brasil",
-	user: gabriel
+	owner: gabriel
 )
 
 puts "Created 2 companies: #{Company.first.name} and #{Company.last.name}"
