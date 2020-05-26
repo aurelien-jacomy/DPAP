@@ -3,11 +3,13 @@ class FabricsController < ApplicationController
 
     def index
 
-        if params[:search][:query].present? && !params[:search][:query].nil?
+    if params[:search].nil?
+        @fabrics = policy_scope(Fabric)
+         elsif params[:search][:query].blank?
+            @fabrics = policy_scope(Fabric)
+        else
             @query = params[:search][:query]
             @fabrics = policy_scope(Fabric.search_by_name_colour_width_gramatura_composition_and_fabric_type("#{@query}")) 
-        else
-            @fabrics = policy_scope(Fabric)
         end
     end
 
