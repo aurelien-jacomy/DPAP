@@ -45,6 +45,8 @@ puts "Created 3 users:"
 User.all.each do |user|
 	puts "  - #{user.name}"
 end
+
+puts "Creating Companies: logo download can take some time..."
 puts "------------"
 
 algodao = Company.create!(
@@ -55,6 +57,9 @@ algodao = Company.create!(
 	owner: aurelien
 )
 
+file = URI.open('https://i.pinimg.com/474x/06/14/a1/0614a1ec120f36cdc42a90c2d241e799--bespoke-boutiques.jpg')
+algodao.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
+
 tecidou = Company.create!(
 	name: "Tecidou",
 	billing_address: "Largo do Arouche 270 Sao Paulo",
@@ -62,6 +67,9 @@ tecidou = Company.create!(
 	description: "Produzimos roupas a partir de algodão orgânico do Brasil",
 	owner: gabriel
 )
+
+file = URI.open('https://i.pinimg.com/474x/be/6c/2e/be6c2e31f300ce0a1f6b44738aa6f9e5--vector-icons-beauty-tips.jpg')
+tecidou.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
 
 puts "Created 2 companies: #{Company.first.name} and #{Company.last.name}"
 puts "------------"
