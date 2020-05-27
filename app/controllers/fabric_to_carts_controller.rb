@@ -1,4 +1,6 @@
-class FabricToCartsController < ApplicationController	
+class FabricToCartsController < ApplicationController
+	before_action :set_fabric_to_cart, only: [:destroy, :update]
+
 	def show_user_cart
 		cart = policy_scope(FabricToCart)
 		@cart = cart_by_supplier(cart)
@@ -10,8 +12,30 @@ class FabricToCartsController < ApplicationController
         @fabric_to_cart.fabric = @fabric
         @fabric_to_cart.quantity = @fabric.minimum_qty
   end
+	def destroy
+		authorize @cart
+		@cart.destroy
+		redirect_to cart_path
+	end
+
+	def update
+		authorize @cart
+		if @cart.update(cart_params)
+			redirect_to cart_path
+		else
+			render :show_user_cart
+		end
+	end
 
 	private
+
+	def cart_params
+		params.require(:fabric_to_cart).permit(:quantity)
+	end
+
+	def set_fabric_to_cart
+		@cart = FabricToCart.find(params[:id])
+	end
 
 	def cart_by_supplier(cart)
   	cart_by_supplier = {}
