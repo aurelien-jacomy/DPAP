@@ -26,7 +26,7 @@ class User < ApplicationRecord
   
   has_one :owned_company, foreign_key: "user_id", class_name: "Company" 
   
-  has_one :company_user
+  has_one :company_user, dependent: :destroy
   has_one :company, through: :company_user
 
 end
