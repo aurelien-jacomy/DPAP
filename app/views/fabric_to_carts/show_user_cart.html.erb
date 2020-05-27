@@ -28,7 +28,7 @@
 	
 	<%= render partial: "delivery_points_grid" %>
 	
-	<div class="d-flex justify-content-end">
+	<div class="d-flex justify-content-end mb-4">
 		<%= form_for :delivery_point, url: {action: :set_delivery_point} do |f| %>
 			<%= f.hidden_field :id, id: "delivery-point-id", value: @default_delivery_point %>
 			<%= f.submit "Pagar", class: "btn btn-success" %>

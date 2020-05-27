@@ -13,6 +13,7 @@ const toogleCards = (selected_card, cards) => {
 		if ( selected_card === card ) {
 			card.classList.add("selected");
 			const deliveryPointId = card.dataset.delivery;
+			console.log(deliveryPointId);
 			updateDeliveryPoint(deliveryPointId);
 		} else {
 			card.classList.remove("selected");
@@ -21,7 +22,8 @@ const toogleCards = (selected_card, cards) => {
 }
 
 const updateDeliveryPoint = (id) => {
-	document.getElementById("new_delivery_point").value = id;
+	console.log(id);
+	document.getElementById("delivery-point-id").value = id;
 }
 
 export { initSelectDeliveryPoint } ;

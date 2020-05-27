@@ -10,7 +10,7 @@
 		<% else %>
 			<div class="card-address" data-delivery=<%= delivery_point.id %>>
 		<% end %>
-		
+
 			<h3><%= delivery_point.name %></h3>
 			<div class="card-details">
 				<p>Endereço: <%= delivery_point.address %></p>
@@ -21,7 +21,10 @@
 			<div class="card-links">
 				<p>Favorite</p>
 				<p>Edit</p>
-				<p>Destroy</p>
+				<%= link_to delivery_point, method: :delete, data: {confirm: "Deseja deletar esse endereço?"} do %>
+					<i class="fas fa-trash"></i>
+				<% end %>
+
 			</div>
 		</div>
 	<% end %>
