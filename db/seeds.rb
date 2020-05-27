@@ -11,6 +11,7 @@ require 'open-uri'
 puts "Cleaning Database"
 Company.destroy_all
 Label.destroy_all
+User.destroy_all
 puts "Database empty"
 
 puts "Creating MVP Elements"
