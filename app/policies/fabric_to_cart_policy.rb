@@ -12,4 +12,8 @@ class FabricToCartPolicy < ApplicationPolicy
   def update?
   	user == record.user
   end
+
+  def set_delivery_point?
+    user == record.user && record.delivery_point.user == user
+  end
 end

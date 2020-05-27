@@ -27,6 +27,18 @@ class FabricToCartsController < ApplicationController
 		end
 	end
 
+	def set_delivery_point
+		f_carts = FabricToCart.where(user: current_user)
+		delivery_point = DeliveryPoint.find(params[:delivery_point][:id])
+		
+		f_carts.each do |f_cart|
+			authorize f_cart
+			f_cart.update(delivery_point: delivery_point)
+		end
+
+		redirect_to cart_path	
+	end
+
 	private
 
 	def cart_params

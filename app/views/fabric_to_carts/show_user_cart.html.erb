@@ -42,6 +42,9 @@
 								<div>
 									<h3><%= fabric_to_cart.fabric.name %></h3>
 									<p>Qtd: <%= fabric_to_cart.quantity %>m</p>
+									<% unless fabric_to_cart.delivery_point.nil? %>
+										<p>Entregar para: <%= fabric_to_cart.delivery_point.name %></p>
+									<% end %>
 								</div>
 								<div class="card-options">
 									<p>
@@ -62,7 +65,7 @@
 										<% end %>
 										<%= form_for fabric_to_cart, remote: true do |f| %>
 											<%= f.hidden_field :quantity, value: (fabric_to_cart.quantity + 5) %>
-											<i><%= f.submit "+", class: "btn-add" %></i>
+											<%= f.submit "+", class: "btn-add" %>
 										<% end %>
 									</div>
 
@@ -90,11 +93,13 @@
 		<button class="btn btn-secondary mx-4">crie um novo endereço</button>
 	</div>
 	<div class="grid-delivery">
+		<% default_delivery_point = "" %>
 		<% current_user.delivery_points.each_with_index do |delivery_point, index| %>
 			<% if delivery_point.favourite %>
-				<div class="card-address selected">
+				<div class="card-address selected" data-delivery=<%= delivery_point.id %>>
+				<% default_delivery_point = delivery_point.id %>
 			<% else %>
-				<div class="card-address">
+				<div class="card-address" data-delivery=<%= delivery_point.id %>>
 			<% end %>
 				<h3><%= delivery_point.name %></h3>
 				<div class="card-details">
@@ -109,6 +114,13 @@
 					<p>Destroy</p>
 				</div>
 			</div>
+		<% end %>
+	</div>
+	
+	<div class="d-flex justify-content-end">
+		<%= form_for :delivery_point, url: {action: :set_delivery_point} do |f| %>
+			<%= f.hidden_field :id, id: "delivery-point-id", value: default_delivery_point %>
+			<%= f.submit "Pagar", class: "btn btn-success" %>
 		<% end %>
 	</div>
 </div>

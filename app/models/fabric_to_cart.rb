@@ -2,7 +2,7 @@ class FabricToCart < ApplicationRecord
   belongs_to :fabric
   has_one :company, through: :fabric
   belongs_to :user
-  belongs_to :delivery_points, optional: true
+  belongs_to :delivery_point, optional: true
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
