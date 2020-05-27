@@ -4,6 +4,7 @@ class FabricToCartsController < ApplicationController
 	def show_user_cart
 		cart = policy_scope(FabricToCart)
 		@cart = cart_by_supplier(cart)
+		@delivery_point = DeliveryPoint.new
 	end
 
   def show
@@ -12,6 +13,7 @@ class FabricToCartsController < ApplicationController
         @fabric_to_cart.fabric = @fabric
         @fabric_to_cart.quantity = @fabric.minimum_qty
   end
+	
 	def destroy
 		authorize @cart
 		@cart.destroy

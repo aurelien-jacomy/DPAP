@@ -21,7 +21,7 @@ const toogleCards = (selected_card, cards) => {
 }
 
 const updateDeliveryPoint = (id) => {
-	document.getElementById("delivery-point-id").value = id;
+	document.getElementById("new_delivery_point").value = id;
 }
 
 export { initSelectDeliveryPoint } ;
