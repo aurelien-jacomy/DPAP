@@ -1,0 +1,11 @@
+<div class="container"> 
+<%= simple_form_for  @company do |f| %>
+  <%= f.input :name %>
+  <%= f.input :billing_address %>
+  <%= f.input :cep %>
+  <%= f.input :description %>
+
+
+  <%= f.submit "Create company", class: "btn btn-outline-primary" %>
+<% end %>
+</div>

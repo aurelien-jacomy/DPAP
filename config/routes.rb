@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :fabrics, only: :index 
+  resources :companies, only: [:new, :create, :show] 
 
   get 'cart', to: 'fabric_to_carts#show_user_cart'
 
