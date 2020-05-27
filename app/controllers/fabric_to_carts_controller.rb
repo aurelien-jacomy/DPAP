@@ -5,6 +5,7 @@ class FabricToCartsController < ApplicationController
 		cart = policy_scope(FabricToCart)
 		@cart = cart_by_supplier(cart)
 		@delivery_point = DeliveryPoint.new
+		@delivery_points = DeliveryPoint.where(user: current_user).order('created_at DESC')
 	end
 
   def show

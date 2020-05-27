@@ -26,6 +26,7 @@ require("channels")
 import "bootstrap";
 import { initSelectDeliveryPoint } from "./select_delivery_point";
 import { displayDeliveryForm } from "./display_delivery_form";
+import { showDeliveryPart } from "./show_delivery_part";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -38,7 +39,10 @@ document.addEventListener('turbolinks:load', () => {
   }
 
   if (document.getElementById("new_delivery_point")) {
-  	console.log("element found")
   	displayDeliveryForm();
+  }
+
+  if (document.getElementById("validate-cart")) {
+  	showDeliveryPart();
   }
 });

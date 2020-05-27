@@ -12,4 +12,8 @@ class DeliveryPointPolicy < ApplicationPolicy
   def destroy?
   	record.user == user
   end
+
+  def as_favourite?
+  	record.user == user
+  end
 end

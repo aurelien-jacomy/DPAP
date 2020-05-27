@@ -2,7 +2,7 @@
 	
 	<% @default_delivery_point = "" %>
 	
-	<% current_user.delivery_points.each_with_index do |delivery_point, index| %>
+	<% @delivery_points.each do |delivery_point| %>
 		
 		<% if delivery_point.favourite %>
 			<div class="card-address selected" data-delivery=<%= delivery_point.id %>>
@@ -19,8 +19,13 @@
 				<p>Comentário: <%= delivery_point.comment %></p>
 			</div>
 			<div class="card-links">
-				<p>Favorite</p>
-				<p>Edit</p>
+				<%= link_to as_favourite_delivery_point_path(delivery_point) do %>
+					<% if delivery_point.favourite %>
+						<i class="fas fa-heart"></i>
+					<% else %>
+						<i class="far fa-heart"></i>
+					<% end %>	
+				<% end %>
 				<%= link_to delivery_point, method: :delete, data: {confirm: "Deseja deletar esse endereço?"} do %>
 					<i class="fas fa-trash"></i>
 				<% end %>
