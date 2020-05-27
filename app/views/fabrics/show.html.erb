@@ -1,5 +1,7 @@
 <div class="container d-flex mt-4">
-	<%= cl_image_tag @fabric.company.logo.key, height: 150, width: 150, crop: :fill %>
+	<% if @fabric.company.logo.attached? %>
+		<%= cl_image_tag @fabric.company.logo.key, height: 150, width: 150, crop: :fill %>
+	<% end %>
 	<h1 class="ml-4 align-self-center"><%= @fabric.company.name %></h1>
 </div>
 <div class="container mt-3 mb-4">
