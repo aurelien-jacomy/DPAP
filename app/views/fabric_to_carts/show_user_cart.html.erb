@@ -1,126 +1,33 @@
 <div class="container my-4">
 	<h1>Meu Carrinho</h1>
+	
 	<% if @cart.empty? %>
 		<p>Você não adicinou nenhum elemento ao seu carrinho</p>
 	<% end %>
+	
 	<% @cart.keys.each do |company| %>
-
-		<div class="wrapp-supplier">
-			<div class="d-flex justify-content-between align-items-center header">
-				<div class="d-flex align-items-center">
-					<% if current_user.photo.attached? %>
-					<!-- mudar para empresa -->
-						<%= cl_image_tag current_user.photo.key, alt: "#{company.name} logo", class: "mr-1" %>
-					<% else %>
-						<i class="fas fa-building"></i>
-					<% end %>
-					<h2 class="mx-2"><%= company.name %></h2>
-				</div>
-				<p><%= number_to_currency(
-						FabricToCart.total_price(@cart[company]).fdiv(100),
-						unit: 'R$',
-						separator: ".",
-						delimitor: ",",
-						format: "%u %n"
-						)
-					%>
-				</p>
-			</div>
-				
-			<hr>
-
-			<% @cart[company].each do |fabric_to_cart| %>
-				<div class="row justify-content-end">
-					<div class="col-11">
-						<div class="card-product">
-							<% if fabric_to_cart.fabric.photos.attached? %>
-								<%= cl_image_tag fabric_to_cart.fabric.photos[0].key, alt: "textile picture" %>
-							<% else %>
-								<%= image_tag "textile_roll", alt: "undefined textile" %>
-							<% end %>
-							<div class="card-product-infos">
-								<div>
-									<h3><%= fabric_to_cart.fabric.name %></h3>
-									<p>Qtd: <%= fabric_to_cart.quantity %>m</p>
-									<% unless fabric_to_cart.delivery_point.nil? %>
-										<p>Entregar para: <%= fabric_to_cart.delivery_point.name %></p>
-									<% end %>
-								</div>
-								<div class="card-options">
-									<p>
-										<%= number_to_currency(
-												fabric_to_cart.price.fdiv(100),
-												unit: 'R$',
-												separator: ".",
-												delimitor: ",",
-												format: "%u %n"
-											) 
-										%>
-									</p>	
-									
-									<div class="d-flex align-items-center justify-content-end my-1">
-										<%= form_for fabric_to_cart, remote: true do |f| %>
-											<%= f.hidden_field :quantity, value: (fabric_to_cart.quantity - 5) %>
-											<%= f.submit "-", class: "btn-add mr-1", disabled: true if (fabric_to_cart.quantity >= fabric_to_cart.fabric.minimum_qty + 5) %>
-										<% end %>
-										<%= form_for fabric_to_cart, remote: true do |f| %>
-											<%= f.hidden_field :quantity, value: (fabric_to_cart.quantity + 5) %>
-											<%= f.submit "+", class: "btn-add" %>
-										<% end %>
-									</div>
-
-									<%= link_to fabric_to_cart, method: :delete, data: {confirm: "Deseja apagar esse item?"} do  %>
-										<i class="fas fa-trash mx-2"></i>
-									<% end %>
-								</div>
-							</div>
-						</div>	
-					</div>
-				</div>
-			<% end %>
-
-		</div>
-
+		<%= render partial: 'company_card', locals: {company: company, cart: @cart} %>
 	<% end %>
+	
 	<div class="d-flex justify-content-end">
 		<button class="btn btn-success" id="validate-cart">Validar Carrinho</button>
 	</div>
+
 </div>
 
 <div class="container">
+	
 	<div class="d-flex align-items-center">
 		<h2>Escolhe o endereço de entrega ou</h2>
 		<button class="btn btn-secondary mx-4">crie um novo endereço</button>
 	</div>
-	<div class="grid-delivery">
-		<% default_delivery_point = "" %>
-		<% current_user.delivery_points.each_with_index do |delivery_point, index| %>
-			<% if delivery_point.favourite %>
-				<div class="card-address selected" data-delivery=<%= delivery_point.id %>>
-				<% default_delivery_point = delivery_point.id %>
-			<% else %>
-				<div class="card-address" data-delivery=<%= delivery_point.id %>>
-			<% end %>
-				<h3><%= delivery_point.name %></h3>
-				<div class="card-details">
-					<p>Endereço: <%= delivery_point.address %></p>
-					<p>CEP: <%= delivery_point.cep %></p>
-					<p>Contato: <%= delivery_point.contact %></p>
-					<p>Comentário: <%= delivery_point.comment %></p>
-				</div>
-				<div class="card-links">
-					<p>Favorite</p>
-					<p>Edit</p>
-					<p>Destroy</p>
-				</div>
-			</div>
-		<% end %>
-	</div>
+	<%= render partial: "delivery_points_grid" %>
 	
 	<div class="d-flex justify-content-end">
 		<%= form_for :delivery_point, url: {action: :set_delivery_point} do |f| %>
-			<%= f.hidden_field :id, id: "delivery-point-id", value: default_delivery_point %>
+			<%= f.hidden_field :id, id: "delivery-point-id", value: @default_delivery_point %>
 			<%= f.submit "Pagar", class: "btn btn-success" %>
 		<% end %>
 	</div>
+
 </div>
