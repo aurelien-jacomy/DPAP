@@ -239,7 +239,7 @@ DeliveryPoint.create!(
 	cep: "01415-000",
 	contact: "Aurélien",
 	comment: "deixar na recepção",
-	favourite: true, 
+	favourite: false, 
 	user: User.first 
 )
 
