@@ -14,10 +14,7 @@
                                 required: true,
                                 autofocus: true,
                                 input_html: { autocomplete: "email" }%>
-                    <%= f.association :company,
-                                required: false,
-                                autofocus: true,
-                                input_html: { autocomplete: "company" }%>
+                
                     <%= f.input :password,
                                 required: true,
                                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -28,29 +25,10 @@
                     <%= f.input :photo, as: :file %>
                 </div>
 
-  <div class="form-inputs">
-    <%= f.input :name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "name" }%>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :photo, as: :file %>
-  </div>
                 <div class="form-actions">
                     <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
                 </div>
             <% end %>
-            <hr>
             Já tem cadastro? <%= render "devise/shared/links" %>
 
         </div>
