@@ -29,6 +29,7 @@
             <% unless current_user.owned_company.nil?  %>
             <%= link_to "Manage your company", company_path(current_user.owned_company), class: "dropdown-item"  %>
             <% end  %>
+            <%= link_to "Meu carrinho", cart_path, class: "dropdown-item"  %>
             <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"  %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
