@@ -79,4 +79,30 @@
 		</div>
 
 	<% end %>
+	<div class="d-flex justify-content-end">
+		<button class="btn btn-success" id="validate-cart">Validar Carrinho</button>
+	</div>
+</div>
+
+<div class="container">
+	<div class="d-flex align-items-center">
+		<h2>Escolhe o endereço de entrega ou</h2>
+		<button class="btn btn-secondary mx-4">crie um novo endereço</button>
+	</div>
+	<div class="grid-delivery">
+		<% current_user.delivery_points.each_with_index do |delivery_point, index| %>
+			<div class=<%= "card-address #{"selected" if delivery_point.favourite }" %>>
+				<h3><%= delivery_point.name %></h3>
+				<p>Endereço: <%= delivery_point.address %></p>
+				<p>CEP: <%= delivery_point.cep %></p>
+				<p>Contato: <%= delivery_point.contact %></p>
+				<p>Comentário: <%= delivery_point.comment %></p>
+				<div class="card-links">
+					<p>Favorite</p>
+					<p>Edit</p>
+					<p>Destroy</p>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </div>
