@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_191150) do
+ActiveRecord::Schema.define(version: 2020_05_27_004317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,19 @@ ActiveRecord::Schema.define(version: 2020_05_23_191150) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_company_users_on_company_id"
     t.index ["user_id"], name: "index_company_users_on_user_id"
+  end
+
+  create_table "delivery_points", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "cep"
+    t.string "contact"
+    t.text "comment"
+    t.boolean "favourite"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_delivery_points_on_user_id"
   end
 
   create_table "fabric_to_carts", force: :cascade do |t|
@@ -121,6 +134,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_191150) do
   add_foreign_key "companies", "users"
   add_foreign_key "company_users", "companies"
   add_foreign_key "company_users", "users"
+  add_foreign_key "delivery_points", "users"
   add_foreign_key "fabric_to_carts", "fabrics"
   add_foreign_key "fabric_to_carts", "users"
   add_foreign_key "fabrics", "companies"
