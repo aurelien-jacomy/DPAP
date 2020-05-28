@@ -19,7 +19,7 @@
 				<p>Comentário: <%= delivery_point.comment %></p>
 			</div>
 			<div class="card-links">
-				<%= link_to as_favourite_delivery_point_path(delivery_point) do %>
+				<%= link_to as_favourite_delivery_point_path(delivery_point), remote: true do %>
 					<% if delivery_point.favourite %>
 						<i class="fas fa-heart"></i>
 					<% else %>
