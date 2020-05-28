@@ -1,5 +1,7 @@
 <div class="container d-flex mt-4">
-	<%= cl_image_tag @fabric.company.logo.key, height: 150, width: 150, crop: :fill %>
+	<% if @fabric.company.logo.attached? %>
+		<%= cl_image_tag @fabric.company.logo.key, height: 150, width: 150, crop: :fill %>
+	<% end %>
 	<h1 class="ml-4 align-self-center"><%= @fabric.company.name %></h1>
 </div>
 <div class="container mt-3 mb-4">
@@ -27,16 +29,20 @@
 		    <p class="card-text">Largura: <%= @fabric.width %> - Gramatura: <%= @fabric.gramatura %></p>
 		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>
 		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido minimo: <%= @fabric.minimum_qty %></p>
-		    <% @fabric.label_to_fabrics.each do |label_to_fabric| %>
-		    	<p><%= label_to_fabric.label.name %></p>
-		    <% end %>		    
+		    <div class="d-flex">
+			    <% @fabric.label_to_fabrics.each do |label_to_fabric| %>
+			    	<div class="mr-2">
+			    		<%= cl_image_tag label_to_fabric.label.photo.key, height: 50, width: 50, crop: :scale %>
+			    	</div>
+			    <% end %>
+		    </div>		    
 		</div>
 	</div>
 </div>
 <div class="container">
 	<h3>Produtos Relacionados</h3>
 	<hr>
-	<div class="d-flex">
+	<div class="d-flex mt-4">
 		<% @fabric.company.fabrics.each do |fabric| %>
 			<% if fabric != @fabric %>
 				<div class="flex-item mr-4">
