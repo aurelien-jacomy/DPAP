@@ -21,10 +21,19 @@
 	<div class="card w-50 bg-transparent border-0 align-items-center">
 		<div class="card-body">
 			<h5 class="card-title"><%= @fabric.name %></h5>
-		    <h5 class="card-title"><strong>R$ <%= @fabric.price %></strong></h5>
+		    <h5 class="card-title"><strong><%= number_to_currency(@fabric.price.fdiv(100), unit: 'R$', separator: ".", delimitor: ",", format: "%u %n") %> / m</strong></h5>
 		    <hr>
-<!-- 			<%= render "./shared/buy_form", fabric_to_cart: @fabric_to_cart %>
- -->		    <a href="#" class="btn btn-primary">Button</a>
+		    <div class="container">
+		    	<div class="d-flex mr-4">
+		    		<div>
+		    			<h5><strong>Quantidade</strong></h5>
+		    			<%= form_with model: @fabric_to_cart, remote: true do |f| %>
+		    				<%= f.number_field :quantity %>
+		    		</div>
+		    				<%= f.submit "COMPRAR AGORA", class: "btn btn-primary" %>
+		    			<% end %>
+				</div>
+			</div>
 		    <p class="card-text mt-3">Cor: <%= @fabric.colour %></p>
 		    <p class="card-text">Largura: <%= @fabric.width %> - Gramatura: <%= @fabric.gramatura %></p>
 		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>

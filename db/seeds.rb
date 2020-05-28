@@ -11,6 +11,13 @@ require 'open-uri'
 puts "Cleaning Database"
 Company.destroy_all
 Label.destroy_all
+User.destroy_all
+LabelToFabric.destroy_all
+CompanyUser.destroy_all
+FabricToCart.destroy_all
+Fabric.destroy_all
+
+
 puts "Database empty"
 
 puts "Creating MVP Elements"
