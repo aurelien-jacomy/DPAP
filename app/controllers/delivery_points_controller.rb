@@ -1,5 +1,5 @@
 class DeliveryPointsController < ApplicationController
-	before_action :set_delivery_point, only: [:destroy, :as_favourite]
+	before_action :find_delivery_point, only: [:destroy, :as_favourite]
 	
 	def create
 		delivery_point = DeliveryPoint.new(params_delivery_point)
@@ -37,7 +37,7 @@ class DeliveryPointsController < ApplicationController
 		params.require(:delivery_point).permit(:name, :address, :cep, :contact, :comment)
 	end
 
-	def set_delivery_point
+	def find_delivery_point
 		@delivery_point = DeliveryPoint.find(params[:id])
 		authorize @delivery_point
 	end
