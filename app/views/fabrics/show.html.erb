@@ -27,10 +27,11 @@
 		    	<div class="d-flex mr-4">
 		    		<div>
 		    			<h5><strong>Quantidade</strong></h5>
-		    			<%= form_with model: @fabric_to_cart, remote: true do |f| %>
-		    				<%= f.number_field :quantity %>
+		    			<%= form_with model: @fabric_to_cart do |f| %>
+		    				<%= f.hidden_field :fabric_id, value: @fabric.id %>
+		    				<%= f.number_field :quantity, value: @fabric.minimum_qty %>
 		    		</div>
-		    				<%= f.submit "COMPRAR AGORA", class: "btn btn-primary" %>
+		    				<%= f.submit "COMPRAR AGORA", class: "btn btn-success" %>
 		    			<% end %>
 				</div>
 			</div>
