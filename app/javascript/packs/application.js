@@ -25,6 +25,8 @@ require("channels")
 // External imports
 import "bootstrap";
 import { initSelectDeliveryPoint } from "./select_delivery_point";
+import { displayDeliveryForm } from "./display_delivery_form";
+import { showDeliveryPart } from "./show_delivery_part";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -34,5 +36,13 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   if (document.querySelector(".card-address")) {
   	initSelectDeliveryPoint();	
+  }
+
+  if (document.getElementById("new_delivery_point")) {
+  	displayDeliveryForm();
+  }
+
+  if (document.getElementById("validate-cart")) {
+  	showDeliveryPart();
   }
 });

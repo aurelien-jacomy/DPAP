@@ -15,15 +15,20 @@
 
 </div>
 
-<div class="container">
+<div class="container hidden" id="delivery-part">
 	
 	<div class="d-flex align-items-center">
 		<h2>Escolhe o endereço de entrega ou</h2>
-		<button class="btn btn-secondary mx-4">crie um novo endereço</button>
+		<button class="btn btn-secondary mx-4 delivery-point-form">crie um novo endereço</button>
 	</div>
+
+	<div class="hidden" id="delivery-point-form">
+		<%= render partial: "delivery_point_form", locals: {delivery_point: @delivery_point} %>
+	</div>
+	
 	<%= render partial: "delivery_points_grid" %>
 	
-	<div class="d-flex justify-content-end">
+	<div class="d-flex justify-content-end mb-4">
 		<%= form_for :delivery_point, url: {action: :set_delivery_point} do |f| %>
 			<%= f.hidden_field :id, id: "delivery-point-id", value: @default_delivery_point %>
 			<%= f.submit "Pagar", class: "btn btn-success" %>

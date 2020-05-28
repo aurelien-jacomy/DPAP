@@ -1,0 +1,8 @@
+<%= simple_form_for delivery_point, remote: true do |f| %>
+	<%= f.input :name %>
+	<%= f.input :address %>
+	<%= f.input :cep %>
+	<%= f.input :contact %>
+	<%= f.input :comment %>
+	<%= f.submit class: "btn btn-success" %>
+<% end %>
