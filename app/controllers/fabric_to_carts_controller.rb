@@ -8,12 +8,19 @@ class FabricToCartsController < ApplicationController
 		@delivery_points = DeliveryPoint.where(user: current_user).order('created_at DESC')
 	end
 
-  def show
-    @fabric_to_cart = FabricToCart.new
-        @fabric_to_cart.user = current_user
+	def create
+		@fabric = Fabric.find(params[:fabric_to_cart][:fabric_id])
+		@fabric_to_cart = FabricToCart.new(cart_params)
+		authorize @fabric_to_cart
+		@fabric_to_cart.user = current_user
         @fabric_to_cart.fabric = @fabric
-        @fabric_to_cart.quantity = @fabric.minimum_qty
-  end
+
+		if @fabric_to_cart.save
+			redirect_to cart_path
+		else
+			render "fabrics/show"
+		end
+	end
 	
 	def destroy
 		authorize @cart

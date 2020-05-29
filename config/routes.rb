@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :fabrics, only: [ :index, :show ] 
 
   get 'cart', to: 'fabric_to_carts#show_user_cart'
+  resources :fabric_to_carts, only: [:destroy, :update, :create]
   post 'set_delivery_point', to: 'fabric_to_carts#set_delivery_point'
 
-  resources :fabric_to_carts, only: [:destroy, :update]
   resources :delivery_points, only: [:create, :destroy] do
   	member do
 			get :as_favourite  		
