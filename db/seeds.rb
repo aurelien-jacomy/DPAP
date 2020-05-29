@@ -55,7 +55,8 @@ algodao = Company.create!(
 	billing_address: "Rua Groenlândia 808 Sao Paulo",
 	cep: "01415-000",
 	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil",
-	owner: aurelien
+	owner: aurelien,
+	cnpj: "31.100.900/0001-34"
 )
 
 file = URI.open('https://i.pinimg.com/474x/06/14/a1/0614a1ec120f36cdc42a90c2d241e799--bespoke-boutiques.jpg')
@@ -66,7 +67,8 @@ tecidou = Company.create!(
 	billing_address: "Largo do Arouche 270 Sao Paulo",
 	cep: "01219-010",
 	description: "Produzimos roupas a partir de algodão orgânico do Brasil",
-	owner: gabriel
+	owner: gabriel,
+	cnpj: "55.836.677/0001-56"
 )
 
 file = URI.open('https://i.pinimg.com/474x/be/6c/2e/be6c2e31f300ce0a1f6b44738aa6f9e5--vector-icons-beauty-tips.jpg')
