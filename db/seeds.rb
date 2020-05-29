@@ -17,7 +17,6 @@ CompanyUser.destroy_all
 FabricToCart.destroy_all
 Fabric.destroy_all
 
-
 puts "Database empty"
 
 puts "Creating MVP Elements"
@@ -266,3 +265,27 @@ FabricToCart.create!(
 )
 
 puts "Added #{FabricToCart.count} fabrics to user #{FabricToCart.first.user.name}"
+
+DeliveryPoint.create!(
+	name: "Alinha Costureiras",
+	address: "Rua Bela Cintra 408 Sao Paulo",
+	cep: "01415-000",
+	contact: "Eliuma",
+	comment: "2° andar, entregar em mãos próprias",
+	favourite: true, 
+	user: User.first 
+)
+
+DeliveryPoint.create!(
+	name: "Escritório",
+	address: "Rua Groenlândia 808 Sao Paulo",
+	cep: "01415-000",
+	contact: "Aurélien",
+	comment: "deixar na recepção",
+	favourite: false, 
+	user: User.first 
+)
+
+puts "Created #{DeliveryPoint.count} for #{User.first.name}"
+
+puts "Seed Done!"
