@@ -22,7 +22,7 @@ class FabricToCart < ApplicationRecord
   def min_quantity?
     if quantity
       if quantity < fabric.minimum_qty
-        errors.add(:quantity, "A quantidade mínima para esse item é de #{quantity}")
+        errors.add(:quantity, "A quantidade mínima para esse item é de #{fabric.minimum_qty}")
       end
     end
   end
