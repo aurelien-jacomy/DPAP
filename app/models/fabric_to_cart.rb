@@ -4,6 +4,7 @@ class FabricToCart < ApplicationRecord
   belongs_to :user
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validate :min_quantity?
 
   def self.total_price(fabric_to_carts)
   	sum = 0
@@ -15,5 +16,13 @@ class FabricToCart < ApplicationRecord
 
   def price
   	quantity * self.fabric.price
+  end
+
+  def min_quantity?
+    if quantity
+      if quantity < fabric.minimum_qty
+        errors.add(:quantity, "A quantidade mínima para esse item é de #{quantity}")
+      end
+    end
   end
 end

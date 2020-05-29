@@ -8,13 +8,15 @@ class FabricToCartsController < ApplicationController
 
 	def create
 		@fabric = Fabric.find(params[:fabric_to_cart][:fabric_id])
-		@fabric_to_cart = FabricToCart.new
+		@fabric_to_cart = FabricToCart.new(cart_params)
 		authorize @fabric_to_cart
 		@fabric_to_cart.user = current_user
         @fabric_to_cart.fabric = @fabric
 
-		if @fabric_to_cart.save(cart_params)
+		if @fabric_to_cart.save
 			redirect_to cart_path
+		else
+			render "fabrics/show"
 		end
 	end
 
