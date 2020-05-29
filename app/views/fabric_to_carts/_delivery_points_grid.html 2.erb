@@ -1,0 +1,36 @@
+<div class="grid-delivery">
+	
+	<% @default_delivery_point = "" %>
+	
+	<% @delivery_points.each do |delivery_point| %>
+		
+		<% if delivery_point.favourite %>
+			<div class="card-address selected" data-delivery=<%= delivery_point.id %>>
+			<% @default_delivery_point = delivery_point.id %>
+		<% else %>
+			<div class="card-address" data-delivery=<%= delivery_point.id %>>
+		<% end %>
+
+			<h3><%= delivery_point.name %></h3>
+			<div class="card-details">
+				<p>Endereço: <%= delivery_point.address %></p>
+				<p>CEP: <%= delivery_point.cep %></p>
+				<p>Contato: <%= delivery_point.contact %></p>
+				<p>Comentário: <%= delivery_point.comment %></p>
+			</div>
+			<div class="card-links">
+				<%= link_to as_favourite_delivery_point_path(delivery_point), remote: true do %>
+					<% if delivery_point.favourite %>
+						<i class="fas fa-heart"></i>
+					<% else %>
+						<i class="far fa-heart"></i>
+					<% end %>	
+				<% end %>
+				<%= link_to delivery_point, method: :delete, data: {confirm: "Deseja deletar esse endereço?"} do %>
+					<i class="fas fa-trash"></i>
+				<% end %>
+
+			</div>
+		</div>
+	<% end %>
+</div>
