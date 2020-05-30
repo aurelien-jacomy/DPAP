@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :fabric_to_carts, dependent: :destroy
   has_one_attached :photo, dependent: :destroy
+  has_many :delivery_points, dependent: :destroy
 
   def cart_by_supplier
   	my_cart = cart

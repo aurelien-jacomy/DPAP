@@ -14,6 +14,7 @@ class FabricsController < ApplicationController
     end
 
     def show
+        @fabric_to_cart = FabricToCart.new
     end
 
     private

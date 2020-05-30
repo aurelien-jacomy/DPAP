@@ -12,6 +12,11 @@ puts "Cleaning Database"
 Company.destroy_all
 Label.destroy_all
 User.destroy_all
+LabelToFabric.destroy_all
+CompanyUser.destroy_all
+FabricToCart.destroy_all
+Fabric.destroy_all
+
 puts "Database empty"
 
 puts "Creating MVP Elements"
@@ -191,19 +196,56 @@ Fabric.all.each do |item|
 end
 puts "------------"
 
+puts "Creating Labels: image download can take some time..."
 
 Label.create!(
 	name: "Orgânicos do Brasil"
 )
 
+file = URI.open('https://www.portaldofranchising.com.br/wp-content/uploads/2017/07/selo-verde-216x300.jpg')
+label = Label.last
+label.photo.attach(io: file, filename: 'label.jpg', content_type: 'image/jpg')
+
+puts "Label ##{Label.count} done"
+
 Label.create!(
 	name: "Fair Trade"
 )
 
-puts "Created 2 labels:"
+file = URI.open('https://institutooxford.com.br/wp-content/uploads/2016/12/selo-empresa-amiga-meio-ambiente-1.png')
+label = Label.last
+label.photo.attach(io: file, filename: 'label.png', content_type: 'image/png')
+
+puts "Label ##{Label.count} done"
+
+Label.create!(
+	name: "Ecolabel"
+)
+
+file = URI.open('https://www.lesnouvellesdelaboulangerie.fr/sites/default/files/ckfinder/userfiles/images/web-NF-environnement.jpg')
+label = Label.last
+label.photo.attach(io: file, filename: 'label.jpg', content_type: 'image/jpg')
+
+puts "Label ##{Label.count} done"
+
+puts "Created #{Label.count} labels:"
 Label.all.each do |item|
 	puts "  - #{item.name}"
 end
+
+puts 'Creating Label To Fabric'
+
+Fabric.all.each do |fabric|
+	2.times do
+		label_to_fabric = LabelToFabric.new
+		label_to_fabric.fabric = fabric
+		labels_count = Label.count
+		label_to_fabric.label = Label.all.sample
+		label_to_fabric.save!
+	end
+end
+
+puts "Linked #{LabelToFabric.count} Labels to Fabrics"
 puts "------------"
 
 FabricToCart.create!(
@@ -225,3 +267,27 @@ FabricToCart.create!(
 )
 
 puts "Added #{FabricToCart.count} fabrics to user #{FabricToCart.first.user.name}"
+
+DeliveryPoint.create!(
+	name: "Alinha Costureiras",
+	address: "Rua Bela Cintra 408 Sao Paulo",
+	cep: "01415-000",
+	contact: "Eliuma",
+	comment: "2° andar, entregar em mãos próprias",
+	favourite: true, 
+	user: User.first 
+)
+
+DeliveryPoint.create!(
+	name: "Escritório",
+	address: "Rua Groenlândia 808 Sao Paulo",
+	cep: "01415-000",
+	contact: "Aurélien",
+	comment: "deixar na recepção",
+	favourite: false, 
+	user: User.first 
+)
+
+puts "Created #{DeliveryPoint.count} for #{User.first.name}"
+
+puts "Seed Done!"

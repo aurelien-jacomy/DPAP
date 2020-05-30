@@ -4,14 +4,24 @@ class FabricToCartsController < ApplicationController
 	def show_user_cart
 		cart = policy_scope(FabricToCart)
 		@cart = cart_by_supplier(cart)
+		@delivery_point = DeliveryPoint.new
+		@delivery_points = DeliveryPoint.where(user: current_user).order('created_at DESC')
 	end
 
-  def show
-    @fabric_to_cart = FabricToCart.new
-        @fabric_to_cart.user = current_user
+	def create
+		@fabric = Fabric.find(params[:fabric_to_cart][:fabric_id])
+		@fabric_to_cart = FabricToCart.new(cart_params)
+		authorize @fabric_to_cart
+		@fabric_to_cart.user = current_user
         @fabric_to_cart.fabric = @fabric
-        @fabric_to_cart.quantity = @fabric.minimum_qty
-  end
+
+		if @fabric_to_cart.save
+			redirect_to cart_path
+		else
+			render "fabrics/show"
+		end
+	end
+	
 	def destroy
 		authorize @cart
 		@cart.destroy
@@ -25,6 +35,18 @@ class FabricToCartsController < ApplicationController
 		else
 			render :show_user_cart
 		end
+	end
+
+	def set_delivery_point
+		f_carts = FabricToCart.where(user: current_user)
+		delivery_point = DeliveryPoint.find(params[:delivery_point][:id])
+		
+		f_carts.each do |f_cart|
+			authorize f_cart
+			f_cart.update(delivery_point: delivery_point)
+		end
+
+		redirect_to cart_path	
 	end
 
 	private
