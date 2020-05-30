@@ -15,10 +15,9 @@
                 <p class="card-text"><%= fabric.width %>mm</p>
                 <p class="card-text"><%= fabric.gramatura %>g</p>
                 <p class="card-text">R$ <%= fabric.price/100 %></p> 
-
-
-                <! –– Adicionar o Link to Show(fabric) ––>
-                    <a href="#" class="btn btn-outline-primary center ml-auto">View details</a>
+                <%= link_to fabric_path(fabric) do %>
+                    <span class="btn btn-outline-primary center ml-auto">View details</span>
+                <% end %>
             </div>
         </div>
         <% end %>
