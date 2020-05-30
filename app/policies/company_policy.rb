@@ -16,6 +16,9 @@ class CompanyPolicy < ApplicationPolicy
     def show?
       true
    end
-    
+
+   def search?
+    true
+   end
 
 end
