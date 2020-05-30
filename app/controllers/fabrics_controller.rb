@@ -1,4 +1,5 @@
 class FabricsController < ApplicationController
+    skip_before_action :authenticate_user!, only: [ :show, :index ]
 	before_action :set_fabric, only: [ :show ]
 
     def index
