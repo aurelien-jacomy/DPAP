@@ -12,7 +12,7 @@
             <% unless fabric.photos[0].nil?%>
             <%= cl_image_tag fabric.photos[0].key, class: "d-block w-100 h-50", crop: :fill %>
             <% else %>
-            <%= image_tag "no-img.png" %>
+            <%= image_tag "textile_roll.png", size: "250x250" %>
             <% end %>
             <div class="card-body">
                 <h5 class="card-title"><%= fabric.name %></h5>
