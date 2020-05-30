@@ -54,7 +54,7 @@
 							<div class="d-flex align-items-center justify-content-end my-1">
 								<%= form_for fabric_to_cart, remote: true do |f| %>
 									<%= f.hidden_field :quantity, value: (fabric_to_cart.quantity - 5) %>
-									<%= f.submit "-", class: "btn-add mr-1", disabled: true if (fabric_to_cart.quantity >= fabric_to_cart.fabric.minimum_qty + 5) %>
+									<%= f.submit "-", class: "btn-add mr-1", disabled: false if (fabric_to_cart.quantity >= fabric_to_cart.fabric.minimum_qty + 5) %>
 								<% end %>
 								<%= form_for fabric_to_cart, remote: true do |f| %>
 									<%= f.hidden_field :quantity, value: (fabric_to_cart.quantity + 5) %>
