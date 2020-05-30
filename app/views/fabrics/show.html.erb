@@ -1,14 +1,6 @@
-<div class="container d-flex mt-4">
-	<% if @fabric.company.logo.attached? %>
-		<%= cl_image_tag @fabric.company.logo.key, height: 150, width: 150, crop: :fill %>
-	<% end %>
-	<h1 class="ml-4 align-self-center"><%= @fabric.company.name %></h1>
-</div>
-<div class="container mt-3 mb-4">
-	<p><%= @fabric.company.description %></p>
-</div>
+<%= render "./shared/company_banner", company: @fabric.company %>
 <hr>
-<div class="container d-flex justify-content-between my-5">
+<div class="container d-flex justify-content-between my-4">
 	<div>
 		<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill, id: "main-pic" %>
 		<% next_photos = @fabric.photos[1..6] %>
@@ -56,9 +48,11 @@
 	<div class="d-flex mt-4">
 		<% @fabric.company.fabrics.each do |fabric| %>
 			<% if fabric != @fabric %>
-				<div class="flex-item mr-4">
+				<div class="flex-item mr-4 related-products">
+					<%= link_to fabric_path(fabric) do %>
 					<%= cl_image_tag fabric.photos[0].key, height: 150, width: 200, crop: :fill %>
 					<p><%= fabric.name %></p>
+					<% end %>
 				</div>
 			<% end %>
 		<% end %>

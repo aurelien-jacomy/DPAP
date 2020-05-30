@@ -1,4 +1,5 @@
 class FabricsController < ApplicationController
+    skip_before_action :authenticate_user!, only: [ :show, :index ]
 	before_action :set_fabric, only: [ :show ]
 
     def index
@@ -17,10 +18,43 @@ class FabricsController < ApplicationController
         @fabric_to_cart = FabricToCart.new
     end
 
+    def new
+        @company = current_user.what_company
+        authorize @company
+        @fabric = Fabric.new
+    end
+
+    def create
+        @company = current_user.what_company
+        authorize @company
+        @fabric = Fabric.new(fabric_params)
+        @fabric.company = @company
+        if @fabric.save
+            redirect_to @fabric
+        else
+            render :new
+        end
+    end
+
     private
 
     def set_fabric
     	@fabric = Fabric.find(params[:id])
     	authorize @fabric
+    end
+
+    def fabric_params
+        params.require(:fabric).permit(
+            :name,
+            :colour,
+            :width,
+            :gramatura,
+            :fabric_type,
+            :composition,
+            :price,
+            :shipment_time,
+            :minimum_qty,
+            photos: []
+            )
     end
 end
