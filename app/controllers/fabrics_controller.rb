@@ -1,6 +1,6 @@
 class FabricsController < ApplicationController
     skip_before_action :authenticate_user!, only: [ :show, :index ]
-	before_action :set_fabric, only: [ :show ]
+	before_action :set_fabric, only: [ :show, :edit, :update, :destroy ]
 
     def index
 
@@ -34,6 +34,24 @@ class FabricsController < ApplicationController
         else
             render :new
         end
+    end
+
+    def edit
+        @company = current_user.owned_company
+    end
+
+    def update
+        if @fabric.update(fabric_params)
+            redirect_to @fabric
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        company = @fabric.company
+        @fabric.destroy
+        redirect_to fabrics_company_path(company)
     end
 
     private
