@@ -8,24 +8,38 @@
     <h2>Os produtos oferecidos pela sua empresa:</h2>
     <div class="cards d-flex mt-5 justify-content-between text-center">
         <% @fabrics.each do |fabric| %>
-        <div class="card m-3" style="width: 18rem;">
-            <% unless fabric.photos[0].nil?%>
-            <%= cl_image_tag fabric.photos[0].key, class: "d-block w-100 h-50", crop: :fill %>
-            <% else %>
-            <%= image_tag "textile_roll.png", size: "250x250" %>
-            <% end %>
-            <div class="card-body">
-                <h5 class="card-title"><%= fabric.name %></h5>
-                <p class="card-text"><%= fabric.composition %></p>
-                <p class="card-text"><%= fabric.width %>mm</p>
-                <p class="card-text"><%= fabric.gramatura %>g</p>
-                <p class="card-text">R$ <%= fabric.price/100 %></p>
-                <div class="d-flex justify-content-between">
-                    <%= link_to "View detail", fabric, class: "btn btn-outline-primary center ml-auto" %>
+
+            <div>
+                <div class="card m-3" style="width: 18rem;">
+                   <% unless fabric.photos[0].nil?%>
+                      <%= cl_image_tag fabric.photos[0].key, class: "d-block w-100 h-50", crop: :fill %>
+                   <% else %>
+                      <%= image_tag "textile_roll.png", size: "250x250" %>
+                   <% end %>
+
+                    <div class="card-body">
+                        <h5 class="card-title"><%= fabric.name %></h5>
+                        <p class="card-text"><%= fabric.composition %></p>
+                        <p class="card-text"><%= fabric.width %>mm</p>
+                        <p class="card-text"><%= fabric.gramatura %>g</p>
+                        <p class="card-text">R$ <%= fabric.price/100 %></p> 
+                        <div class="d-flex justify-content-between">
+        					<%= link_to "View detail", fabric, class: "btn btn-outline-primary center ml-auto" %>
+                        </div>
+                    </div>
                 </div>
+                <% if policy(fabric).edit? %>
+                    <div class="edit-links">
+                        <%= link_to edit_fabric_path(fabric) do %>
+                            <i class="fas fa-edit"></i>
+                        <% end %>
+                        <%= link_to fabric, method: :delete, data: {confirm: "Tem certeza que quer retirar esse produto da venda?"} do %>
+                            <i class="fas fa-trash"></i>
+                        <% end %>
+                    </div>    
+                <% end %>
 
             </div>
-        </div>
         <% end %>
     </div>
 </div>

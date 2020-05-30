@@ -36,3 +36,15 @@
 .card-product .card-options {
   text-align: right;
 }
+
+.edit-links {
+  display: flex;
+  justify-content: space-around;
+  border: .5px solid rgb(240, 240 ,240);
+  .red {
+    color: red;
+  }
+  .green {
+    color: green;
+  }
+}

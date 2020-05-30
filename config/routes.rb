@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get 'fabrics' 
     end    
   end
-  resources :fabrics, only: [ :index, :show, :new, :create ]
+  resources :fabrics, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
   resources :company_user, only: [:create, :new, :update] 
 
   get 'cart', to: 'fabric_to_carts#show_user_cart'
