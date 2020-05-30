@@ -30,6 +30,8 @@
 		    			<%= f.input :quantity, :label => "Quantidade", :input_html => { :value => @fabric.minimum_qty } %>
 		    	</div>
 		    	<div class="align-self-center">
+		    		<!-- Atenção: se mudar nome do botão, precisa mudar no controller também -->
+		    			<%= f.submit "Adicionar ao carrinho", class: "btn btn-success mb-1" %>
 		    			<%= f.submit "COMPRAR AGORA", class: "btn btn-success" %>
 		    		<% end %>
 		    	</div>
