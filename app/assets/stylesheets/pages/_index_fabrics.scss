@@ -23,3 +23,33 @@
   .card:hover{
     opacity: 0.8;
 }
+
+@media (min-width: 300px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+    
+    @media (min-width: 576px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (min-width: 992px) {
+      .cards {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+    
+    @media (min-width: 1200px) {
+      .cards {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+    }
