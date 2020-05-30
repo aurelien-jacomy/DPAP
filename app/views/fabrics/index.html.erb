@@ -4,17 +4,21 @@
             <%= render "./shared/search" %>
         </div>
     </div>
-    <div class="cards d-flex mt-5 justify-content-center text-center">
-    <% @fabrics.each do |fabric| %>
-    <div class="card m-2 p-1 rounded" style="width: 18rem;">
-        <%= cl_image_tag fabric.photos[0].key, :transformation=>[{:width=>400, :height=>250, :crop=>"fill"}] %>
-        <div class="card-body">
-            <h5 class="card-title"><%= fabric.name %></h5>
-            <p class="card-text"><%= fabric.composition %></p>
-            <p class="card-text">R$<%= fabric.price/100 %>/m</p>
-            <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center ml-auto btn-details" %>
+    <div class="cards text-center">
+        <% @fabrics.each do |fabric| %>
+        <div class="card m-2 p-1">
+            <% unless fabric.photos[0].nil?%>
+            <%=  cl_image_tag fabric.photos[0].key, :transformation=>[{:width=>400, :height=>250, :crop=>"fill"}] %>
+            <% else %>
+            <%= image_tag "no-img.png" %>
+            <% end %>
+            <div class="card-body">
+                <h5 class="card-title"><%= fabric.name %></h5>
+                <p class="card-text"><%= fabric.composition %></p>
+                <p class="card-text">R$<%= fabric.price/100 %>/m</p>
+                <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center ml-auto btn-details" %>
+            </div>
         </div>
+        <% end %>
     </div>
-    <% end %>
-</div>
 </div>

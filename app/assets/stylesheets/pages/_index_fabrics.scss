@@ -9,3 +9,17 @@
     color: $cotton-white;
     border-color:rgba(136, 163, 83,0.6);
 }
+
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 16px;
+}
+
+.card{
+    margin: 0 auto; 
+  }
+
+  .card:hover{
+    opacity: 0.8;
+}
