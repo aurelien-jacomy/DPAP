@@ -35,6 +35,12 @@ class CompaniesController < ApplicationController
         end
     end
 
+    def fabrics
+        @company = Company.find(params[:id])
+        authorize @company
+        @fabrics = policy_scope(Fabric).where(company: @company)
+    end
+
     private
 
     def company_params
