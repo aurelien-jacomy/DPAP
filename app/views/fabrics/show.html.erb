@@ -9,8 +9,8 @@
 </div>
 <% end %>
 <div class="container d-flex justify-content-between my-4">
-    <div>
-        <% unless @fabric.photos[0].nil?%>
+	<div>
+<% unless @fabric.photos[0].nil?%>
         <%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill %>
         <% next_photos = @fabric.photos[1..6] %>
         <% next_photos.each do |photo| %>
@@ -21,38 +21,59 @@
         <% else %>
         <%= image_tag "textile_roll.png", size: "250x250" %>
         <% end %>
-    </div>
-    <div class="card w-50 bg-transparent border-0 align-items-center">
-        <div class="card-body">
-            <h5 class="card-title"><%= @fabric.name %></h5>
-            <h5 class="card-title"><strong><%= number_to_currency(@fabric.price.fdiv(100), unit: 'R$', separator: ".", delimitor: ",", format: "%u %n") %> / m</strong></h5>
-            <hr>
-            <div class="d-flex">
-                <div class="mr-4">
-                    <%= simple_form_for @fabric_to_cart do |f| %>
-                    <%= f.input :fabric_id, :as => :hidden, :input_html => { :value => @fabric.id } %>
-                    <%= f.input :quantity, :label => "Quantidade", :input_html => { :value => @fabric.minimum_qty } %>
-                </div>
-                <div class="align-self-center">
-                    <!-- Atenção: se mudar nome do botão, precisa mudar no controller também -->
-                    <%= f.submit "Adicionar ao carrinho", class: "btn btn-success mb-1" %>
-                    <%= f.submit "COMPRAR AGORA", class: "btn btn-success" %>
-                    <% end %>
-                </div>
-            </div>
-            <p class="card-text mt-3">Cor: <%= @fabric.colour %></p>
-            <p class="card-text">Largura: <%= @fabric.width %> - Gramatura: <%= @fabric.gramatura %></p>
-            <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>
-            <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido minimo: <%= @fabric.minimum_qty %></p>
-            <div class="d-flex">
-                <% @fabric.label_to_fabrics.each do |label_to_fabric| %>
-                <div class="mr-2">
-                    <%= cl_image_tag label_to_fabric.label.photo.key, height: 50, width: 50, crop: :scale %>
-                </div>
-                <% end %>
-            </div>
-        </div>
-    </div>
+	</div>
+	<div class="card w-50 bg-transparent border-0 align-items-center">
+		<div class="card-body">
+			<h5 class="card-title"><%= @fabric.name %></h5>
+		    <h5 class="card-title"><strong><%= number_to_currency(@fabric.price.fdiv(100), unit: 'R$', separator: ".", delimitor: ",", format: "%u %n") %> / m</strong></h5>
+		    <hr>
+		    <div>
+		    	<p class="mb-1">Quantidade</p>
+		    	<%= simple_form_for @fabric_to_cart, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
+			    	<%= f.input :fabric_id, :as => :hidden, :input_html => { :value => @fabric.id } %>
+			    	<%= f.input :quantity, :input_html => { :value => @fabric.minimum_qty } %>
+			    	<%= f.submit "COMPRAR AGORA", class: "btn btn-success ml-4" %>
+		    	<% end %>
+		    </div>
+		    <div class="mt-3">
+		    	<!-- Button trigger modal -->
+		    	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addedProduct">Adicionar ao carrinho</button>
+
+		    	<!-- Modal -->
+		    	<div class="modal fade" id="addedProduct" tabindex="-1" role="dialog" aria-labelledby="addedProductLabel" aria-hidden="true">
+		    		<div class="modal-dialog" role="document">
+		    			<div class="modal-content">
+		    				<div class="modal-header">
+		    					<h5 class="modal-title" id="addedProductLabel"><%= @fabric.name %></h5>
+		    					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		    						<span aria-hidden="true">&times;</span>
+		    					</button>
+		    				</div>
+		    				<div class="modal-body">
+		    					...
+		    				</div>
+		    				<div class="modal-footer">
+		    					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		    					<button type="button" class="btn btn-success">Save changes</button>
+		    				</div>
+		    			</div>
+		    		</div>
+		    	</div>		    			
+		    </div>
+		    <p class="card-text mt-3">Cor: <%= @fabric.colour %></p>
+		    <p class="card-text">Largura: <%= @fabric.width %> - Gramatura: <%= @fabric.gramatura %></p>
+		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>
+		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido minimo: <%= @fabric.minimum_qty %></p>
+		    <div class="d-flex">
+			    <% @fabric.label_to_fabrics.each do |label_to_fabric| %>
+			    	<div class="mr-2">
+			    		<%= cl_image_tag label_to_fabric.label.photo.key, height: 50, width: 50, crop: :scale %>
+			    	</div>
+			    <% end %>
+		    </div>		    
+		</div>
+	</div>
+
 </div>
 <div class="container">
     <h3>Produtos Relacionados</h3>
