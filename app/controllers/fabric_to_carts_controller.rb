@@ -15,7 +15,7 @@ class FabricToCartsController < ApplicationController
 		@fabric_to_cart.user = current_user
         @fabric_to_cart.fabric = @fabric
 
-		if @fabric_to_cart.save && params[:commit] == "COMPRAR AGORA"
+		if @fabric_to_cart.save
 			redirect_to cart_path
 		else
 			render "fabrics/show"
