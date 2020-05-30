@@ -1,1 +1,28 @@
+<%= render "./shared/company_banner", company: @company %>
+
+<div class="container">
+	<% if policy(Fabric).new? %>
+		<%= link_to "Addicionar um novo produto", new_fabric_path, class: "btn btn-success btn-lg"  %>	
+	<% end %>
 	
+	<h2>Os produtos oferecidos pela sua empresa:</h2>
+	<div class="cards d-flex mt-5 justify-content-between text-center">
+        <% @fabrics.each do |fabric| %>
+        <div class="card m-3" style="width: 18rem;">
+            <%= cl_image_tag fabric.photos[0].key, class: "d-block w-100 h-50", crop: :fill %>
+
+            <div class="card-body">
+                <h5 class="card-title"><%= fabric.name %></h5>
+                <p class="card-text"><%= fabric.composition %></p>
+                <p class="card-text"><%= fabric.width %>mm</p>
+                <p class="card-text"><%= fabric.gramatura %>g</p>
+                <p class="card-text">R$ <%= fabric.price/100 %></p> 
+                <div class="d-flex justify-content-between">
+					<%= link_to "View detail", fabric, class: "btn btn-outline-primary center ml-auto" %>
+                </div>
+                
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>

@@ -12,6 +12,11 @@ puts "Cleaning Database"
 Company.destroy_all
 Label.destroy_all
 User.destroy_all
+LabelToFabric.destroy_all
+CompanyUser.destroy_all
+FabricToCart.destroy_all
+Fabric.destroy_all
+
 puts "Database empty"
 
 puts "Creating MVP Elements"
@@ -55,7 +60,8 @@ algodao = Company.create!(
 	billing_address: "Rua Groenlândia 808 Sao Paulo",
 	cep: "01415-000",
 	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil",
-	owner: aurelien
+	owner: aurelien,
+	cnpj: "31.100.900/0001-34"
 )
 
 file = URI.open('https://i.pinimg.com/474x/06/14/a1/0614a1ec120f36cdc42a90c2d241e799--bespoke-boutiques.jpg')
@@ -66,7 +72,8 @@ tecidou = Company.create!(
 	billing_address: "Largo do Arouche 270 Sao Paulo",
 	cep: "01219-010",
 	description: "Produzimos roupas a partir de algodão orgânico do Brasil",
-	owner: gabriel
+	owner: gabriel,
+	cnpj: "55.836.677/0001-56"
 )
 
 file = URI.open('https://i.pinimg.com/474x/be/6c/2e/be6c2e31f300ce0a1f6b44738aa6f9e5--vector-icons-beauty-tips.jpg')
@@ -244,19 +251,19 @@ puts "------------"
 FabricToCart.create!(
 	user: User.first,
 	fabric: Company.first.fabrics[0],
-	quantity: 60
+	quantity: 100
 )
 
 FabricToCart.create!(
 	user: User.first,
 	fabric: Company.first.fabrics[1],
-	quantity: 60
+	quantity: 150
 )
 
 FabricToCart.create!(
 	user: User.first,
 	fabric: Fabric.last,
-	quantity: 100
+	quantity: 125
 )
 
 puts "Added #{FabricToCart.count} fabrics to user #{FabricToCart.first.user.name}"
@@ -281,6 +288,6 @@ DeliveryPoint.create!(
 	user: User.first 
 )
 
-puts "Created #{DeliveryPoint.count} for #{User.first}"
+puts "Created #{DeliveryPoint.count} for #{User.first.name}"
 
 puts "Seed Done!"

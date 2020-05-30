@@ -5,17 +5,24 @@ class CompanyPolicy < ApplicationPolicy
     end
   end
 
-    def new?
-       true
-    end
+  def new?
+    true
+  end
 
-    def create?
-       true
-    end
+  def create?
+    true
+  end
 
-    def show?
-      true
-   end
-    
+  def show?
+    true
+  end
+
+  def search?
+    true
+  end
+
+  def fabrics?
+    user.what_company
+  end
 
 end

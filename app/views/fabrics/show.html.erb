@@ -1,12 +1,4 @@
-<div class="container d-flex mt-4">
-	<% if @fabric.company.logo.attached? %>
-		<%= cl_image_tag @fabric.company.logo.key, height: 150, width: 150, crop: :fill %>
-	<% end %>
-	<h1 class="ml-4 align-self-center"><%= @fabric.company.name %></h1>
-</div>
-<div class="container mt-3 mb-4">
-	<p><%= @fabric.company.description %></p>
-</div>
+<%= render "./shared/company_banner", company: @fabric.company %>
 <hr>
 <div class="container d-flex justify-content-between my-5">
 	<div>
@@ -21,10 +13,19 @@
 	<div class="card w-50 bg-transparent border-0 align-items-center">
 		<div class="card-body">
 			<h5 class="card-title"><%= @fabric.name %></h5>
-		    <h5 class="card-title"><strong>R$ <%= @fabric.price %></strong></h5>
+		    <h5 class="card-title"><strong><%= number_to_currency(@fabric.price.fdiv(100), unit: 'R$', separator: ".", delimitor: ",", format: "%u %n") %> / m</strong></h5>
 		    <hr>
-<!-- 			<%= render "./shared/buy_form", fabric_to_cart: @fabric_to_cart %>
- -->		    <a href="#" class="btn btn-primary">Button</a>
+		    <div class="d-flex">
+		    	<div class="mr-4">
+		    		<%= simple_form_for @fabric_to_cart do |f| %>
+		    			<%= f.input :fabric_id, :as => :hidden, :input_html => { :value => @fabric.id } %>
+		    			<%= f.input :quantity, :label => "Quantidade", :input_html => { :value => @fabric.minimum_qty } %>
+		    	</div>
+		    	<div class="align-self-center">
+		    			<%= f.submit "COMPRAR AGORA", class: "btn btn-success" %>
+		    		<% end %>
+		    	</div>
+			</div>
 		    <p class="card-text mt-3">Cor: <%= @fabric.colour %></p>
 		    <p class="card-text">Largura: <%= @fabric.width %> - Gramatura: <%= @fabric.gramatura %></p>
 		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>

@@ -13,6 +13,10 @@ class FabricToCartPolicy < ApplicationPolicy
   	user == record.user
   end
 
+  def create?
+    true
+  end
+
   def set_delivery_point?
     user == record.user
   end

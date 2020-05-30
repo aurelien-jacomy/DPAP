@@ -1,0 +1,38 @@
+<div class="container">
+
+
+    <%= simple_form_for :search, url: search_company_path, method: :get do |f| %>
+    <div class="search-form-control form-group">
+        <%= f.input :query, 
+    	class: "form-control string required",
+    	remote: true,
+        label: false,
+        placeholder: "CPNJ da empresa",
+    	input_html: {value: @query}
+    %>
+        <button name="button" type="submit" class="btn btn-flat">
+            <i class="fas fa-search"></i> Search
+        </button>
+    </div>
+    <% end %>
+
+    <div class="d-flex justify-content-around">
+        <% if @company.nil? && params[:search].nil? %>
+        <% elsif @company.nil? && !params[:search].nil? %>
+            <p>Company not found </p>
+        <% else %>
+            <p><%= @company.name %></p>
+
+            <%= simple_form_for :company_user,url: company_user_index_path, method: :post do |f| %>
+            <%= f.hidden_field :company_id, :value => @company.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.hidden_field :role, :value => :standard %>
+            <%= f.hidden_field :status, :value => :pending %>
+            <%= f.submit "Request to join company", class: "btn btn-sm btn-success" %>
+            <% end %>
+
+        <% end  %>
+
+    </div>
+
+</div>

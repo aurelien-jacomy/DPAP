@@ -14,6 +14,25 @@ class FabricsController < ApplicationController
     end
 
     def show
+        @fabric_to_cart = FabricToCart.new
+    end
+
+    def new
+        @company = current_user.what_company
+        authorize @company
+        @fabric = Fabric.new
+    end
+
+    def create
+        @company = current_user.what_company
+        authorize @company
+        @fabric = Fabric.new(fabric_params)
+        @fabric.company = @company
+        if @fabric.save
+            redirect_to @fabric
+        else
+            render :new
+        end
     end
 
     private
@@ -21,5 +40,20 @@ class FabricsController < ApplicationController
     def set_fabric
     	@fabric = Fabric.find(params[:id])
     	authorize @fabric
+    end
+
+    def fabric_params
+        params.require(:fabric).permit(
+            :name,
+            :colour,
+            :width,
+            :gramatura,
+            :fabric_type,
+            :composition,
+            :price,
+            :shipment_time,
+            :minimum_qty,
+            photos: []
+            )
     end
 end

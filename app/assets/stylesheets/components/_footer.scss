@@ -4,8 +4,12 @@
   align-items: center;
   justify-content: center;
   height: 50px;
+  line-height: 50px;
   padding: 0px 16px;
   color: rgba(0,0,0,0.3);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 .footer-links {
   display: flex;
@@ -20,4 +24,14 @@
 }
 .footer-links a:hover {
   opacity: 1;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
 }
