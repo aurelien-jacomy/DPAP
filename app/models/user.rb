@@ -8,6 +8,10 @@ class User < ApplicationRecord
   has_one_attached :photo, dependent: :destroy
   has_many :delivery_points, dependent: :destroy
 
+  has_one :owned_company, foreign_key: "user_id", class_name: "Company" 
+  has_one :company_user, dependent: :destroy
+  has_one :company, through: :company_user
+
   def cart_by_supplier
   	my_cart = cart
   	cart_by_supplier = {}
@@ -24,10 +28,9 @@ class User < ApplicationRecord
   def cart
   	FabricToCart.joins(fabric: :company).where(user: self).order('companies.name')
   end
-  
-  has_one :owned_company, foreign_key: "user_id", class_name: "Company" 
-  
-  has_one :company_user, dependent: :destroy
-  has_one :company, through: :company_user
+
+  def what_company
+    owned_company ? owned_company : company
+  end
 
 end
