@@ -10,26 +10,21 @@
         <% @fabrics.each do |fabric| %>
 
             <div>
-                <div class="card m-3" style="width: 18rem;">
-                   <% unless fabric.photos[0].nil?%>
-                      <%= cl_image_tag fabric.photos[0].key, class: "d-block w-100 h-50", crop: :fill %>
-                   <% else %>
-                      <%= image_tag "textile_roll.png", size: "250x250" %>
-                   <% end %>
-
+                <div class="card mx-2 p-1">
+                    <% unless fabric.photos[0].nil?%>
+                    <%=  cl_image_tag fabric.photos[0].key, :transformation=>[{:width=>400, :height=>250, :crop=>"fill"}] %>
+                    <% else %>
+                    <%= image_tag "textile_roll.png", size: "250x250" %>
+                    <% end %>
                     <div class="card-body">
                         <h5 class="card-title"><%= fabric.name %></h5>
                         <p class="card-text"><%= fabric.composition %></p>
-                        <p class="card-text"><%= fabric.width %>mm</p>
-                        <p class="card-text"><%= fabric.gramatura %>g</p>
-                        <p class="card-text">R$ <%= fabric.price/100 %></p> 
-                        <div class="d-flex justify-content-between">
-        					<%= link_to "View detail", fabric, class: "btn btn-outline-primary center ml-auto" %>
-                        </div>
+                        <p class="card-text">R$<%= fabric.price/100 %>/m</p>
+                        <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center ml-auto btn-details" %>
                     </div>
                 </div>
                 <% if policy(fabric).edit? %>
-                    <div class="edit-links">
+                    <div class="edit-links mx-2">
                         <%= link_to edit_fabric_path(fabric) do %>
                             <i class="fas fa-edit"></i>
                         <% end %>
