@@ -1,6 +1,6 @@
 <%= render "./shared/company_banner", company: @fabric.company %>
 <hr>
-<div class="container d-flex justify-content-between my-5">
+<div class="container d-flex justify-content-between my-4">
 	<div>
 		<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill %>
 		<% next_photos = @fabric.photos[1..6] %>
