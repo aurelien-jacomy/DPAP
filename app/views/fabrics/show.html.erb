@@ -1,14 +1,26 @@
 <%= render "./shared/company_banner", company: @fabric.company %>
 <hr>
+<% if policy(@fabric).edit? %>
+<div class="container">
+    <p>Esse produto é oferecido por sua empresa. Você pode
+        <%= link_to "editá-lo", edit_fabric_path(@fabric) %>
+        ou <%= link_to "retirá-lo", @fabric, method: :delete, data: {confirm: "Tem certeza que deseja retirar esse produto do seu sortimento?"} %> do seu sortimento
+    </p>
+</div>
+<% end %>
 <div class="container d-flex justify-content-between my-4">
 	<div>
-		<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill, id: "main-pic" %>
-		<% next_photos = @fabric.photos[1..6] %>
-		<% next_photos.each do |photo| %>
-			<div class="mt-3">
-				<%= cl_image_tag photo.key, height: 90, width: 60, crop: :fill %>
-			</div>
-		<% end %>
+<% unless @fabric.photos[0].nil?%>
+        <%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill %>
+        <% next_photos = @fabric.photos[1..6] %>
+        <% next_photos.each do |photo| %>
+        <div class="mt-3">
+            <%= cl_image_tag photo.key, height: 90, width: 60, crop: :fill %>
+        </div>
+        <% end %>
+        <% else %>
+        <%= image_tag "textile_roll.png", size: "250x250" %>
+        <% end %>
 	</div>
 	<div class="card w-50 bg-transparent border-0 align-items-center">
 		<div class="card-body">
@@ -61,20 +73,25 @@
 		    </div>		    
 		</div>
 	</div>
+
 </div>
 <div class="container">
-	<h3>Produtos Relacionados</h3>
-	<hr>
-	<div class="d-flex mt-4">
-		<% @fabric.company.fabrics.each do |fabric| %>
-			<% if fabric != @fabric %>
-				<div class="flex-item mr-4 related-products">
-					<%= link_to fabric_path(fabric) do %>
-					<%= cl_image_tag fabric.photos[0].key, height: 150, width: 200, crop: :fill %>
-					<p><%= fabric.name %></p>
-					<% end %>
-				</div>
-			<% end %>
-		<% end %>
-	</div>
+    <h3>Produtos Relacionados</h3>
+    <hr>
+    <div class="d-flex mt-4">
+        <% @fabric.company.fabrics.each do |fabric| %>
+        <% if fabric != @fabric %>
+        <div class="flex-item mr-4 related-products">
+            <%= link_to fabric_path(fabric) do %>
+            <% unless fabric.photos[0].nil?%>
+            <%= cl_image_tag fabric.photos[0].key, height: 150, width: 200, crop: :fill %>
+            <% else %>
+            <%= image_tag "textile_roll.png", size: "250x250" %>
+            <% end %>
+            <p><%= fabric.name %></p>
+            <% end %>
+        </div>
+        <% end %>
+        <% end %>
+    </div>
 </div>

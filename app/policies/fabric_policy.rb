@@ -18,7 +18,19 @@ class FabricPolicy < ApplicationPolicy
   end
 
   def create?
+    new?
+  end
 
+  def edit?
+    user.what_company == record.company
+  end
+
+  def update?
+    edit?
+  end
+
+  def destroy?
+    user == record.company.owner
   end
 
 end
