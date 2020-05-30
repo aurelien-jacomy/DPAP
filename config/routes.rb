@@ -2,8 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :companies, only: [:new, :create] 
-  resources :fabrics, only: [ :index, :show ] 
+  resources :companies, only: [:new, :create, :show] do
+    member do 
+      get 'fabrics' 
+    end    
+  end
+  resources :fabrics, only: [ :index, :show, :new, :create ]
   resources :company_user, only: [:create, :new, :update] 
 
   get 'cart', to: 'fabric_to_carts#show_user_cart'

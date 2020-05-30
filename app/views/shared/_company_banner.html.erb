@@ -1,0 +1,9 @@
+<div class="container d-flex mt-4">
+	<% if company.logo.attached? %>
+		<%= cl_image_tag company.logo.key, height: 150, width: 150, crop: :fill %>
+	<% end %>
+	<h1 class="ml-4 align-self-center"><%= company.name %></h1>
+</div>
+<div class="container mt-3 mb-4">
+	<p><%= company.description %></p>
+</div>
