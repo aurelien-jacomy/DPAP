@@ -10,7 +10,7 @@
 <hr>
 <div class="container d-flex justify-content-between my-5">
 	<div>
-		<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill %>
+		<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill, id: "main-pic" %>
 		<% next_photos = @fabric.photos[1..6] %>
 		<% next_photos.each do |photo| %>
 			<div class="mt-3">
