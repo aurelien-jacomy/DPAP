@@ -32,38 +32,41 @@
 		    	<%= simple_form_for @fabric_to_cart, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
 			    	<%= f.input :fabric_id, :as => :hidden, :input_html => { :value => @fabric.id } %>
 			    	<%= f.input :quantity, :input_html => { :value => @fabric.minimum_qty } %>
+			    	<!-- Button name "COMPRAR AGORA" linked to controller. Both need to be changed if needed -->
 			    	<%= f.submit "COMPRAR AGORA", class: "btn btn-success ml-4" %>
+			    	<!-- Button trigger modal -->
+			    	<div data-toggle="modal", data-target="#addedProduct" class="mt-3">
+			    		<%= f.submit "Adicionar ao carrinho", class: "btn btn-success" %>
+			    	</div>
 		    	<% end %>
 		    </div>
-		    <div class="mt-3">
-		    	<!-- Button trigger modal -->
-		    	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addedProduct">Adicionar ao carrinho</button>
-
-		    	<!-- Modal -->
-		    	<div class="modal fade" id="addedProduct" tabindex="-1" role="dialog" aria-labelledby="addedProductLabel" aria-hidden="true">
-		    		<div class="modal-dialog" role="document">
-		    			<div class="modal-content">
-		    				<div class="modal-header">
-		    					<h5 class="modal-title" id="addedProductLabel"><%= @fabric.name %></h5>
-		    					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		    						<span aria-hidden="true">&times;</span>
-		    					</button>
-		    				</div>
-		    				<div class="modal-body">
-		    					...
-		    				</div>
-		    				<div class="modal-footer">
-		    					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		    					<button type="button" class="btn btn-success">Save changes</button>
+		    <!-- Modal -->
+		    <div class="modal fade" id="addedProduct" tabindex="-1" role="dialog" aria-labelledby="addedProductLabel" aria-hidden="true">
+		    	<div class="modal-dialog" role="document">
+		    		<div class="modal-content">
+		    			<div class="modal-header">
+		    				<h5 class="modal-title" id="addedProductLabel"><strong><%= @fabric.name %></strong> adicionado ao carrinho!</h5>
+		    				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		    					<span aria-hidden="true">&times;</span>
+		    				</button>
+		    			</div>
+		    			<div class="modal-body">
+		    				<div class="container">
+		    					<div class="row justify-content-center">
+		    						<%= cl_image_tag @fabric.photos[0].key, height: 200, width: 150, crop: :fill %>
+		    					</div>
 		    				</div>
 		    			</div>
+		    			<div class="modal-footer">
+		    				<p>Voltando a página de tecidos...</p>
+		    			</div>
 		    		</div>
-		    	</div>		    			
-		    </div>
+		    	</div>
+		    </div>		    			
 		    <p class="card-text mt-3">Cor: <%= @fabric.colour %></p>
-		    <p class="card-text">Largura: <%= @fabric.width %> - Gramatura: <%= @fabric.gramatura %></p>
+		    <p class="card-text">Largura: <%= @fabric.width %>m - Gramatura: <%= @fabric.gramatura %>g/m</p>
 		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>
-		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido minimo: <%= @fabric.minimum_qty %></p>
+		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido minimo: <%= @fabric.minimum_qty %>m</p>
 		    <div class="d-flex">
 			    <% @fabric.label_to_fabrics.each do |label_to_fabric| %>
 			    	<div class="mr-2">
