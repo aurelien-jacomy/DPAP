@@ -1,0 +1,15 @@
+<div class="card mx-2 p-1">
+    <% unless fabric.photos[0].nil?%>
+    <%=  cl_image_tag fabric.photos[0].key, :transformation=>[{:width=>400, :height=>250, :crop=>"fill"}] %>
+    <% else %>
+    <%= image_tag "textile_roll.png", size: "250x250" %>
+    <% end %>
+    <div class="card-body fabric">
+        <h5 class="card-title"><%= fabric.name %></h5>
+        <div class="content">
+            <p class="card-text"><%= fabric.composition %></p>
+            <p class="card-text">R$<%= fabric.price/100 %>/m</p>
+        </div>
+        <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center btn-details" %>
+    </div>
+</div>

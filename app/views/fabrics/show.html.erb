@@ -61,7 +61,7 @@
 		    			<div class="modal-body">
 		    				<div class="container">
 		    					<div class="row justify-content-center">
-		    						<%= cl_image_tag @fabric.photos[0].key, height: 200, width: 150, crop: :fill %>
+		    						<%= cl_image_tag @fabric.photos[0].key, height: 200, width: 150, crop: :fill unless @fabric.photos[0].nil? %>
 		    					</div>
 		    				</div>
 		    			</div>
@@ -95,7 +95,7 @@
         <div class="flex-item mr-4 related-products">
             <%= link_to fabric_path(fabric) do %>
             <% unless fabric.photos[0].nil?%>
-            <%= cl_image_tag fabric.photos[0].key, height: 150, width: 200, crop: :fill %>
+            	<%= cl_image_tag fabric.photos[0].key, height: 150, width: 200, crop: :fill %>
             <% else %>
             <%= image_tag "textile_roll.png", size: "250x250" %>
             <% end %>
