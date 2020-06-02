@@ -66,7 +66,7 @@
 		    <p class="card-text mt-3">Cor: <%= @fabric.colour %></p>
 		    <p class="card-text">Largura: <%= @fabric.width %>m - Gramatura: <%= @fabric.gramatura %>g/m</p>
 		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>
-		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido minimo: <%= @fabric.minimum_qty %>m</p>
+		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido mínimo: <%= @fabric.minimum_qty %>m</p>
 		    <div class="d-flex">
 			    <% @fabric.label_to_fabrics.each do |label_to_fabric| %>
 			    	<div class="mr-2">
