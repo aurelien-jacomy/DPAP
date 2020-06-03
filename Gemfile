@@ -35,6 +35,7 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'cloudinary', '~> 1.12.0'
+gem 'stripe'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
