@@ -1,13 +1,13 @@
 <%= simple_form_for fabric do |f| %>
-	<%= f.input :name, require: true %>
-	<%= f.input :colour %>
-	<%= f.input :width, require: true, hint: "in meter" %>
-	<%= f.input :gramatura, require: true, hint: "in g/m" %>
-	<%= f.input :fabric_type %>
-	<%= f.input :composition %>
-	<%= f.input :price, hint: "cts / m", require: true %>
-	<%= f.input :shipment_time, default: 1, hint: "in days" %>
-	<%= f.input :minimum_qty, hint: "in meter", value: 1 %>
-	<%= f.input :photos, as: :file, input_html: { multiple: true } %>
-	<%= f.submit class: "btn btn-success" %>
+	<%= f.input :name, require: true, label: "Nome" %>
+	<%= f.input :colour, label: "Cor" %>
+	<%= f.input :width, require: true, hint: "em metro", label: "Largura" %>
+	<%= f.input :gramatura, require: true, hint: "em gramas/metro" %>
+	<%= f.input :fabric_type, label: "Tipo de tecido" %>
+	<%= f.input :composition, label: "Composição" %>
+	<%= f.input :price, hint: "cts / m", require: true, label: "Preço" %>
+	<%= f.input :shipment_time, default: 1, hint: "em dias", label: "Prazo para expedir" %>
+	<%= f.input :minimum_qty, hint: "em metro", value: 1, label: "Quantidade mínima" %>
+	<%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Adicione fotos ao seu produto" %>
+	<%= f.submit "Criar produto", class: "btn btn-success" %>
 <% end %>
