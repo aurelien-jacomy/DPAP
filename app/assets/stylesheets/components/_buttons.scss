@@ -9,3 +9,11 @@
 		border: 1px solid gray;
 	}
 }
+
+.btn-add.disabled {
+		opacity: .5;
+		&:hover {
+			color: gray;
+			border: 0px;
+		}
+	}
