@@ -20,4 +20,8 @@ class FabricToCartPolicy < ApplicationPolicy
   def set_delivery_point?
     user == record.user
   end
+
+  def destroy_all?
+    destroy?
+  end
 end

@@ -1,18 +1,27 @@
 <div class="container my-4">
-	<h1>Meu Carrinho</h1>
+	<div class="d-flex justify-content-between align-items-center">
+		<h1>Meu Carrinho</h1>
+		<% unless @cart.empty? %>
+			<%= link_to cart_path, method: :delete, data: {confirm: "Você deseja retirar todos os itens do seu carrinho?"} do %>
+				<i class="fas fa-trash" style="color: red;"></i>
+			<% end %>
+		<% end %>
+	</div>
 	
 	<% if @cart.empty? %>
 		<p>Você não adicinou nenhum elemento ao seu carrinho</p>
+		<%= link_to fabrics_path do %>
+			<button class="btn btn-success">Descubra nossos tecidos</button>
+		<% end %>
+	<% else %>
+		<% @cart.keys.each do |company| %>
+			<%= render partial: 'company_card', locals: {company: company, cart: @cart} %>
+		<% end %>
+		
+		<div class="d-flex justify-content-end">
+			<button class="btn btn-success" id="validate-cart">Validar Carrinho</button>
+		</div>
 	<% end %>
-	
-	<% @cart.keys.each do |company| %>
-		<%= render partial: 'company_card', locals: {company: company, cart: @cart} %>
-	<% end %>
-	
-	<div class="d-flex justify-content-end">
-		<button class="btn btn-success" id="validate-cart">Validar Carrinho</button>
-	</div>
-
 </div>
 
 <div class="container hidden" id="delivery-part">

@@ -29,6 +29,15 @@ class FabricToCartsController < ApplicationController
 		redirect_to cart_path
 	end
 
+	def destroy_all
+		cart = policy_scope(FabricToCart)
+		cart.each do |item|
+			authorize item
+			item.destroy
+		end
+		redirect_to cart_path
+	end
+
 	def update
 		authorize @cart
 		if @cart.update(cart_params)
