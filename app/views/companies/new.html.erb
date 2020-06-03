@@ -1,12 +1,18 @@
-<div class="container"> 
-<%= simple_form_for  @company do |f| %>
-  <%= f.input :name %>
-  <%= f.input :cnpj %>
-  <%= f.input :billing_address %>
-  <%= f.input :cep %>
-  <%= f.input :description %>
+<div class="container">
+    <%= simple_form_for  @company do |f| %>
+    <%= f.input :name %>
+    <%= f.input :cnpj %>
+    <%= f.input :description %>
+    <%= f.input :cep %>
+    <%= f.input :uf %>
+    <%= f.input :cidade %>
+    <%= f.input :bairro %>
+    <%= f.input :rua %>
+    <%= f.input :numero %>
+    <%= f.input :complemento %>
 
 
-  <%= f.submit "Create company", class: "btn btn-outline-primary" %>
-<% end %>
+
+    <%= f.submit "Create company", class: "btn btn-outline-primary" %>
+    <% end %>
 </div>
