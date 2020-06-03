@@ -129,8 +129,22 @@ file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/08/splendor.jpg
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
 
+puts "Photo ##{fabric.photos.count}"
+
 file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/08/liana-cel.jpg')
 fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/08/soli%C3%AA.jpg')
+fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/08/GR%C3%83OS.jpg')
+fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
 
 puts "Fabric ##{Fabric.count} done"
 
@@ -151,8 +165,27 @@ file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/ASPEN.jpeg')
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
 
+puts "Photo ##{fabric.photos.count}"
+
 file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/BRI%C3%81TICO-VERMELHO.jpg')
 fabric.photos.attach(io: file, filename: 'black_velvet.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/GRANADA.jpeg')
+fabric.photos.attach(io: file, filename: 'black_velvet.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/POLINESIA.jpeg')
+fabric.photos.attach(io: file, filename: 'black_velvet.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/06/VALENTINE-5.jpeg')
+fabric.photos.attach(io: file, filename: 'black_velvet.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
 
 puts "Fabric ##{Fabric.count} done"
 
@@ -173,8 +206,27 @@ file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/AGNES.jpeg')
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'black_velvet.jpg', content_type: 'image/jpg')
 
+puts "Photo ##{fabric.photos.count}"
+
 file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/VERSUS-PRETO.jpg')
 fabric.photos.attach(io: file, filename: 'green_hornet.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/06/YVES-COLOR-2.jpeg')
+fabric.photos.attach(io: file, filename: 'green_hornet.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/08/LUMIN%C3%8A.jpg')
+fabric.photos.attach(io: file, filename: 'green_hornet.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/06/GRANADA-MESCLA-2.jpeg')
+fabric.photos.attach(io: file, filename: 'green_hornet.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
 
 puts "Fabric ##{Fabric.count} done"
 
@@ -195,8 +247,32 @@ file = URI.open('https://d26lpennugtm8s.cloudfront.net/stores/994/149/products/a
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: 'green_hornet.jpg', content_type: 'image/jpg')
 
+puts "Photo ##{fabric.photos.count}"
+
 file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/LINDISSIMA.jpeg')
 fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/08/movimento.jpg')
+fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/08/isabela.jpg')
+fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/08/achmea.jpg')
+fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+
+file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/JULIETTE.jpeg')
+fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
 
 puts "Fabric ##{Fabric.count} done"
 
