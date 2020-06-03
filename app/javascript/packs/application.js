@@ -27,6 +27,7 @@ import "bootstrap";
 import { initSelectDeliveryPoint } from "./select_delivery_point";
 import { displayDeliveryForm } from "./display_delivery_form";
 import { showDeliveryPart } from "./show_delivery_part";
+import { getCEP } from "./cep_search";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -45,4 +46,11 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById("validate-cart")) {
   	showDeliveryPart();
   }
+
+  if (document.getElementById("new_company")) {
+    getCEP();
+  }
+
+
+  
 });
