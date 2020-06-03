@@ -21,7 +21,6 @@ const getCEP = () => {
         );
       } else {
         alert("Formato de CEP inválido.");
-        console.log("adsa")
       }
     } 
   });
