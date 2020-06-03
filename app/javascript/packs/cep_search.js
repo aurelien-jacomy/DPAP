@@ -15,18 +15,15 @@ const getCEP = () => {
               $("#company_cidade").val(dados.localidade);
               $("#company_uf").val(dados.uf);
             } else {
-              limpa_formulário_cep();
               alert("CEP não encontrado.");
             }
           }
         );
       } else {
-        limpa_formulário_cep();
         alert("Formato de CEP inválido.");
+        console.log("adsa")
       }
-    } else {
-      limpa_formulário_cep();
-    }
+    } 
   });
 };
 
