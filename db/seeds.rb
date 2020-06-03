@@ -57,9 +57,14 @@ puts "------------"
 
 algodao = Company.create!(
 	name: "Sou de Algodão",
-	billing_address: "Rua Groenlândia 808 Sao Paulo",
-	cep: "01415-000",
+	cep: "01434-000",
 	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil",
+	uf: "SP",
+	cidade: "São Paulo",
+	bairro: "Jardim America",
+	rua: "Rua Groenlândia",
+	numero: "808",
+	complemento: "Casa",
 	owner: aurelien,
 	cnpj: "31.100.900/0001-34"
 )
@@ -69,9 +74,14 @@ algodao.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image
 
 tecidou = Company.create!(
 	name: "Tecidou",
-	billing_address: "Largo do Arouche 270 Sao Paulo",
 	cep: "01219-010",
 	description: "Produzimos roupas a partir de algodão orgânico do Brasil",
+	uf: "SP",
+	cidade: "São Paulo",
+	bairro: "Santa Cecilia",
+	rua: "Largo do Arouche",
+	numero: "270",
+	complemento: "Condomínio Edif Barão de Alfenas",
 	owner: gabriel,
 	cnpj: "55.836.677/0001-56"
 )
