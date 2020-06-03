@@ -51,4 +51,11 @@
 
 .card-body.fabric {
   height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-body .content {
+  flex-grow: 1;
 }
