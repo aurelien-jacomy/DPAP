@@ -45,6 +45,14 @@ img.thumbnail {
   margin: 56px auto;
 }
 
+.home-img {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  object-position: center;
+  margin-right: 50px;
+}
+
 .banner-create-join-company {
   border-radius: 11px;
   align-self: center;
@@ -68,4 +76,12 @@ img.thumbnail {
   border-radius: 5px;
   color: $cotton-white;
   text-decoration: none;
+}
+
+.container-dark {
+  background-color: $pele;
+  padding: 24px 0px;
+  h2 p {
+    color: $cotton-white;
+  }
 }
