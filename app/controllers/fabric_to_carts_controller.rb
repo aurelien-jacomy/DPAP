@@ -2,7 +2,7 @@ class FabricToCartsController < ApplicationController
 	before_action :set_fabric_to_cart, only: [:destroy, :update]
 
 	def show_user_cart
-		cart = policy_scope(FabricToCart)
+		cart = policy_scope(FabricToCart).order(:created_at)
 		@cart = cart_by_supplier(cart)
 		@delivery_point = DeliveryPoint.new
 		@delivery_points = DeliveryPoint.where(user: current_user).order('created_at DESC')
