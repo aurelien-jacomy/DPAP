@@ -34,7 +34,7 @@ class DeliveryPointsController < ApplicationController
 	private
 
 	def params_delivery_point
-		params.require(:delivery_point).permit(:name, :address, :cep, :contact, :comment)
+		params.require(:delivery_point).permit(:name, :uf,:rua, :cidade, :bairro, :numero, :complemento, :cep, :contact, :comment)
 	end
 
 	def find_delivery_point

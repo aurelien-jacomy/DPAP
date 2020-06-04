@@ -1,5 +1,5 @@
 const getCEP = () => {
-  $("#company_cep").blur(function () {
+  $("#cep").blur(function () {
     var cep = $(this).val().replace(/\D/g, "");
 
     if (cep != "") {
@@ -10,22 +10,18 @@ const getCEP = () => {
           "https://viacep.com.br/ws/" + cep + "/json/?callback=?",
           function (dados) {
             if (!("erro" in dados)) {
-              $("#company_rua").val(dados.logradouro);
-              $("#company_bairro").val(dados.bairro);
-              $("#company_cidade").val(dados.localidade);
-              $("#company_uf").val(dados.uf);
+              $("#rua").val(dados.logradouro);
+              $("#bairro").val(dados.bairro);
+              $("#cidade").val(dados.localidade);
+              $("#uf").val(dados.uf);              
             } else {
-              limpa_formulário_cep();
               alert("CEP não encontrado.");
             }
           }
         );
       } else {
-        limpa_formulário_cep();
         alert("Formato de CEP inválido.");
       }
-    } else {
-      limpa_formulário_cep();
     }
   });
 };

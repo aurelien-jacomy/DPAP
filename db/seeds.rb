@@ -356,7 +356,11 @@ puts "Added #{FabricToCart.count} fabrics to user #{FabricToCart.first.user.name
 
 DeliveryPoint.create!(
 	name: "Alinha Costureiras",
-	address: "Rua Bela Cintra 408 Sao Paulo",
+	uf: "SP",
+	bairro: "Jardim Paulista",
+	cidade: "Sâo Paulo",
+	rua:"Rua Bela Cintra",
+	numero: "408",
 	cep: "01415-000",
 	contact: "Eliuma",
 	comment: "2° andar, entregar em mãos próprias",
@@ -366,7 +370,11 @@ DeliveryPoint.create!(
 
 DeliveryPoint.create!(
 	name: "Escritório",
-	address: "Rua Groenlândia 808 Sao Paulo",
+	uf: "SP",
+	bairro: "Jardim Paulista",
+	cidade: "Sâo Paulo",
+	rua:"Rua Bela Cintra",
+	numero: "408",
 	cep: "01415-000",
 	contact: "Aurélien",
 	comment: "deixar na recepção",

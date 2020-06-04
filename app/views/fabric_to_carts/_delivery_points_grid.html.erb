@@ -13,7 +13,7 @@
 
 			<h3><%= delivery_point.name %></h3>
 			<div class="card-details">
-				<p>Endereço: <%= delivery_point.address %></p>
+				<p>Endereço: <%= delivery_point.cidade %> - <%= delivery_point.uf %>, <%= delivery_point.bairro %>, <%= delivery_point.rua %>, <%= delivery_point.numero %>, <%= delivery_point.complemento %></p>
 				<p>CEP: <%= delivery_point.cep %></p>
 				<p>Contato: <%= delivery_point.contact %></p>
 				<p>Comentário: <%= delivery_point.comment %></p>
