@@ -57,8 +57,12 @@ puts "------------"
 
 algodao = Company.create!(
 	name: "Sou de Algodão",
-	billing_address: "Rua Groenlândia 808 Sao Paulo",
 	cep: "01415-000",
+	uf: "SP",
+	bairro: "Jardins",
+	cidade: "Sâo Paulo",
+	rua:"Rua Groenlândia",
+	numero: "808",
 	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil",
 	owner: aurelien,
 	cnpj: "31.100.900/0001-34"
@@ -69,7 +73,11 @@ algodao.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image
 
 tecidou = Company.create!(
 	name: "Tecidou",
-	billing_address: "Largo do Arouche 270 Sao Paulo",
+	uf: "SP",
+	bairro: "República",
+	cidade: "Sâo Paulo",
+	rua:"Largo do Arouche",
+	numero: "270",
 	cep: "01219-010",
 	description: "Produzimos roupas a partir de algodão orgânico do Brasil",
 	owner: gabriel,
@@ -270,7 +278,11 @@ puts "Added #{FabricToCart.count} fabrics to user #{FabricToCart.first.user.name
 
 DeliveryPoint.create!(
 	name: "Alinha Costureiras",
-	address: "Rua Bela Cintra 408 Sao Paulo",
+	uf: "SP",
+	bairro: "Jardim Paulista",
+	cidade: "Sâo Paulo",
+	rua:"Rua Bela Cintra",
+	numero: "408",
 	cep: "01415-000",
 	contact: "Eliuma",
 	comment: "2° andar, entregar em mãos próprias",
@@ -280,7 +292,11 @@ DeliveryPoint.create!(
 
 DeliveryPoint.create!(
 	name: "Escritório",
-	address: "Rua Groenlândia 808 Sao Paulo",
+	uf: "SP",
+	bairro: "Jardim Paulista",
+	cidade: "Sâo Paulo",
+	rua:"Rua Bela Cintra",
+	numero: "408",
 	cep: "01415-000",
 	contact: "Aurélien",
 	comment: "deixar na recepção",
