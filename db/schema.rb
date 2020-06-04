@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_232822) do
+ActiveRecord::Schema.define(version: 2020_06_03_121020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 2020_06_02_232822) do
 
   create_table "delivery_points", force: :cascade do |t|
     t.string "name"
-    t.string "address"
     t.string "cep"
     t.string "contact"
     t.text "comment"
@@ -74,6 +73,12 @@ ActiveRecord::Schema.define(version: 2020_06_02_232822) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "uf"
+    t.string "cidade"
+    t.string "bairro"
+    t.string "rua"
+    t.string "numero"
+    t.string "complemento"
     t.index ["user_id"], name: "index_delivery_points_on_user_id"
   end
 
