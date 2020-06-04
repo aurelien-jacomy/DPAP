@@ -51,6 +51,7 @@ document.addEventListener('turbolinks:load', () => {
     getCEP();
   }
 
-
-  
+  if (document.getElementById("new_delivery_point")) {
+    getCEP();
+  }
 });
