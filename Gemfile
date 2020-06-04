@@ -36,6 +36,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'cloudinary', '~> 1.12.0'
 gem 'stripe'
+gem 'stripe_event'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
