@@ -20,7 +20,8 @@
 	<div>
 		<% unless @fabric.photos[0].nil?%>
 			<div id="main-pic">
-        		<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill %>
+				<% main_pic_key = @fabric.photos[0].key %>
+        		<%= cl_image_tag main_pic_key, height: 500, width: 400, crop: :fill %>
         	</div>
         	<% next_photos = @fabric.photos[1..6] %>
         	<div class="d-flex">
