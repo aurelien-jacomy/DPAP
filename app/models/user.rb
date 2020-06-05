@@ -13,8 +13,6 @@ class User < ApplicationRecord
   has_one :company_user, dependent: :destroy
   has_one :company, through: :company_user
 
-  has_one :checkout_session_id
-
   def cart_by_supplier
   	my_cart = cart
   	cart_by_supplier = {}

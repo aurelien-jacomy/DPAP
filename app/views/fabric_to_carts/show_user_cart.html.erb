@@ -19,29 +19,25 @@
 		<% end %>
 		
 		<div class="d-flex justify-content-end">
-			<button class="btn btn-success" id="validate-cart">Validar Carrinho</button>
+			<% if current_user.checkout_session_id.nil? %>
+				<%= link_to "Validar Carrinho", payments_path, class: "btn btn-success", method: :post %>	
+			<% else %>
+				<button class="btn btn-warning" id="pay">Pagar</button>
+
+			      <script src="https://js.stripe.com/v3/"></script>
+			      <script>
+			        const paymentButton = document.getElementById('pay');
+			        paymentButton.addEventListener('click', () => {
+			          const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+			          stripe.redirectToCheckout({
+			            sessionId: '<%= current_user.checkout_session_id %>'
+			          });
+			        });
+			      </script>
+
+			<% end %>		
 		</div>
 	<% end %>
 </div>
 
-<div class="container hidden" id="delivery-part">
-	
-	<div class="d-flex align-items-center">
-		<h2>Escolhe o endereço de entrega ou</h2>
-		<button class="btn btn-secondary mx-4 delivery-point-form">crie um novo endereço</button>
-	</div>
 
-	<div class="hidden" id="delivery-point-form">
-		<%= render partial: "delivery_point_form", locals: {delivery_point: @delivery_point} %>
-	</div>
-	
-	<%= render partial: "delivery_points_grid" %>
-	
-	<div class="d-flex justify-content-end mb-4">
-		<%= form_for :delivery_point, url: {action: :set_delivery_point} do |f| %>
-			<%= f.hidden_field :id, id: "delivery-point-id", value: @default_delivery_point %>
-			<%= f.submit "Pagar", class: "btn btn-success" %>
-		<% end %>
-	</div>
-
-</div>
