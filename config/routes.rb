@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'fabrics' 
     end    
   end
+
   resources :fabrics, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
   resources :company_user, only: [:create, :new, :update] 
 
@@ -18,12 +19,13 @@ Rails.application.routes.draw do
   resources :fabric_to_carts, only: [:destroy, :update, :create]
   post 'set_delivery_point', to: 'fabric_to_carts#set_delivery_point'
 
-  resources :delivery_points, only: [:create, :destroy] do
+  resources :delivery_points, only: [:create, :destroy, :index] do
   	member do
 			get :as_favourite  		
   	end 
   end
 
-  resources :payments, only: :new
+  resources :payments, only: :create
+  resources :orders, only: :index
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

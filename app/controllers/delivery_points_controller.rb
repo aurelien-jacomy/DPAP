@@ -1,15 +1,20 @@
 class DeliveryPointsController < ApplicationController
 	before_action :find_delivery_point, only: [:destroy, :as_favourite]
 	
+	def index 
+		@delivery_point = DeliveryPoint.new
+		@delivery_points = policy_scope(DeliveryPoint).order('created_at DESC')
+	end
+
 	def create
 		delivery_point = DeliveryPoint.new(params_delivery_point)
 		delivery_point.user = current_user
 		authorize delivery_point
 
 		if delivery_point.save
-			redirect_to cart_path
+			redirect_to delivery_points_path
 		else
-			render "cart"
+			render :index
 		end
 	end
 
