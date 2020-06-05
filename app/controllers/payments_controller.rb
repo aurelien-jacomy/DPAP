@@ -18,7 +18,7 @@ class PaymentsController < ApplicationController
 		session = Stripe::Checkout::Session.create(
 	    payment_method_types: ['card'],
 	    line_items: line_items,
-	    success_url: orders_url,
+	    success_url: new_order_url,
 	    cancel_url: orders_url
 	  )
 

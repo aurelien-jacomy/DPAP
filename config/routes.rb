@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   	end 
   end
 
+  resources :orders, only: [:new, :index]
+
   resources :payments, only: :create
   resources :orders, only: :index
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
