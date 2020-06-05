@@ -12,6 +12,8 @@ class OrdersController < ApplicationController
 		cart.each_key do |supplier|
 			order = Order.create(
 				user: current_user,
+				customer: current_user.what_company.name,
+				supplier: supplier.name,
 				userid: current_user.id,
 				delivery_point: delivery_point,
 				delivery_address: delivery_address,
