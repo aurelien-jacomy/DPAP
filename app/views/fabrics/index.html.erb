@@ -4,9 +4,17 @@
             <%= render "./shared/search" %>
         </div>
     </div>
-    <div class="cards text-center">
-        <% @fabrics.each do |fabric| %>
+    <div class="d-flex">
+        <div id="advanced-search-form">
+            <%= simple_form_for :search, url: root_path, method: "GET", remote: true do |f| %>
+            <%= f.input :colour, label: "Cor",  collection: $colors, as: :check_boxes %>
+            <%= f.input :colour, label: "Composição",  collection: $composition, as: :check_boxes %>
+            <% end %>
+        </div>
+        <div class="cards text-center" id="fabrics">
+            <% @fabrics.each do |fabric| %>
             <%= render "./shared/base_fabric", fabric: fabric %>
-        <% end %>
+            <% end %>
+        </div>
     </div>
 </div>
