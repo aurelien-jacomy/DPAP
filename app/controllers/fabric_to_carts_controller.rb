@@ -13,6 +13,8 @@ class FabricToCartsController < ApplicationController
 		@fabric_to_cart.user = current_user
         @fabric_to_cart.fabric = @fabric
 
+    current_user.update(checkout_session_id: nil)
+
 		if @fabric_to_cart.save && params[:commit] == "COMPRAR AGORA"
 			redirect_to cart_path
 		else
