@@ -23,7 +23,7 @@ const advancedSearch = () => {
 };
 
 const checkIfFabricContainsAttr = (fabric, attributes) => {
-  return attributes.some((attr) => fabric.includes(attr));
+  return attributes.every((attr) => fabric.includes(attr));
 };
 
 const getCheckedBoxesValues = () => {
