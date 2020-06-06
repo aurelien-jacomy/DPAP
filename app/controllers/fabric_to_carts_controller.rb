@@ -4,8 +4,6 @@ class FabricToCartsController < ApplicationController
 	def show_user_cart
 		cart = policy_scope(FabricToCart).order(:created_at)
 		@cart = cart_by_supplier(cart)
-		@delivery_point = DeliveryPoint.new
-		@delivery_points = DeliveryPoint.where(user: current_user).order('created_at DESC')
 	end
 
 	def create
@@ -14,6 +12,8 @@ class FabricToCartsController < ApplicationController
 		authorize @fabric_to_cart
 		@fabric_to_cart.user = current_user
         @fabric_to_cart.fabric = @fabric
+
+    current_user.update(checkout_session_id: nil)
 
 		if @fabric_to_cart.save && params[:commit] == "COMPRAR AGORA"
 			redirect_to cart_path
@@ -41,6 +41,7 @@ class FabricToCartsController < ApplicationController
 	def update
 		authorize @cart
 		if @cart.update(cart_params)
+			current_user.update(checkout_session_id: nil)
 			redirect_to cart_path
 		else
 			render :show_user_cart

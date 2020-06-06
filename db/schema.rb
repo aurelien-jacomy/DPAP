@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_121020) do
+ActiveRecord::Schema.define(version: 2020_06_05_013237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,18 @@ ActiveRecord::Schema.define(version: 2020_06_03_121020) do
     t.index ["user_id"], name: "index_fabric_to_carts_on_user_id"
   end
 
+  create_table "fabric_to_orders", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "fabric_id"
+    t.string "fabric_sku"
+    t.integer "price"
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fabric_id"], name: "index_fabric_to_orders_on_fabric_id"
+    t.index ["order_id"], name: "index_fabric_to_orders_on_order_id"
+  end
+
   create_table "fabrics", force: :cascade do |t|
     t.string "name"
     t.string "colour"
@@ -125,6 +137,25 @@ ActiveRecord::Schema.define(version: 2020_06_03_121020) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "userid"
+    t.bigint "delivery_point_id"
+    t.string "delivery_address"
+    t.integer "checkout_session_id"
+    t.string "status"
+    t.datetime "paid_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delivery_point_id"], name: "index_orders_on_delivery_point_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -139,6 +170,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_121020) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.string "checkout_session_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -151,7 +183,11 @@ ActiveRecord::Schema.define(version: 2020_06_03_121020) do
   add_foreign_key "fabric_to_carts", "delivery_points"
   add_foreign_key "fabric_to_carts", "fabrics"
   add_foreign_key "fabric_to_carts", "users"
+  add_foreign_key "fabric_to_orders", "fabrics"
+  add_foreign_key "fabric_to_orders", "orders"
   add_foreign_key "fabrics", "companies"
   add_foreign_key "label_to_fabrics", "fabrics"
   add_foreign_key "label_to_fabrics", "labels"
+  add_foreign_key "orders", "delivery_points"
+  add_foreign_key "orders", "users"
 end
