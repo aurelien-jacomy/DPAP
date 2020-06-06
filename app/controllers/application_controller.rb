@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :user_cart_quantity
 
   include Pundit
 
@@ -26,5 +27,10 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :company_id, :photo])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :photo])
+  end
+
+  def user_cart_quantity
+    cart = policy_scope(FabricToCart).order(:created_at)
+    @quantity = cart.length
   end
 end

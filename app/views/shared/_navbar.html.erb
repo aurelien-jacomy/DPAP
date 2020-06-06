@@ -30,7 +30,9 @@
             <% unless current_user.owned_company.nil?  %>
               <%= link_to "Manage your company", my_company_path(current_user.owned_company), class: "dropdown-item"  %>
             <% end  %>
-            <%= link_to "Meu carrinho", cart_path, class: "dropdown-item"  %>
+            <%= link_to cart_path, class: "dropdown-item" do %>
+              Meu carrinho <span class="cart-quantity">(<%= @quantity %>)</span>
+            <% end %>
             <% unless current_user.what_company.nil?  %>
               <%= link_to "Meus produtos", fabrics_company_path(current_user.what_company), class: "dropdown-item"  %>
             <% end %>
@@ -47,8 +49,6 @@
             Login <%= image_tag "user_gray.png", class: "avatar" %>
           <% end %>
         </li>
-
-
       <% end %>
     </ul>
   </div>
