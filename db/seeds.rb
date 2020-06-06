@@ -58,7 +58,7 @@ puts "------------"
 algodao = Company.create!(
 	name: "Sou de Algodão",
 	cep: "01434-000",
-	description: "Fabricante de tecídos 100% algodão, com algodão orgânico produzido no Brasil",
+	description: "Fabricante de tecídos 100% Algodão, com Algodão orgânico produzido no Brasil",
 	uf: "SP",
 	cidade: "São Paulo",
 	bairro: "Jardim America",
@@ -75,7 +75,7 @@ algodao.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image
 tecidou = Company.create!(
 	name: "Tecidou",
 	cep: "01219-010",
-	description: "Produzimos roupas a partir de algodão orgânico do Brasil",
+	description: "Produzimos roupas a partir de Algodão orgânico do Brasil",
 	uf: "SP",
 	cidade: "São Paulo",
 	bairro: "Santa Cecilia",
@@ -118,7 +118,7 @@ Fabric.create!(
 	width: 140,
 	gramatura: 125,
 	fabric_type: "Tecido plano",
-	composition: "100% algodão",
+	composition: "100% Algodão",
 	company: Company.first,
 	price: 10000,
 	shipment_time: 2,
@@ -154,7 +154,7 @@ Fabric.create!(
 	width: 180,
 	gramatura: 255,
 	fabric_type: "Malha",
-	composition: "100% algodão",
+	composition: "100% Algodão",
 	company: Company.first,
 	price: 20000,
 	shipment_time: 5,
@@ -195,7 +195,7 @@ Fabric.create!(
 	width: 110,
 	gramatura: 185,
 	fabric_type: "Tecido plano estampado",
-	composition: "100% algodão",
+	composition: "100% Algodão",
 	company: Company.first,
 	price: 20000,
 	shipment_time: 5,
@@ -236,7 +236,7 @@ Fabric.create!(
 	width: 110,
 	gramatura: 185,
 	fabric_type: "Tecido plano estampado",
-	composition: "100% algodão",
+	composition: "100% Algodão",
 	company: Company.last,
 	price: 20000,
 	shipment_time: 5,
@@ -275,6 +275,44 @@ fabric.photos.attach(io: file, filename: 'edelweiss.jpg', content_type: 'image/j
 puts "Photo ##{fabric.photos.count}"
 
 puts "Fabric ##{Fabric.count} done"
+
+
+# "RANDOM SEED"
+cores = ["Preto", "Branco", "Azul", "Amarelo", "Roxo", "Vinho", "Laranja"]
+tipos = ["Algodão", "Malha", "Linho", "Camurça", "Seda"]
+urls = ["https://source.unsplash.com/collection/1194592/#{rand(1..280)}","https://source.unsplash.com/collection/2452979/#{rand(1..280)}","https://source.unsplash.com/collection/9851829/#{rand(1..280)}"]
+
+30.times do
+
+Fabric.create!(
+	name: "#{cores.sample} #{tipos.sample}",
+	colour: cores.sample,
+	width: rand(100..200),
+	gramatura: rand(100..200),
+	fabric_type: tipos.sample,
+	composition: "#{rand(50..100)}% #{tipos.sample}",
+	company: Company.first,
+	price: rand(10000..200000),
+	shipment_time: rand(1..50),
+	minimum_qty: rand(50..200)
+)
+
+3.times do 
+file = URI.open(urls.sample)
+fabric = Fabric.last
+fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content_type: 'image/jpg')
+
+puts "Photo ##{fabric.photos.count}"
+end
+
+puts "Photo ##{fabric.photos.count}"
+
+puts "Fabric ##{Fabric.count} done"
+
+puts "Created #{Fabric.count} fabrics:"
+
+end
+# END OF RANDOM SEED
 
 puts "Created #{Fabric.count} fabrics:"
 Fabric.all.each do |item|

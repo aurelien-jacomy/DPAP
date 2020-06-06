@@ -2,7 +2,23 @@ var checkBoxes = document.querySelectorAll(".form-check-input");
 
 var fabrics = document.querySelectorAll("#fabric");
 
+var slider = document.getElementById("search_price");
+
 const advancedSearch = () => {
+  slider.oninput = function () {
+    let attributes = getCheckedBoxesValues();
+
+    fabrics.forEach((fabric) => {
+      if (
+        checkIfFabricContainsAttr(fabric.textContent, attributes) &&
+        checkPrice(fabric)
+      ) {
+        ShowCard(fabric);
+      } else {
+        hideCard(fabric);
+      }
+    });
+  };
   for (const check of checkBoxes) {
     check.addEventListener("change", function () {
       let attributes = getCheckedBoxesValues();
@@ -12,7 +28,10 @@ const advancedSearch = () => {
         return;
       }
       fabrics.forEach((fabric) => {
-        if (checkIfFabricContainsAttr(fabric.textContent, attributes)) {
+        if (
+          checkIfFabricContainsAttr(fabric.textContent, attributes) &&
+          checkPrice(fabric)
+        ) {
           ShowCard(fabric);
         } else {
           hideCard(fabric);
@@ -50,5 +69,16 @@ const ShowAllCards = () => {
 const hideCard = (fabric) => {
   fabric.classList.add("hidden");
 };
+
+const checkPrice = (fabric) => {
+  let price = fabric.querySelector("#searchable-item-price").textContent;
+
+  if (price <= slider.value * 10000) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 
 export { advancedSearch };
