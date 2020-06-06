@@ -14,7 +14,12 @@
 	}
 }
 
-.small-pics {
+.other-pics {
+	img {
+		height: 90px;
+		width: 60px;
+	}
+
 	img:hover {
 		box-shadow: 0 5px 10px rgba(0,0,0,1)
 	}

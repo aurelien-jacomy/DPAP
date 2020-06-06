@@ -19,16 +19,16 @@
 <div class="container d-flex justify-content-between my-4">
 	<div>
 		<% unless @fabric.photos[0].nil?%>
-			<div id="main-pic">
-        		<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill %>
+			<div>
+        		<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill, id:"main-pic" %>
         	</div>
         	<% next_photos = @fabric.photos[1..6] %>
         	<div class="d-flex">
-	        <% next_photos.each do |photo| %>
-	        	<div class="mt-3 mr-2 small-pics">
-	            	<%= cl_image_tag photo.key, height: 90, width: 60, crop: :fill %>
-	        	</div>
-	        <% end %>
+		        <% next_photos.each do |photo| %>
+		        	<div class="mt-3 mr-2 other-pics">
+		            	<%= cl_image_tag photo.key, height: 500, width:400, crop: :fill, class:"small-pics" %>
+		        	</div>
+		        <% end %>
 	    <% else %>
 	        <%= image_tag "textile_roll.png", size: "400x500" %>
 	    <% end %>
