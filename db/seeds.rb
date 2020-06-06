@@ -47,7 +47,14 @@ samuel = User.create!(
 	email: "samuel@gmail.com",
 	password: "123456",
 )
-puts "Created 3 users:"
+
+jean = User.create!(
+	name: "Jean",
+	email: "jean@gmail.com",
+	password: "123456",
+)
+
+puts "Created 5 users:"
 User.all.each do |user|
 	puts "  - #{user.name}"
 end
@@ -65,7 +72,7 @@ algodao = Company.create!(
 	rua: "Rua Groenlândia",
 	numero: "808",
 	complemento: "Casa",
-	owner: aurelien,
+	owner: gabriel,
 	cnpj: "31.100.900/0001-34"
 )
 
@@ -73,7 +80,7 @@ file = URI.open('https://i.pinimg.com/474x/06/14/a1/0614a1ec120f36cdc42a90c2d241
 algodao.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
 
 tecidou = Company.create!(
-	name: "Tecidou",
+	name: "Chanel",
 	cep: "01219-010",
 	description: "Produzimos roupas a partir de Algodão orgânico do Brasil",
 	uf: "SP",
@@ -82,7 +89,21 @@ tecidou = Company.create!(
 	rua: "Largo do Arouche",
 	numero: "270",
 	complemento: "Condomínio Edif Barão de Alfenas",
-	owner: gabriel,
+	owner: aurelien,
+	cnpj: "55.836.677/0001-56"
+)
+
+tecidou = Company.create!(
+	name: "Tecidou",
+	cep: "01219-010",
+	description: "Produzimos tecidos a partir de Algodão orgânico do Brasil",
+	uf: "SP",
+	cidade: "São Paulo",
+	bairro: "Santa Cecilia",
+	rua: "Largo do Arouche",
+	numero: "270",
+	complemento: "Condomínio Edif Barão de Alfenas",
+	owner: jean,
 	cnpj: "55.836.677/0001-56"
 )
 
@@ -119,7 +140,7 @@ Fabric.create!(
 	gramatura: 125,
 	fabric_type: "Tecido plano",
 	composition: "100% Algodão",
-	company: Company.first,
+	company: Company.last,
 	price: 10000,
 	shipment_time: 2,
 	minimum_qty: 50
@@ -155,7 +176,7 @@ Fabric.create!(
 	gramatura: 255,
 	fabric_type: "Malha",
 	composition: "100% Algodão",
-	company: Company.first,
+	company: Company.last,
 	price: 20000,
 	shipment_time: 5,
 	minimum_qty: 100
@@ -196,7 +217,7 @@ Fabric.create!(
 	gramatura: 185,
 	fabric_type: "Tecido plano estampado",
 	composition: "100% Algodão",
-	company: Company.first,
+	company: Company.last,
 	price: 20000,
 	shipment_time: 5,
 	minimum_qty: 100
