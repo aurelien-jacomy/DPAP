@@ -1,0 +1,27 @@
+<div class="container my-4">
+	<h1>Confirme os dados dos seus pedidos</h1>
+	<% @orders.each do |order| %>
+	
+		<%= render "order_card", order: order %>
+
+	<% end %>
+
+	<div class="d-flex justify-content-end">
+		<button class="btn btn-warning" id="pay">Pagar</button>
+	      <script src="https://js.stripe.com/v3/"></script>
+	      <script>
+	        const paymentButton = document.getElementById('pay');
+	        paymentButton.addEventListener('click', () => {
+	          const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+	          stripe.redirectToCheckout({
+	            sessionId: '<%= @orders.first.checkout_session_id %>'
+	          });
+	        });
+	      </script>
+	</div>
+</div>
+
+
+
+
+

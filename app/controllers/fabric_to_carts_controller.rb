@@ -57,7 +57,7 @@ class FabricToCartsController < ApplicationController
 			f_cart.update(delivery_point: delivery_point)
 		end
 
-		redirect_to cart_path	
+		redirect_to new_payment_path	
 	end
 
 	private

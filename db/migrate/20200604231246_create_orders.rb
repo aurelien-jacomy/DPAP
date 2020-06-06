@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string :userid
       t.references :delivery_point, foreign_key: true
       t.string :delivery_address
-      t.integer :checkout_session_id
+      t.string :checkout_session_id
       t.string :status
       t.timestamp :paid_at
 

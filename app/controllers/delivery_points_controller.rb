@@ -33,7 +33,7 @@ class DeliveryPointsController < ApplicationController
 			end
 		end
 		@delivery_point.update(favourite: true)
-		redirect_to cart_path
+		redirect_to delivery_points_path
 	end
 
 	private
