@@ -32,14 +32,15 @@ class OrdersController < ApplicationController
 					)
 			end
 		end
-
-		current_user.update(checkout_session_id: nil)
-		FabricToCart.destroy_all
-		redirect_to orders_path
+		
+		redirect_to pending_orders_path
 	end
 
 	def index
 		@orders = policy_scope(Order).order(created_at: :desc)
 	end
 
+	def pending
+		@orders = policy_scope(Order).where(checkout_session_id: current_user.checkout_session_id)
+	end
 end

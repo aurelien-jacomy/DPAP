@@ -25,9 +25,18 @@ Rails.application.routes.draw do
   	end 
   end
 
-  resources :orders, only: [:new, :index]
+  resources :orders, only: [:new, :index] do
+    collection do
+      get 'pending'
+    end
+  end
 
-  resources :payments, only: :create
-  resources :orders, only: :index
+  resources :payments, only: :new do
+    collection do
+      get 'empty_cart'
+    end
+  end
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
