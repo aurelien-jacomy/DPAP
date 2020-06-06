@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :fabric_to_carts, dependent: :destroy
-  has_many :orders
+  has_many :orders, dependent: :destroy
   has_one_attached :photo, dependent: :destroy
   has_many :delivery_points, dependent: :destroy
 
