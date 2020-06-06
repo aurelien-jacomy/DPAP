@@ -21,6 +21,7 @@
 			
 			<div class="card-product-infos">
 				<p>Número do pedido: <%= order.id %></p>
+				<p>Por: <%= order.user.name %> da <%= order.customer %></p>
 				<p>Quantidade de tecido: <%= order.quantity %> metros</p>
 				<p>Preço: <%= number_to_currency(
 					order.price.fdiv(100),
