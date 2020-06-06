@@ -26,7 +26,7 @@
         	<div class="d-flex">
 		        <% next_photos.each do |photo| %>
 		        	<div class="mt-3 mr-2 other-pics">
-		            	<%= cl_image_tag photo.key, crop: :fill, class:"small-pics" %>
+		            	<%= cl_image_tag photo.key, height: 500, width:400, crop: :fill, class:"small-pics" %>
 		        	</div>
 		        <% end %>
 	    <% else %>
