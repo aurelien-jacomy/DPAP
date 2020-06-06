@@ -21,7 +21,13 @@
                 <% end %>
             </div>
         </div>
-
+        <div class="container">
+            <div class="row my-5">
+                <div class="col-12">
+                    <%= render "./shared/search" %>
+                </div>
+            </div>
+        </div>
         <div class="container my-5">
             <h2>Encontre tecidos produzidos com práticas sustentáveis</h2>
             <div class="row">
@@ -40,12 +46,6 @@
                 <div class="col-3">
                     <%= image_tag "quality.png", alt: "alttext", class: "thumbnail d-flex" %>
                     <p>Cuidamos da logística e garantimos a qualidade dos produtos </p>
-                </div>
-            </div>
-
-            <div class="row my-5">
-                <div class="col-12">
-                    <%= render "./shared/search" %>
                 </div>
             </div>
         </div>
