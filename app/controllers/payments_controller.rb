@@ -23,7 +23,7 @@ class PaymentsController < ApplicationController
 	  )
 
 	  current_user.update(checkout_session_id: session.id)
-
+	  
 	  redirect_to new_order_path
 	end
 
