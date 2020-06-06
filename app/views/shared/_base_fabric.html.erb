@@ -1,4 +1,4 @@
-<div class="card mx-2 p-1">
+<div class="card mx-2 p-1" id="fabric">
     <% unless fabric.photos[0].nil?%>
     <%=  cl_image_tag fabric.photos[0].key, :transformation=>[{:width=>400, :height=>250, :crop=>"fill"}] %>
     <% else %>
@@ -9,6 +9,13 @@
         <div class="content">
             <p class="card-text"><%= fabric.composition %></p>
             <p class="card-text">R$<%= fabric.price/100 %>/m</p>
+            <p class="hidden" id="searchable-item"><%= fabric.colour %></p>
+            <p class="hidden" id="searchable-item"><%= fabric.width %>/m</p>
+            <p class="hidden" id="searchable-item"><%= fabric.gramatura %></p>
+            <p class="hidden" id="searchable-item"><%= fabric.fabric_type %>/m</p>
+            <p class="hidden" id="searchable-item"><%= fabric.shipment_time %></p>
+            <p class="hidden" id="searchable-item"><%= fabric.minimum_qty %>/m</p>
+            <p class="hidden" id="searchable-item"><%= fabric.composition %></p>
         </div>
         <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center btn-details" %>
     </div>

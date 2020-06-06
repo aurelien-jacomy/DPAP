@@ -28,7 +28,7 @@ import { initSelectDeliveryPoint } from "./select_delivery_point";
 import { displayDeliveryForm } from "./display_delivery_form";
 import { showDeliveryPart } from "./show_delivery_part";
 import { getCEP } from "./cep_search";
-
+import { advancedSearch } from "./advanced_search";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
@@ -53,5 +53,9 @@ document.addEventListener('turbolinks:load', () => {
 
   if (document.getElementById("new_delivery_point")) {
     getCEP();
+  }
+
+  if (document.getElementById("advanced-search-form")) {
+    advancedSearch();
   }
 });
