@@ -10,6 +10,12 @@ class Fabric < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
 
+  $colors = ["Preto", "Branco", "Vermelho", "Verde", "Azul", "Amarelo", "Roxo", "Laranja"]
+  $fabric_type = ["Estampado", "Liso", "Listrado"]
+  $composition = ["algodão", "Malha"]
+  
+
+
   include PgSearch::Model
   pg_search_scope :search_by_name_colour_width_gramatura_composition_and_fabric_type,
     against: [ :name, :colour, :width, :gramatura, :composition, :fabric_type ],

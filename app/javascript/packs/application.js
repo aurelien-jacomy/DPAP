@@ -29,7 +29,7 @@ import { displayDeliveryForm } from "./display_delivery_form";
 import { showDeliveryPart } from "./show_delivery_part";
 import { getCEP } from "./cep_search";
 import { initChangeImage } from "./change_image";
-
+import { advancedSearch } from "./advanced_search";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
@@ -58,5 +58,8 @@ document.addEventListener('turbolinks:load', () => {
 
   if (document.getElementById("main-pic")) {
     initChangeImage();
+    
+  if (document.getElementById("advanced-search-form")) {
+    advancedSearch();
   }
 });

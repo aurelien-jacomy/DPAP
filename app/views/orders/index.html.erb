@@ -1,0 +1,50 @@
+<div class="container my-4">
+	<h1>Acompanhe seus pedidos</h1>
+	<% @orders.each do |order| %>
+		
+		<% company = order.fabrics[0].company %>
+
+		<div class="wrapp-supplier">	
+			<div class="d-flex justify-content-between align-items-center header">
+				<div class="d-flex align-items-center">
+					<% if company.logo.attached? %>
+						<%= cl_image_tag company.logo.key, alt: "company logo", height: 60, width: 60, crop: :fill, class: "mr-1" %>	
+					<% else %>
+						<%= image_tag "textile_roll.png", alt: "textile roll" %>
+					<% end %>
+					<h2><%= company.name %></h2>
+				</div>
+				<p><%= order.created_at.strftime("%d/%m/%Y") %></p>
+			</div>
+			
+			<hr>			
+			
+			<div class="card-product-infos">
+				<p>Número do pedido: <%= order.id %></p>
+				<p>Por: <%= order.user.name %> da <%= order.customer %></p>
+				<p>Quantidade de tecido: <%= order.quantity %> metros</p>
+				<p>Preço: <%= number_to_currency(
+					order.price.fdiv(100),
+					unit: 'R$',
+					separator: ".",
+					delimitor: ",",
+					format: "%u %n"
+					)%>
+				</p>
+				<p>
+					Pagamento: 
+						<% if order.status = "aguardando" %>
+							<span class="bg-info m-2 p-2">
+								<%= order.status %>
+							</span>
+						<% elsif order.status = "pago" %>
+							<span class="bg-info m-2 p-2">
+								<%= order.status %>
+							</span>
+						<% end %>
+				</p>
+			</div>
+		</div>
+
+	<% end %>
+</div>
