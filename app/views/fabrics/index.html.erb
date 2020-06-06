@@ -8,7 +8,8 @@
         <div id="advanced-search-form">
             <%= simple_form_for :search, url: root_path, method: "GET", remote: true do |f| %>
             <%= f.input :colour, label: "Cor",  collection: $colors, as: :check_boxes %>
-            <%= f.input :colour, label: "Composição",  collection: $composition, as: :check_boxes %>
+            <%= f.input :colour, label: "Tipo",  collection: $fabric_type, as: :check_boxes %>
+            <%= f.input :price, label: "Preço", as: :range %>
             <% end %>
         </div>
         <div class="cards text-center" id="fabrics">
