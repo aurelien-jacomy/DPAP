@@ -1,17 +1,15 @@
-var checkBoxes = document.querySelectorAll(".form-check-input");
-
-var fabrics = document.querySelectorAll("#fabric");
-
-var slider = document.getElementById("search_price");
-
 const advancedSearch = () => {
+  var fabrics = document.querySelectorAll("#fabric");
+  var checkBoxes = document.querySelectorAll(".form-check-input");
+  var slider = document.getElementById("search_price");
+
   slider.oninput = function () {
-    let attributes = getCheckedBoxesValues();
+    let attributes = getCheckedBoxesValues(checkBoxes);
 
     fabrics.forEach((fabric) => {
       if (
         checkIfFabricContainsAttr(fabric.textContent, attributes) &&
-        checkPrice(fabric)
+        checkPrice(fabric, slider)
       ) {
         ShowCard(fabric);
       } else {
@@ -21,16 +19,16 @@ const advancedSearch = () => {
   };
   for (const check of checkBoxes) {
     check.addEventListener("change", function () {
-      let attributes = getCheckedBoxesValues();
+      let attributes = getCheckedBoxesValues(checkBoxes);
 
       if (attributes.length == 0) {
-        ShowAllCards();
+        ShowAllCards(fabrics);
         return;
       }
       fabrics.forEach((fabric) => {
         if (
           checkIfFabricContainsAttr(fabric.textContent, attributes) &&
-          checkPrice(fabric)
+          checkPrice(fabric, slider)
         ) {
           ShowCard(fabric);
         } else {
@@ -45,7 +43,7 @@ const checkIfFabricContainsAttr = (fabric, attributes) => {
   return attributes.every((attr) => fabric.includes(attr));
 };
 
-const getCheckedBoxesValues = () => {
+const getCheckedBoxesValues = (checkBoxes) => {
   let checkedBoxes = [];
   checkBoxes.forEach((checkbox) => {
     if (checkbox.checked) {
@@ -60,7 +58,7 @@ const ShowCard = (fabric) => {
   fabric.classList.remove("hidden");
 };
 
-const ShowAllCards = () => {
+const ShowAllCards = (fabrics) => {
   fabrics.forEach((fabric) => {
     fabric.classList.remove("hidden");
   });
@@ -70,7 +68,7 @@ const hideCard = (fabric) => {
   fabric.classList.add("hidden");
 };
 
-const checkPrice = (fabric) => {
+const checkPrice = (fabric, slider) => {
   let price = fabric.querySelector("#searchable-item-price").textContent;
 
   if (price <= slider.value * 10000) {
@@ -79,6 +77,5 @@ const checkPrice = (fabric) => {
     return false;
   }
 };
-
 
 export { advancedSearch };

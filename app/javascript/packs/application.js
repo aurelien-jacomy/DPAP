@@ -63,4 +63,6 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById("advanced-search-form")) {
     advancedSearch();
   }
+  
 });
+
