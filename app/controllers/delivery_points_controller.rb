@@ -25,13 +25,14 @@ class DeliveryPointsController < ApplicationController
 	end
 
 	def as_favourite
-		raise
 		user_delivery_points = DeliveryPoint.where(user: current_user)
+		
 		user_delivery_points.each do |d_point|
 			if d_point != @delivery_point && d_point.favourite?
 				d_point.update(favourite: false)
 			end
 		end
+		
 		@delivery_point.update(favourite: true)
 		redirect_to delivery_points_path
 	end

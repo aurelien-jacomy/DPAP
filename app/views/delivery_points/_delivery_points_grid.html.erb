@@ -1,6 +1,6 @@
 <div class="grid-delivery">
 	
-	<% @default_delivery_point = "" %>
+	<% @default_delivery_point = nil %>
 	
 	<% @delivery_points.each do |delivery_point| %>
 		
@@ -19,7 +19,7 @@
 				<p>Comentário: <%= delivery_point.comment %></p>
 			</div>
 			<div class="card-links">
-				<%= link_to as_favourite_delivery_point_path(delivery_point), remote: true do %>
+				<%= link_to as_favourite_delivery_point_path(delivery_point) do %>
 					<% if delivery_point.favourite %>
 						<i class="fas fa-heart"></i>
 					<% else %>

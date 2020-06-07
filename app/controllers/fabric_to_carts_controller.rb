@@ -50,14 +50,23 @@ class FabricToCartsController < ApplicationController
 
 	def set_delivery_point
 		f_carts = FabricToCart.where(user: current_user)
-		delivery_point = DeliveryPoint.find(params[:delivery_point][:id])
 		
-		f_carts.each do |f_cart|
-			authorize f_cart
-			f_cart.update(delivery_point: delivery_point)
-		end
+		unless params[:delivery_point][:id] == ""
 
-		redirect_to new_payment_path	
+			delivery_point = DeliveryPoint.find(params[:delivery_point][:id])
+			
+			f_carts.each do |f_cart|
+				authorize f_cart
+				f_cart.update(delivery_point: delivery_point)
+			end
+
+			redirect_to new_payment_path
+		else
+			@error_message = "Selecione um endereço"
+			@delivery_point = DeliveryPoint.new
+			@delivery_points = policy_scope(DeliveryPoint).order('created_at DESC')
+			render "delivery_points/index"
+		end
 	end
 
 	private
