@@ -13,7 +13,7 @@
 	
 	<div class="d-flex mb-4">
 		<%= simple_form_for :delivery_point, url: {controller: :fabric_to_carts, action: :set_delivery_point} do |f| %>
-			<%= f.hidden_field :id, id: "delivery-point-id", value: @default_delivery_point %>
+			<%= f.hidden_field :id, id: "delivery-point-id", value: @default_delivery_point, require: true %>
 			<% if @error_message %>
 				<p class="alert alert-danger"><%= @error_message %></p>
 			<% end %>

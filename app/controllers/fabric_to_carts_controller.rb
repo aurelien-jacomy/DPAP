@@ -62,7 +62,11 @@ class FabricToCartsController < ApplicationController
 
 			redirect_to new_payment_path
 		else
-			@error_message = "Selecione um endereço"
+			if current_user.delivery_points.nil?
+				@error_message = "Você precisa criar um endereço"
+			else
+				@error_message = "Você precisa selecionar um endereço"
+			end
 			@delivery_point = DeliveryPoint.new
 			@delivery_points = policy_scope(DeliveryPoint).order('created_at DESC')
 			render "delivery_points/index"
