@@ -396,19 +396,19 @@ puts "------------"
 FabricToCart.create!(
 	user: User.first,
 	fabric: Company.first.fabrics[0],
-	quantity: 100
+	quantity: 200
 )
 
 FabricToCart.create!(
 	user: User.first,
 	fabric: Company.first.fabrics[1],
-	quantity: 150
+	quantity: 250
 )
 
 FabricToCart.create!(
 	user: User.first,
 	fabric: Fabric.last,
-	quantity: 125
+	quantity: 225
 )
 
 puts "Added #{FabricToCart.count} fabrics to user #{FabricToCart.first.user.name}"
