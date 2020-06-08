@@ -19,14 +19,6 @@ class FabricToCart < ApplicationRecord
   	quantity * self.fabric.price
   end
 
-  def min_quantity?
-    if quantity
-      if quantity < fabric.minimum_qty
-        errors.add(:quantity, "A quantidade mínima para esse item é de #{fabric.minimum_qty}")
-      end
-    end
-  end
-
   def self.cart_by_supplier(cart)
     cart_by_supplier = {}
     cart.each do |order_item|
@@ -37,6 +29,16 @@ class FabricToCart < ApplicationRecord
       end
     end
     return cart_by_supplier
+  end
+
+  private
+
+  def min_quantity?
+    if quantity
+      if quantity < fabric.minimum_qty
+        errors.add(:quantity, "A quantidade mínima para esse item é de #{fabric.minimum_qty}")
+      end
+    end
   end
   
 end
