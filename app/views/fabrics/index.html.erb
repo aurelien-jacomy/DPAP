@@ -24,9 +24,9 @@
                 </div>
             </div>
             <% end %>
-            
+            <p>Preço</p>
             <%= simple_form_for :search, url: root_path, method: "GET", remote: true do |f| %>
-            <%= f.input :price,label: "Preço", as: :range, :input_html => {:id => "price_slider"}%>
+            <%= f.input_field :price,label: "Preço", as: :range, :id => "price_slider"%>
             <% end %>
 
         </div>
