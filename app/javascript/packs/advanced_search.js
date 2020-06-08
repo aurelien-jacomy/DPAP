@@ -1,5 +1,4 @@
 const advancedSearch = () => {
-  
   var fabrics = document.querySelectorAll("#fabric");
   var checkBoxes = document.querySelectorAll(".form-check-input");
   var slider = document.getElementById("price_slider");
@@ -54,27 +53,14 @@ const advancedSearch = () => {
   }
 };
 
-const checkIfFabricContainsAttr = (fabric, attributes) => {
-  return attributes.every((attr) => fabric.includes(attr));
-};
-
-const getCheckedBoxesValues = (checkBoxes) => {
-  let checkedBoxes = [];
-  checkBoxes.forEach((checkbox) => {
-    if (checkbox.checked) {
-      checkedBoxes.push(checkbox.value);
-    }
-  });
-
-  return checkedBoxes;
-};
-
 const getCheckedColorBoxesValues = (colorCheckboxes) => {
   let checkedColorBoxes = [];
 
   colorCheckboxes.forEach((colorCheckBox) => {
     if (colorCheckBox.checked) {
-      checkedColorBoxes.push(colorCheckBox.value);
+      checkedColorBoxes.push(
+        colorCheckBox.nextElementSibling.firstElementChild.textContent
+      );
     }
   });
 
@@ -86,7 +72,9 @@ const getCheckedFabricTypeBoxesValues = (fabricTypeCheckboxes) => {
 
   fabricTypeCheckboxes.forEach((fabricTypeCheckBox) => {
     if (fabricTypeCheckBox.checked) {
-      checkedFabricTypeBoxes.push(fabricTypeCheckBox.value);
+      checkedFabricTypeBoxes.push(
+        fabricTypeCheckBox.nextElementSibling.firstElementChild.textContent
+      );
     }
   });
 
@@ -136,7 +124,6 @@ const checkFabricType = (fabric, checkedFabricTypes) => {
 };
 
 export { advancedSearch };
-
 
 // $(document).ready(function(){
 //   $("#color_cheboxes").click(function(){

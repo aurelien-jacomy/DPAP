@@ -10,7 +10,7 @@ class Fabric < ApplicationRecord
 
 
   $colors = ["Preto", "Branco", "Vermelho", "Verde", "Azul", "Amarelo", "Roxo", "Laranja"]
-  $fabric_type = ["Algodão", "Malha", "Linho", "Camurça", "Seda"]
+  $fabric_types = ["Algodão", "Malha", "Linho", "Camurça", "Seda"]
 
   
 
