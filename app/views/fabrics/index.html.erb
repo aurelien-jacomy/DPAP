@@ -5,12 +5,16 @@
         </div>
     </div>
     <div class="d-flex">
+
         <div id="advanced-search-form">
             <%= simple_form_for :search, url: root_path, method: "GET", remote: true do |f| %>
-            <%= f.input :colour, label: "Cor",  collection: $colors, as: :check_boxes %>
-            <%= f.input :colour, label: "Tipo",  collection: $fabric_type, as: :check_boxes %>
-            <%= f.input :price, label: "Preço", as: :range %>
+
+            <%= f.input :colour, label: "Cor",  collection: $colors, as: :check_boxes,  :input_html => {:id => "color_checkboxes"} %>
+
+            <%= f.input :colour, label: "Tipo",  collection: $fabric_type, as: :check_boxes,  :input_html => {:id => "fabric_type_checkboxes",class: "checkboxes"} %>
+            <%= f.input :price, label: "Preço", as: :range, :input_html => {:id => "price_slider"}%>
             <% end %>
+
         </div>
         <div class="cards text-center" id="fabrics">
             <% @fabrics.each do |fabric| %>

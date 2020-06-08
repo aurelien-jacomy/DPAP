@@ -9,13 +9,8 @@
         <div class="content">
             <p class="card-text"><%= fabric.composition %></p>
             <p class="card-text">R$<%= fabric.price/100 %>/m</p>
-            <p class="hidden" id="searchable-item"><%= fabric.colour %></p>
-            <p class="hidden" id="searchable-item"><%= fabric.width %>/m</p>
-            <p class="hidden" id="searchable-item"><%= fabric.gramatura %></p>
-            <p class="hidden" id="searchable-item"><%= fabric.fabric_type %>/m</p>
-            <p class="hidden" id="searchable-item"><%= fabric.shipment_time %></p>
-            <p class="hidden" id="searchable-item"><%= fabric.minimum_qty %>/m</p>
-            <p class="hidden" id="searchable-item"><%= fabric.composition %></p>
+            <p class="hidden" id="searchable-item-color"><%= fabric.colour %></p>
+            <p class="hidden" id="searchable-item-fabric-type"><%= fabric.fabric_type %></p>
             <p class="hidden" id="searchable-item-price"><%= fabric.price %></p>
         </div>
         <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center btn-details" %>
