@@ -37,7 +37,7 @@ class FabricsController < ApplicationController
     end
 
     def edit
-        @company = current_user.owned_company
+        @company = current_user.what_company
     end
 
     def update
