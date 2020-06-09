@@ -372,7 +372,7 @@ Fabric.create!(
 	gramatura: rand(100..200),
 	fabric_type: tipos.sample,
 	composition: "#{rand(50..100)}% #{tipos.sample}",
-	company: Company.first,
+	company: Company.second,
 	price: rand(1000..20000),
 	shipment_time: rand(1..50),
 	minimum_qty: rand(50..200)
@@ -403,7 +403,7 @@ Fabric.create!(
 	gramatura: rand(100..200),
 	fabric_type: tipos.sample,
 	composition: "#{rand(50..100)}% #{tipos.sample}",
-	company: Company.first,
+	company: Company.last,
 	price: rand(1000..20000),
 	shipment_time: rand(1..50),
 	minimum_qty: rand(50..200)
@@ -434,7 +434,7 @@ Fabric.create!(
 	gramatura: rand(100..200),
 	fabric_type: tipos.sample,
 	composition: "#{rand(50..100)}% #{tipos.sample}",
-	company: Company.first,
+	company: Company.second,
 	price: rand(1000..20000),
 	shipment_time: rand(1..50),
 	minimum_qty: rand(50..200)
@@ -465,7 +465,7 @@ Fabric.create!(
 	gramatura: rand(100..200),
 	fabric_type: tipos.sample,
 	composition: "#{rand(50..100)}% #{tipos.sample}",
-	company: Company.first,
+	company: Company.last,
 	price: rand(1000..20000),
 	shipment_time: rand(1..50),
 	minimum_qty: rand(50..200)
