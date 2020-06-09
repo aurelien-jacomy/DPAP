@@ -95,18 +95,18 @@
     <hr>
     <div class="d-flex mt-4">
         <% @fabric.company.fabrics.each do |fabric| %>
-        <% if fabric != @fabric %>
-        <div class="flex-item mr-4 related-products">
-            <%= link_to fabric_path(fabric) do %>
-            <% unless fabric.photos[0].nil?%>
-            	<%= cl_image_tag fabric.photos[0].key, height: 150, width: 200, crop: :fill %>
-            <% else %>
-            <%= image_tag "textile_roll.png", size: "250x250" %>
-            <% end %>
-            <p><%= fabric.name %></p>
-            <% end %>
-        </div>
-        <% end %>
+	        <% if fabric != @fabric %>
+		        <div class="flex-item mr-4 related-products">
+		            <%= link_to fabric_path(fabric) do %>
+		            	<% unless fabric.photos[0].nil?%>
+		            		<%= cl_image_tag fabric.photos[0].key, height: 150, width: 200, crop: :fill %>
+		            	<% else %>
+		            		<%= image_tag "textile_roll.png", size: "250x250" %>
+		            	<% end %>
+		            	<p><%= fabric.name %></p>
+		            <% end %>
+		        </div>
+	        <% end %>
         <% end %>
     </div>
 </div>

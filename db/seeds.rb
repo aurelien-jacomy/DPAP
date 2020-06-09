@@ -16,6 +16,10 @@ LabelToFabric.destroy_all
 CompanyUser.destroy_all
 FabricToCart.destroy_all
 Fabric.destroy_all
+DeliveryPoint.destroy_all
+FabricToOrder.destroy_all
+Order.destroy_all
+
 
 puts "Database empty"
 
@@ -27,8 +31,6 @@ aurelien = User.create!(
 	email: "jacomya@gmail.com",
 	password: "123456",
 )
-
-
 
 gabriel = User.create!(
 	name: "Gabriel Antonini",
@@ -54,7 +56,13 @@ jean = User.create!(
 	password: "123456",
 )
 
-puts "Created 5 users:"
+marco = User.create!(
+	name: "Marco",
+	email: "marco@gmail.com",
+	password: "123456",
+)
+
+puts "Created #{User.count} users:"
 User.all.each do |user|
 	puts "  - #{user.name}"
 end
@@ -79,7 +87,9 @@ algodao = Company.create!(
 file = URI.open('https://i.pinimg.com/474x/06/14/a1/0614a1ec120f36cdc42a90c2d241e799--bespoke-boutiques.jpg')
 algodao.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
 
-tecidou = Company.create!(
+puts "Company ##{Company.count} created"
+
+chanel = Company.create!(
 	name: "Chanel",
 	cep: "01219-010",
 	description: "Produzimos roupas a partir de Algodão orgânico do Brasil",
@@ -93,6 +103,11 @@ tecidou = Company.create!(
 	cnpj: "55.836.677/0001-56"
 )
 
+file = URI.open('https://i.pinimg.com/originals/38/55/d2/3855d23ea354607dd3e5ee916006a0d7.png')
+chanel.logo.attach(io: file, filename: 'logo_company.png', content_type: 'image/png')
+
+puts "Company ##{Company.count} created"
+
 tecidou = Company.create!(
 	name: "Tecidou",
 	cep: "01219-010",
@@ -103,33 +118,41 @@ tecidou = Company.create!(
 	rua: "Largo do Arouche",
 	numero: "270",
 	complemento: "Condomínio Edif Barão de Alfenas",
-	owner: jean,
+	owner: victor,
 	cnpj: "55.836.677/0001-56"
 )
 
 file = URI.open('https://i.pinimg.com/474x/be/6c/2e/be6c2e31f300ce0a1f6b44738aa6f9e5--vector-icons-beauty-tips.jpg')
 tecidou.logo.attach(io: file, filename: 'logo_company.jpg', content_type: 'image/jpg')
 
-puts "Created 2 companies: #{Company.first.name} and #{Company.last.name}"
+puts "Company ##{Company.count} created"
+
+puts "Created #{Company.count} companies:"
+Company.all.each do |company|
+	puts "- #{company.name}"
+end
 puts "------------"
 
 CompanyUser.create!(
 	user: samuel,
-	company: tecidou,
+	company: chanel,
 	status: :active,
 	role: :standard
-
 )
 
 CompanyUser.create!(
-	user: victor,
+	user: jean,
+	company: algodao,
+	status: :active,
+	role: :standard
+)
+
+CompanyUser.create!(
+	user: marco,
 	company: tecidou,
 	status: :active,
 	role: :standard
-
 )
-
-
 
 puts "Creating Fabrics: image download can take some time..."
 
@@ -305,33 +328,30 @@ urls = ["https://source.unsplash.com/collection/1194592/#{rand(1..280)}","https:
 
 30.times do
 
-Fabric.create!(
-	name: "#{cores.sample} #{tipos.sample}",
-	colour: cores.sample,
-	width: rand(100..200),
-	gramatura: rand(100..200),
-	fabric_type: tipos.sample,
-	composition: "#{rand(50..100)}% #{tipos.sample}",
-	company: Company.first,
-	price: rand(10000..200000),
-	shipment_time: rand(1..50),
-	minimum_qty: rand(50..200)
-)
+	Fabric.create!(
+		name: "#{cores.sample} #{tipos.sample}",
+		colour: cores.sample,
+		width: rand(100..200),
+		gramatura: rand(100..200),
+		fabric_type: tipos.sample,
+		composition: "#{rand(50..100)}% #{tipos.sample}",
+		company: Company.first,
+		price: rand(10000..200000),
+		shipment_time: rand(1..50),
+		minimum_qty: rand(50..200)
+	)
 
-3.times do 
-file = URI.open(urls.sample)
-fabric = Fabric.last
-fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content_type: 'image/jpg')
+	3.times do 
+	file = URI.open(urls.sample)
+	fabric = Fabric.last
+	fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content_type: 'image/jpg')
 
-puts "Photo ##{fabric.photos.count}"
-end
+	puts "Photo ##{fabric.photos.count}"
+	end
 
-puts "Photo ##{fabric.photos.count}"
+	puts "Photo ##{fabric.photos.count}"
 
-puts "Fabric ##{Fabric.count} done"
-
-puts "Created #{Fabric.count} fabrics:"
-
+	puts "Fabric ##{Fabric.count} done"
 end
 # END OF RANDOM SEED
 
@@ -412,35 +432,41 @@ FabricToCart.create!(
 )
 
 puts "Added #{FabricToCart.count} fabrics to user #{FabricToCart.first.user.name}"
+puts "------------"
 
-DeliveryPoint.create!(
-	name: "Alinha Costureiras",
-	uf: "SP",
-	bairro: "Jardim Paulista",
-	cidade: "Sâo Paulo",
-	rua:"Rua Bela Cintra",
-	numero: "408",
-	cep: "01415-000",
-	contact: "Eliuma",
-	comment: "2° andar, entregar em mãos próprias",
-	favourite: true, 
-	user: User.first 
-)
+User.all.each do |user|
+	DeliveryPoint.create!(
+		name: "Alinha Costureiras",
+		uf: "SP",
+		bairro: "Jardim Paulista",
+		cidade: "Sâo Paulo",
+		rua:"Rua Bela Cintra",
+		numero: "408",
+		cep: "01415-000",
+		contact: "Eliuma",
+		comment: "2° andar, entregar em mãos próprias",
+		favourite: true, 
+		user: user, 
+	)
 
-DeliveryPoint.create!(
-	name: "Escritório",
-	uf: "SP",
-	bairro: "Jardim Paulista",
-	cidade: "Sâo Paulo",
-	rua:"Rua Bela Cintra",
-	numero: "408",
-	cep: "01415-000",
-	contact: "Aurélien",
-	comment: "deixar na recepção",
-	favourite: false, 
-	user: User.first 
-)
+	DeliveryPoint.create!(
+		name: "Escritório",
+		uf: "SP",
+		bairro: "Jardim Paulista",
+		cidade: "Sâo Paulo",
+		rua:"Rua Bela Cintra",
+		numero: "408",
+		cep: "01415-000",
+		contact: "Aurélien",
+		comment: "deixar na recepção",
+		favourite: false, 
+		user: user,
+	)
 
-puts "Created #{DeliveryPoint.count} for #{User.first.name}"
+	puts "Created #{user.delivery_points.count} delivery points for #{user.name}"
+end
 
-puts "Seed Done!"
+puts "Created #{DeliveryPoint.count} Delivery Points"
+puts "------------"
+
+puts "Seed Done!!!"
