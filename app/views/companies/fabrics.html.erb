@@ -7,7 +7,12 @@
         <% end %>
     </div>
     
-    <h2>Os produtos oferecidos pela sua empresa:</h2>
+    <% if @fabrics.empty? %>
+        <h2>Sua empresa ainda não oferece produtos.</h2>
+    <% else %>
+        <h2>Os produtos oferecidos pela sua empresa:</h2>    
+    <% end %>
+    
 
     <div class="row">
         <div class="cards my-5 text-center">
