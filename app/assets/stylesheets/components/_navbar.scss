@@ -12,8 +12,10 @@
   li {
   	margin: auto 4px;
   }
+}
 
-
+.navbar-lewagon .dark-link a {
+	color: black;
 }
 
 .navbar-lewagon.white {
@@ -35,4 +37,10 @@
 .navbar-space {
 	height: 60px;
 	background-color: transparent;
+}
+
+.dark-links {
+	a {
+		color: black;
+	}
 }
