@@ -24,7 +24,7 @@
             <%= image_tag "user_green.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
           
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-right dark-link" aria-labelledby="navbarDropdown">
             <% if current_user.company.nil? && current_user.owned_company.nil?  %>
               <%= link_to "Create company", new_company_path, class: "dropdown-item"  %>
               <%= link_to "Join company", search_company_path, class: "dropdown-item"  %>
