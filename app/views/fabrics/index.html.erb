@@ -37,12 +37,14 @@
 
             <p>Preço</p>
             <div class="d-flex justify-content-between">
-            <p>R$ 10/m</p>
-            <p>R$ 200/m</p>
+
             </div>
-            <%= simple_form_for :search, url: root_path, method: "GET", remote: true do |f| %>
-            <%= f.input_field :price,label: "Preço", as: :range, :id => "price_slider", min: "10", max: "200" %>
-            <% end %>
+            <div class="range-wrap">
+            <div class="range-value" id="rangeV"></div>
+                <input type="range" min="10" max="200" value="200" class="slider" id="price_slider" remote="true" >
+                <output class="bubble"></output>
+            </div>
+
 
 
         </div>
