@@ -12,6 +12,11 @@
             <p class="hidden" id="searchable-item-color"><%= fabric.colour %></p>
             <p class="hidden" id="searchable-item-fabric-type"><%= fabric.fabric_type %></p>
             <p class="hidden" id="searchable-item-price"><%= fabric.price %></p>
+             <%  unless fabric.labels.empty? %>
+             <%  fabric.labels.each do |label| %>
+             <p class="hidden" id="searchable-item-labels"><%= label.name %></p>
+             <% end %>
+             <% end %>
         </div>
         <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center btn-details" %>
     </div>

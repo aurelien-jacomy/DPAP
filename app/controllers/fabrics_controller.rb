@@ -3,7 +3,10 @@ class FabricsController < ApplicationController
 	before_action :set_fabric, only: [ :show, :edit, :update, :destroy ]
 
     def index
-
+        @fabric_colors = Fabric.select(:colour).distinct.map {|x| x.colour}
+        @fabric_types = Fabric.select(:fabric_type).distinct.map {|x| x.fabric_type}
+        @fabric_labels = Label.select(:name).distinct.map {|x| x.name}
+        
     if params[:search].nil?
         @fabrics = policy_scope(Fabric)
          elsif params[:search][:query].blank?

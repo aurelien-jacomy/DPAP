@@ -7,12 +7,14 @@ const advancedSearch = () => {
   var fabricTypeCheckboxes = document.querySelectorAll(
     "#fabric_type_checkboxes"
   );
+  var labelCheckboxes = document.querySelectorAll("#labels_checkboxes");
 
   slider.oninput = function () {
     let checkedColors = getCheckedColorBoxesValues(colorCheckboxes);
     let checkedFabricTypes = getCheckedFabricTypeBoxesValues(
       fabricTypeCheckboxes
     );
+    let checkedLabels = getCheckedlabelsValues(labelCheckboxes);
 
     fabrics.forEach((fabric) => {
       if (
@@ -33,13 +35,19 @@ const advancedSearch = () => {
       let checkedFabricTypes = getCheckedFabricTypeBoxesValues(
         fabricTypeCheckboxes
       );
+      let checkedLabels = getCheckedlabelsValues(labelCheckboxes);
 
-      if (checkedColors.length == 0 && checkedFabricTypes.length == 0) {
+      if (
+        checkedColors.length == 0 &&
+        checkedFabricTypes.length == 0 &&
+        checkedLabels.length == 0
+      ) {
         ShowAllCards(fabrics);
         return;
       }
       fabrics.forEach((fabric) => {
         if (
+          checkLabel(fabric, checkedLabels) &&
           checkColor(fabric, checkedColors) &&
           checkFabricType(fabric, checkedFabricTypes) &&
           checkPrice(fabric, slider)
@@ -65,6 +73,20 @@ const getCheckedColorBoxesValues = (colorCheckboxes) => {
   });
 
   return checkedColorBoxes;
+};
+
+const getCheckedlabelsValues = (labelCheckboxes) => {
+  let checkedLabelsBoxes = [];
+
+  labelCheckboxes.forEach((labelCheckBox) => {
+    if (labelCheckBox.checked) {
+      checkedLabelsBoxes.push(
+        labelCheckBox.nextElementSibling.firstElementChild.textContent
+      );
+    }
+  });
+
+  return checkedLabelsBoxes;
 };
 
 const getCheckedFabricTypeBoxesValues = (fabricTypeCheckboxes) => {
@@ -110,6 +132,36 @@ const checkColor = (fabric, checkedColors) => {
   }
 };
 
+const separatedFabricLabels = (fabric) => {
+  let fabricLabelsNodes = fabric.querySelectorAll("#searchable-item-labels");
+  let fabricLabels = [];
+  fabricLabelsNodes.forEach((label) => {
+    fabricLabels.push(label.textContent);
+  });
+  return fabricLabels;
+};
+
+const checkLabel = (fabric, checkedLabels) => {
+  let fabricLabels = separatedFabricLabels(fabric);
+
+  if (checkedLabels.length == 0) {
+    return true;
+  } else {
+    let matchingLabels = [];
+
+    fabricLabels.forEach((individualLabel) => {
+      checkedLabels.forEach((individualCheckedLabel) => {
+        if (individualLabel == individualCheckedLabel) {
+          matchingLabels.push(individualLabel);
+        }
+      });
+    });
+    if (matchingLabels.length != 0) {
+      return true;
+    }
+  }
+};
+
 const checkFabricType = (fabric, checkedFabricTypes) => {
   let fabricFabricType = fabric.querySelector("#searchable-item-fabric-type")
     .textContent;
@@ -125,8 +177,3 @@ const checkFabricType = (fabric, checkedFabricTypes) => {
 
 export { advancedSearch };
 
-// $(document).ready(function(){
-//   $("#color_cheboxes").click(function(){
-//     $(this).toggleClass("active");
-//   });
-// });

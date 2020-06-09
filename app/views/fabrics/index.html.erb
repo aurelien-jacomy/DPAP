@@ -7,7 +7,7 @@
     <div class="d-flex">
         <div id="advanced-search-form">
             <p>Cores</p>
-            <%$colors.each do |color| %>
+            <% @fabric_colors.each do |color| %>
             <div class="pretty p-switch p-fill p-success">
                 <input type="checkbox" id="color_checkboxes" class="form-check-input" />
                 <div class="state p-success">
@@ -16,7 +16,7 @@
             </div>
             <% end %>
             <p>Tipos</p>
-            <%$fabric_types.each do |fabric_type| %>
+            <%@fabric_types.each do |fabric_type| %>
             <div class="pretty p-switch p-fill">
                 <input type="checkbox" id="fabric_type_checkboxes" class="form-check-input" />
                 <div class="state p-success">
@@ -24,6 +24,17 @@
                 </div>
             </div>
             <% end %>
+
+            <p>Selos</p>
+            <%@fabric_labels.each do |fabric_type| %>
+            <div class="pretty p-switch p-fill">
+                <input type="checkbox" id="labels_checkboxes" class="form-check-input" />
+                <div class="state p-success">
+                    <label><%= fabric_type %></label>
+                </div>
+            </div>
+            <% end %>
+
             <p>Preço</p>
             <%= simple_form_for :search, url: root_path, method: "GET", remote: true do |f| %>
             <%= f.input_field :price,label: "Preço", as: :range, :id => "price_slider"%>
