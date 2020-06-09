@@ -5,11 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :fabric_to_carts, dependent: :destroy
-  has_many :orders, dependent: :destroy
+  has_many :orders, dependent: :nullify
   has_one_attached :photo, dependent: :destroy
   has_many :delivery_points, dependent: :destroy
 
-  has_one :owned_company, foreign_key: "user_id", class_name: "Company" 
+  has_one :owned_company, foreign_key: "user_id", class_name: "Company"
   has_one :company_user, dependent: :destroy
   has_one :company, through: :company_user
 

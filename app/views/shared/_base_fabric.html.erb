@@ -18,6 +18,19 @@
              <% end %>
              <% end %>
         </div>
-        <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center btn-details" %>
+            <div class="edit-links mx-2">
+                <% if policy(fabric).edit? %>
+                    <%= link_to edit_fabric_path(fabric) do %>
+                        <i class="fas fa-edit green mr-2"></i>
+                    <% end %>
+                <% end %>
+                    <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center btn-details" %>
+                <% if policy(fabric).destroy? %>
+                    <%= link_to fabric, method: :delete, data: {confirm: "Tem certeza que quer retirar esse produto da venda?"} do %>
+                        <i class="fas fa-trash red ml-2"></i>
+                    <% end %>
+                <% end %>
+            </div>
+        
     </div>
 </div>

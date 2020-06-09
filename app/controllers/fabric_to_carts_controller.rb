@@ -15,11 +15,15 @@ class FabricToCartsController < ApplicationController
 
     current_user.update(checkout_session_id: nil)
 
-		if @fabric_to_cart.save && params[:commit] == "COMPRAR AGORA"
-			redirect_to cart_path
+    if @fabric_to_cart.save
+			if params[:commit] == "COMPRAR AGORA"
+				redirect_to cart_path
+			else
+				sleep 3
+				redirect_to fabrics_path
+			end
 		else
-			sleep 3
-			redirect_to fabrics_path
+			render "fabrics/show"
 		end
 	end
 	
@@ -50,14 +54,27 @@ class FabricToCartsController < ApplicationController
 
 	def set_delivery_point
 		f_carts = FabricToCart.where(user: current_user)
-		delivery_point = DeliveryPoint.find(params[:delivery_point][:id])
 		
-		f_carts.each do |f_cart|
-			authorize f_cart
-			f_cart.update(delivery_point: delivery_point)
-		end
+		unless params[:delivery_point][:id] == ""
 
-		redirect_to new_payment_path	
+			delivery_point = DeliveryPoint.find(params[:delivery_point][:id])
+			
+			f_carts.each do |f_cart|
+				authorize f_cart
+				f_cart.update(delivery_point: delivery_point)
+			end
+
+			redirect_to new_payment_path
+		else
+			if current_user.delivery_points.nil?
+				@error_message = "Você precisa criar um endereço"
+			else
+				@error_message = "Você precisa selecionar um endereço"
+			end
+			@delivery_point = DeliveryPoint.new
+			@delivery_points = policy_scope(DeliveryPoint).order('created_at DESC')
+			render "delivery_points/index"
+		end
 	end
 
 	private
