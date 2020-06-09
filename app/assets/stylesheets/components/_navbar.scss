@@ -1,8 +1,14 @@
 .navbar-lewagon {
   justify-content: space-between;
   background-color: transparent;
+  color: $cotton-white;
   transition: 0.5s background-color ease;
+  transition: 0.5s color ease;
   margin-bottom: 10px;
+  a {
+	text-decoration: none;
+  	color: $cotton-white;
+  }
   li {
   	margin: auto 4px;
   }
@@ -12,6 +18,10 @@
 
 .navbar-lewagon.white {
   	background-color: $cotton-white;
+  	color: black;
+  	a {
+  		color: black;
+  	}
   }
 
 .navbar-lewagon .navbar-collapse {
