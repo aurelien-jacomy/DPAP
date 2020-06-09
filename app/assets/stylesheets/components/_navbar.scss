@@ -1,12 +1,28 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: $cotton-white;
-  border-bottom: .5px solid rgb(210,210,210);
+  background-color: transparent;
+  color: $cotton-white;
+  transition: 0.5s background-color ease;
+  transition: 0.5s color ease;
+  margin-bottom: 10px;
+  a {
+	text-decoration: none;
+  	color: $cotton-white;
+  }
   li {
   	margin: auto 4px;
   }
 
+
 }
+
+.navbar-lewagon.white {
+  	background-color: $cotton-white;
+  	color: black;
+  	a {
+  		color: black;
+  	}
+  }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
@@ -14,4 +30,9 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar-space {
+	height: 60px;
+	background-color: transparent;
 }
