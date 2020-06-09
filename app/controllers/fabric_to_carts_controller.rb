@@ -15,11 +15,15 @@ class FabricToCartsController < ApplicationController
 
     current_user.update(checkout_session_id: nil)
 
-		if @fabric_to_cart.save && params[:commit] == "COMPRAR AGORA"
-			redirect_to cart_path
+    if @fabric_to_cart.save
+			if params[:commit] == "COMPRAR AGORA"
+				redirect_to cart_path
+			else
+				sleep 3
+				redirect_to fabrics_path
+			end
 		else
-			sleep 3
-			redirect_to fabrics_path
+			render "fabrics/show"
 		end
 	end
 	
