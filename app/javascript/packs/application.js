@@ -30,6 +30,7 @@ import { showDeliveryPart } from "./show_delivery_part";
 import { getCEP } from "./cep_search";
 import { initChangeImage } from "./change_image";
 import { advancedSearch } from "./advanced_search";
+import {bubble} from './bubble_value_range';
 import { initUpdateNavbarOnScroll } from '../components/navbar';
 
 // Internal imports, e.g:
@@ -64,6 +65,7 @@ document.addEventListener('turbolinks:load', () => {
     
   if (document.getElementById("advanced-search-form")) {
     advancedSearch();
+    bubble();
   }
 
   if (document.getElementById("home")) {

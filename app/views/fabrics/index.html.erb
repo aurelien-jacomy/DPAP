@@ -36,12 +36,19 @@
             <% end %>
 
             <p>Preço</p>
-            <%= simple_form_for :search, url: root_path, method: "GET", remote: true do |f| %>
-            <%= f.input_field :price,label: "Preço", as: :range, :id => "price_slider"%>
-            <% end %>
+            <div class="d-flex justify-content-between">
+
+            </div>
+            <div class="range-wrap">
+            <div class="range-value" id="rangeV"></div>
+                <input type="range" min="10" max="200" value="200" class="slider" id="price_slider" remote="true" >
+                <output class="bubble"></output>
+            </div>
+
+
 
         </div>
-        <div class="cards text-center" >
+        <div class="cards text-center">
             <% @fabrics.each do |fabric| %>
             <%= render "./shared/base_fabric", fabric: fabric %>
             <% end %>

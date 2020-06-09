@@ -18,6 +18,7 @@ const advancedSearch = () => {
 
     fabrics.forEach((fabric) => {
       if (
+        checkLabel(fabric, checkedLabels) &&
         checkColor(fabric, checkedColors) &&
         checkFabricType(fabric, checkedFabricTypes) &&
         checkPrice(fabric, slider)
@@ -120,7 +121,7 @@ const hideCard = (fabric) => {
 const checkPrice = (fabric, slider) => {
   let fabricPrice = fabric.querySelector("#searchable-item-price").textContent;
 
-  return fabricPrice <= slider.value * 10000;
+  return fabricPrice <= slider.value * 100;
 };
 
 const checkColor = (fabric, checkedColors) => {
