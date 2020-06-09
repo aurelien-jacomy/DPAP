@@ -279,7 +279,7 @@ Fabric.create!(
 	colour: "Verde",
 	width: 110,
 	gramatura: 185,
-	fabric_type: "Tecido plano estampado",
+	fabric_type: "Estampado",
 	composition: "100% Algodão",
 	company: Company.last,
 	price: 20000,

@@ -3,14 +3,17 @@ class Fabric < ApplicationRecord
   has_many :fabric_to_carts, dependent: :destroy
   has_many :label_to_fabrics, dependent: :destroy
   has_many_attached :photos, dependent: :destroy
+
+
+  
+  has_many :labels, through: :label_to_fabrics
+
   has_many :fabric_to_orders, dependent: :nullify
+
 
   validates :name, presence: true
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-
-  $colors = ["Preto", "Branco", "Vermelho", "Verde", "Azul", "Amarelo", "Roxo", "Laranja"]
-  $fabric_type = ["Algodão", "Malha", "Linho", "Camurça", "Seda"]
 
   
 

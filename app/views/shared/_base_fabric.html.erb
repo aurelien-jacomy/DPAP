@@ -9,14 +9,14 @@
         <div class="content">
             <p class="card-text"><%= fabric.composition %></p>
             <p class="card-text">R$<%= fabric.price/100 %>/m</p>
-            <p class="hidden" id="searchable-item"><%= fabric.colour %></p>
-            <p class="hidden" id="searchable-item"><%= fabric.width %>/m</p>
-            <p class="hidden" id="searchable-item"><%= fabric.gramatura %></p>
-            <p class="hidden" id="searchable-item"><%= fabric.fabric_type %>/m</p>
-            <p class="hidden" id="searchable-item"><%= fabric.shipment_time %></p>
-            <p class="hidden" id="searchable-item"><%= fabric.minimum_qty %>/m</p>
-            <p class="hidden" id="searchable-item"><%= fabric.composition %></p>
+            <p class="hidden" id="searchable-item-color"><%= fabric.colour %></p>
+            <p class="hidden" id="searchable-item-fabric-type"><%= fabric.fabric_type %></p>
             <p class="hidden" id="searchable-item-price"><%= fabric.price %></p>
+             <%  unless fabric.labels.empty? %>
+             <%  fabric.labels.each do |label| %>
+             <p class="hidden" id="searchable-item-labels"><%= label.name %></p>
+             <% end %>
+             <% end %>
         </div>
             <div class="edit-links mx-2">
                 <% if policy(fabric).edit? %>
