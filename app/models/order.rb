@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :delivery_point, optional: true
-  has_many :fabric_to_orders, dependent: :destroy
+  has_many :fabric_to_orders, dependent: :nullify
   has_many :fabrics, through: :fabric_to_orders
 
   validates :userid, presence: true
