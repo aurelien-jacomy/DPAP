@@ -2,7 +2,7 @@
 	<div class="d-flex justify-content-between align-items-center">
 		<h1>Meu Carrinho</h1>
 		<% unless @cart.empty? %>
-			<%= link_to cart_path, method: :delete, data: {confirm: "Você deseja retirar todos os itens do seu carrinho?"} do %>
+			<%= link_to cart_path, method: :delete, data: {confirm: "Você deseja retirar todos os itens do seu carrinho?"}, title:  "Esvaziar carrinho"  do %>
 				<i class="fas fa-trash" style="color: red;"></i>
 			<% end %>
 		<% end %>
