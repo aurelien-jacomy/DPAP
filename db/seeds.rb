@@ -608,8 +608,8 @@ label = Label.create!(
 	description: "Tecidos biodegradáveis ou feitos a partir de fibras naturais",
 )
 
-file = URI.open('https://i.pinimg.com/originals/e6/45/59/e6455995873cc93de3ce2eea89250bf6.png')
-label.photo.attach(io: file, filename: 'faire_trade.png', content_type: 'image/png')
+file = URI.open('https://www.bamboostick.net/img/cms/Rassurance/logo_biodegradable.jpg')
+label.photo.attach(io: file, filename: 'bio.jpg', content_type: 'image/jpg')
 
 puts "Label #{label.name} ##{Label.count} done"
 
@@ -642,8 +642,8 @@ label = Label.create!(
 	website: "https://soudealgodao.com.br",
 )
 
-file = URI.open('https://www.commodafrica.com/sites/commodafrica.com/files/logo-share-new.png')
-label.photo.attach(io: file, filename: 'bci.png', content_type: 'image/png')
+file = URI.open('https://www.clubedecostura.com.br/wp-content/uploads/2017/06/sou-de-algodao.png')
+label.photo.attach(io: file, filename: 'sou_de_algodao.png', content_type: 'image/png')
 
 puts "Label #{label.name} ##{Label.count} done"
 

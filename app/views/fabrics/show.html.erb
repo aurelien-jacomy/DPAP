@@ -81,10 +81,10 @@
 		    <p class="card-text">Largura: <%= @fabric.width %>m - Gramatura: <%= @fabric.gramatura %>g/m</p>
 		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>
 		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido mínimo: <%= @fabric.minimum_qty %>m</p>
-		    <div class="d-flex">
+		    <div class="labels-grid">
 			    <% @fabric.label_to_fabrics.each do |label_to_fabric| %>
-			    	<div class="mr-2">
-			    		<%= cl_image_tag label_to_fabric.label.photo.key, height: 50, width: 50, crop: :scale %>
+			    	<div class="label-show">
+			    		<%= cl_image_tag label_to_fabric.label.photo.key, height: 50, crop: :scale %>
 			    	</div>
 			    <% end %>
 		    </div>		    

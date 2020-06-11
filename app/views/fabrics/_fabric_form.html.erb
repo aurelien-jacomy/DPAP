@@ -1,49 +1,50 @@
 <%= simple_form_for fabric do |f| %>
-	<%= f.input :name, require: true, label: "Nome" %>
-	<%= f.input :colour, label: "Cor" %>
 	<div class="row">
-		<div class="col-6">
-			<%= f.input :width, require: true, hint: "em metro", label: "Largura" %>
-		</div>
-		<div class="col-6">
-			<%= f.input :gramatura, require: true, hint: "em gramas/metro" %>
-		</div>
-	</div>
-	
-	<%= f.input :fabric_type, label: "Tipo de tecido" %>
-	<%= f.input :composition, label: "Composição" %>
-	<%= f.input :price, hint: "cts / m", require: true, label: "Preço" %>
-	<div class="row">
-		<div class="col-6">
-			<%= f.input :shipment_time, default: 1, hint: "em dias", label: "Prazo para expedir" %>
-		</div>
-		<div class="col-6">
-			<%= f.input :minimum_qty, hint: "em metro", value: 1, label: "Quantidade mínima" %>
-		</div>
-	</div>
-	
-	<%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Adicione fotos ao seu produto" %>
-	
-	<div class="form-group">
-		<input type="hidden" name="fabric[label_ids][]" value="">
-		
-		<div class="label-choices">
-			<% Label.all.each do |label| %>
-				<div >
-					<input hidden="true" type="checkbox" value="<%= fabric.id %>" name="fabric[label_ids][]" id="fabric_label_ids_<%= fabric.id %>">
-					<label class="label-choice active" for="fabric_label_ids_<%= label.id %>">
-						<%= label.name %>
-					</label>
+		<div class="col-md-6 col-12">
+			<%= f.input :name, require: true, label: "Nome" %>
+			<%= f.input :colour, label: "Cor" %>
+			<div class="row">
+				<div class="col-6">
+					<%= f.input :width, require: true, hint: "em metro", label: "Largura" %>
 				</div>
-			<% end %>
+				<div class="col-6">
+					<%= f.input :gramatura, require: true, hint: "em gramas/metro" %>
+				</div>
+			</div>
+			
+			<%= f.input :fabric_type, label: "Tipo de tecido" %>
+			<%= f.input :composition, label: "Composição" %>
+			<%= f.input :price, hint: "cts / m", require: true, label: "Preço" %>
+			<div class="row">
+				<div class="col-6">
+					<%= f.input :shipment_time, default: 1, hint: "em dias", label: "Prazo para expedir" %>
+				</div>
+				<div class="col-6">
+					<%= f.input :minimum_qty, hint: "em metro", value: 1, label: "Quantidade mínima" %>
+				</div>
+			</div>
+			
+			<%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Adicione fotos ao seu produto" %>	
 		</div>
+
+		<div class="col-md-6 col-12">
+			<div class="form-group">
+				<label class="control-label check_boxes optional">Selecione as características sustentáveis e os selos desse tecido:</label>				
+				<div class="label-choices">
+					<% Label.all.each do |label| %>
+						<div >
+							<input  type="checkbox" hidden="true" value="<%= label.id %>" name="fabric[label_ids][]" id="fabric_label_ids_<%= label.id %>">
+							<label class="label-choice" for="fabric_label_ids_<%= label.id %>">
+								<%= label.name %>
+							</label>
+						</div>
+					<% end %>
+				</div>
+			</div>	
+		</div>
+
 	</div>
 
+	<%= f.submit "Criar produto", class: "btn btn-success w-100" %>
 
-
-
-
-
-
-	<%= f.submit "Criar produto", class: "btn btn-success" %>
 <% end %>
