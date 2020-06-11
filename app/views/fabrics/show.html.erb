@@ -29,11 +29,13 @@
 		            	<%= cl_image_tag photo.key, height: 500, width:400, crop: :fill, class:"small-pics" %>
 		        	</div>
 		        <% end %>
+		    </div>
 	    <% else %>
-	        <%= image_tag "textile_roll.png", size: "400x500" %>
+	    	<div>
+	        	<%= image_tag "textile_roll.png", size: "400x500", id:"main-pic" %>
+	        </div>
 	    <% end %>
-    </div>
-</div>
+	</div>
 	<div class="card w-50 bg-transparent border-0 align-items-center">
 		<div class="card-body">
 			<h5 class="card-title"><%= @fabric.name %></h5>
@@ -88,7 +90,6 @@
 		    </div>		    
 		</div>
 	</div>
-
 </div>
 <div class="container">
     <h3>Produtos Relacionados</h3>
@@ -101,7 +102,7 @@
 		            	<% unless fabric.photos[0].nil?%>
 		            		<%= cl_image_tag fabric.photos[0].key, height: 150, width: 200, crop: :fill %>
 		            	<% else %>
-		            		<%= image_tag "textile_roll.png", size: "250x250" %>
+		            		<%= image_tag "textile_roll.png", size: "200x150" %>
 		            	<% end %>
 		            	<p><%= fabric.name %></p>
 		            <% end %>
