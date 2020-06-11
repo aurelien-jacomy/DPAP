@@ -26,11 +26,11 @@
           
           <div class="dropdown-menu dropdown-menu-right dark-link" aria-labelledby="navbarDropdown">
             <% if current_user.company.nil? && current_user.owned_company.nil?  %>
-              <%= link_to "Create company", new_company_path, class: "dropdown-item"  %>
-              <%= link_to "Join company", search_company_path, class: "dropdown-item"  %>
+              <%= link_to "Cadastre sua empresa", new_company_path, class: "dropdown-item"  %>
+              <%= link_to "Junte-se a uma empresa", search_company_path, class: "dropdown-item"  %>
             <% end  %>
             <% unless current_user.owned_company.nil?  %>
-              <%= link_to "Manage your company", my_company_path(current_user.owned_company), class: "dropdown-item"  %>
+              <%= link_to "Minha empresa", my_company_path(current_user.owned_company), class: "dropdown-item"  %>
             <% end  %>
             <%= link_to cart_path, class: "dropdown-item" do %>
               Meu carrinho <span class="cart-quantity">(<%= @quantity %>)</span>
@@ -38,8 +38,8 @@
             <% unless current_user.what_company.nil?  %>
               <%= link_to "Meus produtos", fabrics_company_path(current_user.what_company), class: "dropdown-item"  %>
             <% end %>
-            <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"  %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%= link_to "Editar perfil", edit_user_registration_path, class: "dropdown-item"  %>
+            <%= link_to "Sair da conta", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
       <% else %>
