@@ -94,10 +94,10 @@
 <div class="container">
     <h3>Produtos Relacionados</h3>
     <hr>
-    <div class="d-flex mt-4">
+    <div class="mt-4 related-products-session">
         <% @fabric.company.fabrics.each do |fabric| %>
 	        <% if fabric != @fabric %>
-		        <div class="flex-item mr-4 related-products">
+		        <div class="mr-4 related-products">
 		            <%= link_to fabric_path(fabric) do %>
 		            	<% unless fabric.photos[0].nil?%>
 		            		<%= cl_image_tag fabric.photos[0].key, height: 150, width: 200, crop: :fill %>

@@ -1,7 +1,5 @@
 .related-products {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	
+		
 	a {
 		text-decoration: none;
 		color: gray;
@@ -25,4 +23,27 @@
 	img:hover {
 		box-shadow: 0 5px 10px rgba(0,0,0,1)
 	}
+}
+
+.related-products-session {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+@media (min-width: 576px) {
+  .related-products-session {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .related-products-session {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .related-products-session {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
