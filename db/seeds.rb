@@ -601,7 +601,7 @@ label.photo.attach(io: file, filename: 'faire_trade.png', content_type: 'image/p
 puts "Label #{label.name} ##{Label.count} done"
 
 label = Label.create!(
-	name: "Tecidos biodegradáveis",
+	name: "biodegradáveis".upcase,
 	label_impact: me,
 	apply_on: "Tecido",
 	label_category: bio,

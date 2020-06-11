@@ -32,6 +32,7 @@ import { initChangeImage } from "./change_image";
 import { advancedSearch } from "./advanced_search";
 import {bubble} from './bubble_value_range';
 import { initUpdateNavbarOnScroll } from '../components/navbar';
+import { initSelectLabel } from './select_label';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -69,8 +70,11 @@ document.addEventListener('turbolinks:load', () => {
   }
 
   if (document.getElementById("home")) {
-    console.log("home found");
     initUpdateNavbarOnScroll();
+  }
+
+  if (document.querySelector(".label-choices")) {
+    initSelectLabel();
   }
   
 });
