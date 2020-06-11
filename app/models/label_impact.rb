@@ -1,0 +1,2 @@
+class LabelImpact < ApplicationRecord
+end
