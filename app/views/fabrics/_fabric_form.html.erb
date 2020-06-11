@@ -9,5 +9,5 @@
 	<%= f.input :shipment_time, default: 1, hint: "em dias", label: "Prazo para expedir" %>
 	<%= f.input :minimum_qty, hint: "em metro", value: 1, label: "Quantidade mínima" %>
 	<%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Adicione fotos ao seu produto" %>
-	<%= f.submit "Gerar produto", class: "btn btn-success" %>
+	<%= f.submit fabric.id.nil? ? "Criar produto" : "Editar produto", class: "btn btn-success" %>
 <% end %>
