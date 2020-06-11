@@ -6,24 +6,24 @@
   transition: 0.5s color ease;
   margin-bottom: 10px;
   a {
-	text-decoration: none;
-  	color: $cotton-white;
+  text-decoration: none;
+    color: $cotton-white;
   }
   li {
-  	margin: auto 4px;
+    margin: auto 4px;
   }
 }
 
 .navbar-lewagon .dark-link a {
-	color: black;
+  color: black;
 }
 
 .navbar-lewagon.white {
-  	background-color: $cotton-white;
-  	color: black;
-  	a {
-  		color: black;
-  	}
+    background-color: $cotton-white;
+    color: black;
+    a {
+      color: black;
+    }
   }
 
 .navbar-lewagon .navbar-collapse {
@@ -35,12 +35,12 @@
 }
 
 .navbar-space {
-	height: 60px;
-	background-color: transparent;
+  height: 60px;
+  background-color: transparent;
 }
 
 .dark-links {
-	a {
-		color: black;
-	}
+  a {
+    color: black;
+  }
 }
