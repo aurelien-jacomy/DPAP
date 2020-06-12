@@ -3,9 +3,9 @@
 <h1><%= @company.name %></h1>
 
 <% if @pending_users.empty? %>
-  <p>No employees to add </p>
+  <p>Sem funcionário a ser incluído</p>
 <% else %>
-  <p>Add employees</p>
+  <p>Adicionar funcionários à sua empresa</p>
 <% end %>
 
 <% @pending_users.each do |pending_user|%>
@@ -17,7 +17,7 @@
         <%= f.hidden_field :user_id, :value => pending_user.user.id %>
         <%=  f.hidden_field :role, :value => :standard %>
         <%= f.hidden_field :status, :value => :active %>
-        <%= f.submit "Accept", class: "btn btn-sm btn-success" %>
+        <%= f.submit "Aceitar", class: "btn btn-sm btn-success" %>
         <% end  %>
 </div>
 <% end %>

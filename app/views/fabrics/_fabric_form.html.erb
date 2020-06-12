@@ -45,6 +45,6 @@
 
 	</div>
 
-	<%= f.submit "Criar produto", class: "btn btn-success w-100" %>
+	<%= f.submit fabric.id.nil? ? "Criar produto" : "Editar produto", class: "btn btn-success w-100" %>
 
 <% end %>
