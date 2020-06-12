@@ -4,11 +4,16 @@ class FabricToCartsController < ApplicationController
 	def show_user_cart
 		cart = policy_scope(FabricToCart).order(:created_at)
 		@cart = FabricToCart.cart_by_supplier(cart)
+		@samples = FabricToCart.samples(cart)
 	end
 
 	def create
 		@fabric = Fabric.find(params[:fabric_to_cart][:fabric_id])
+		if (params[:fabric_to_cart][:is_sample])
+			@fabric_to_cart = FabricToCart.new(quantity: 1, is_sample: true)
+		else
 		@fabric_to_cart = FabricToCart.new(cart_params)
+		end
 		authorize @fabric_to_cart
 		@fabric_to_cart.user = current_user
         @fabric_to_cart.fabric = @fabric
