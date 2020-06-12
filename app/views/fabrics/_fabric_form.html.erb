@@ -1,13 +1,50 @@
 <%= simple_form_for fabric do |f| %>
-	<%= f.input :name, require: true, label: "Nome" %>
-	<%= f.input :colour, label: "Cor" %>
-	<%= f.input :width, require: true, hint: "em metro", label: "Largura" %>
-	<%= f.input :gramatura, require: true, hint: "em gramas/metro" %>
-	<%= f.input :fabric_type, label: "Tipo de tecido" %>
-	<%= f.input :composition, label: "Composição" %>
-	<%= f.input :price, hint: "cts / m", require: true, label: "Preço" %>
-	<%= f.input :shipment_time, default: 1, hint: "em dias", label: "Prazo para expedir" %>
-	<%= f.input :minimum_qty, hint: "em metro", value: 1, label: "Quantidade mínima" %>
-	<%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Adicione fotos ao seu produto" %>
-	<%= f.submit fabric.id.nil? ? "Criar produto" : "Editar produto", class: "btn btn-success" %>
+	<div class="row">
+		<div class="col-md-6 col-12">
+			<%= f.input :name, require: true, label: "Nome" %>
+			<%= f.input :colour, label: "Cor" %>
+			<div class="row">
+				<div class="col-6">
+					<%= f.input :width, require: true, hint: "em metro", label: "Largura" %>
+				</div>
+				<div class="col-6">
+					<%= f.input :gramatura, require: true, hint: "em gramas/metro" %>
+				</div>
+			</div>
+			
+			<%= f.input :fabric_type, label: "Tipo de tecido" %>
+			<%= f.input :composition, label: "Composição" %>
+			<%= f.input :price, hint: "cts / m", require: true, label: "Preço" %>
+			<div class="row">
+				<div class="col-6">
+					<%= f.input :shipment_time, default: 1, hint: "em dias", label: "Prazo para expedir" %>
+				</div>
+				<div class="col-6">
+					<%= f.input :minimum_qty, hint: "em metro", value: 1, label: "Quantidade mínima" %>
+				</div>
+			</div>
+			
+			<%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Adicione fotos ao seu produto" %>	
+		</div>
+
+		<div class="col-md-6 col-12">
+			<div class="form-group">
+				<label class="control-label check_boxes optional">Selecione as características sustentáveis e os selos desse tecido:</label>				
+				<div class="label-choices">
+					<% Label.all.each do |label| %>
+						<div >
+							<input  type="checkbox" hidden="true" value="<%= label.id %>" name="fabric[label_ids][]" id="fabric_label_ids_<%= label.id %>">
+							<label class="label-choice" for="fabric_label_ids_<%= label.id %>">
+								<%= label.name %>
+							</label>
+						</div>
+					<% end %>
+				</div>
+			</div>	
+		</div>
+
+	</div>
+
+	<%= f.submit fabric.id.nil? ? "Criar produto" : "Editar produto", class: "btn btn-success w-100" %>
+
 <% end %>
