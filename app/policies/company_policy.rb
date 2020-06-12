@@ -22,7 +22,15 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def fabrics?
-    user.what_company
+    if user.what_company == record
+      if record.owner == user
+        true
+      else
+        user.company_user.status == "active"
+      end
+    else
+      false
+    end
   end
 
 end

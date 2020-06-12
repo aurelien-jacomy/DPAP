@@ -32,7 +32,7 @@
             <% unless current_user.owned_company.nil?  %>
               <%= link_to "Minha empresa", my_company_path(current_user.owned_company), class: "dropdown-item"  %>
             <% end  %>
-            <% unless current_user.what_company.nil?  %>
+            <% if policy(current_user.what_company).fabrics?  %>
               <%= link_to "Meus produtos", fabrics_company_path(current_user.what_company), class: "dropdown-item"  %>
             <% end %>
             <% unless current_user.orders.empty? %>
