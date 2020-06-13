@@ -1,0 +1,23 @@
+.card-label {
+    border-radius: 4px;
+    box-shadow: 0 0px 15px rgba(0,0,0,.05);
+    padding: 16px;
+    &:hover {
+		box-shadow: 0 0px 15px rgba(0,0,0,.1);
+    }
+}
+
+.card-label-header {
+	height: 60px;
+	h3 {
+		font-size: 20px;
+		font-weight: bold;
+		margin: 0px 8px;
+	}
+}
+
+.card-label-content {
+	p {
+		margin: 0px;
+	}
+}

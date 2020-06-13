@@ -1,0 +1,12 @@
+<div class="sustainable-background">
+	<div class="container d-flex py-5">
+		<% if company.logo.attached? %>
+			<%= cl_image_tag company.logo.key, height: 150, width: 150, crop: :fill %>
+		<% end %>
+		<div class="ml-4 align-self-center">
+			<h1><%= company.name %></h1>
+			<p><%= company.description %></p>
+		</div>
+		
+	</div>
+</div>
