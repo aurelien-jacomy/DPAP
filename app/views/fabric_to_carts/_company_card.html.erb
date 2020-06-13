@@ -1,6 +1,7 @@
 <div class="wrapp-supplier">
     <div class="d-flex justify-content-between align-items-center header">
         <div class="d-flex align-items-center">
+
             <% if company.logo.attached? %>
             <!-- mudar para empresa -->
             <%= cl_image_tag company.logo.key, alt: "#{company.name} logo", class: "mr-1" , height: 60, width: 60, crop: :fill%>
@@ -21,6 +22,8 @@
     </div>
 
     <hr>
+
+
 
     <% cart[company].each do |fabric_to_cart| %>
     <% unless fabric_to_cart.is_sample %>

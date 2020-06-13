@@ -18,7 +18,9 @@
     <%= render partial: 'samples', locals: { cart: @samples} %>
 
     <% @cart.keys.each do |company| %>
+    <%unless @cart[company].all? {|x| x.is_sample}%>
     <%= render partial: 'company_card', locals: {company: company, cart: @cart} %>
+    <% end %>
     <% end %>
     <div class="d-flex justify-content-end">
         <%= link_to "Validar Carrinho", delivery_points_path, class: "btn btn-success"  %>
