@@ -44,7 +44,7 @@ document.addEventListener('turbolinks:load', () => {
   	initSelectDeliveryPoint();	
   }
 
-  if (document.getElementById("new_delivery_point")) {
+  if (document.querySelector(".btn.delivery-point-form")) {
   	displayDeliveryForm();
   }
 
