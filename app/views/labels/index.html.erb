@@ -1,0 +1,33 @@
+<div class="sustainable-background">
+	<div class="container my-5">
+		<h1>A sustentabilidade no setor da moda</h1>
+		<p>Saiba mais sobre os critérios de sustentabilide no setor da moda, e os selos que comprovam os processos implementados nas empresas</p>
+	</div>
+</div>
+<div class="container">
+	<div class="select-categories">
+		<div class="select-category d-flex">
+			<% @categories.each do |category| %>
+				<%= category.name  %>
+			<% end %>
+		</div>
+	</div>
+	<% @impacts.each do |impact| %>
+		<div>
+			<h2><%= impact.name %></h2>
+			<% @labels.select { |l| l.label_impact == impact }.each do |label| %>
+				<div class="card-label" data-category="<%= label.label_category %>">
+					<div class="card-label-header">
+						<h3><%= label.name %></h3>
+					</div>
+					<div class="card-label-content">
+						<strong><%= label.full_name unless label.full_name.nil? %></strong>
+						<p>Escopo do selo: <%= label.apply_on %></p>
+						<p><%= label.description %></p>
+						<p>Saiba mais: <a href="<%= label.website %>" target="blank"><%= label.name %></a></p>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>

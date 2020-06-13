@@ -1,0 +1,27 @@
+.company-background{
+	background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), asset-url("fabric_factory.jpg");
+	background-size: cover;
+	background-position: center;
+	height: 300px;
+	h1 {
+		color: white;
+	}
+	p {
+		color: white;
+	}
+}
+
+.sustainable-background{
+	background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), asset-url("sustainability.jpg");
+	background-size: cover;
+	background-position: center;
+	height: 300px;
+	margin-top: -60px;
+	padding: 100px;
+	h1 {
+		color: white;
+	}
+	p {
+		color: white;
+	}
+}
