@@ -20,6 +20,9 @@ DeliveryPoint.destroy_all
 FabricToOrder.destroy_all
 Order.destroy_all
 Label.destroy_all
+LabelToFabric.destroy_all
+LabelImpact.destroy_all
+LabelCategory.destroy_all
 
 
 puts "Database empty"
