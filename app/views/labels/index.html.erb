@@ -8,7 +8,7 @@
 	<div class="category-choices my-3">
 		
 		<% @categories.each do |category| %>
-			<div class="category-choice active">
+			<div class="category-choice active" data-category="<%= category.id %>">
 				<%= category.name  %>
 			</div>
 		<% end %>
@@ -29,7 +29,7 @@
 							<i class="fas fa-caret-down"></i>
 						</div>
 					</div>
-					<div class="card-label-content">
+					<div class="card-label-content" hidden="true">
 						<strong><%= label.full_name unless label.full_name.nil? %></strong>
 						<p>Escopo do selo: <%= label.apply_on %></p>
 						<p><%= label.description %></p>
