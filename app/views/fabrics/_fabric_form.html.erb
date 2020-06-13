@@ -27,21 +27,41 @@
 			<%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Adicione fotos ao seu produto" %>	
 		</div>
 
-		<div class="col-md-6 col-12">
-			<div class="form-group">
-				<label class="control-label check_boxes optional">Selecione as características sustentáveis e os selos desse tecido:</label>				
-				<div class="label-choices">
-					<% Label.all.each do |label| %>
-						<div >
-							<input  type="checkbox" hidden="true" value="<%= label.id %>" name="fabric[label_ids][]" id="fabric_label_ids_<%= label.id %>">
-							<label class="label-choice" for="fabric_label_ids_<%= label.id %>">
-								<%= label.name %>
-							</label>
-						</div>
-					<% end %>
-				</div>
-			</div>	
-		</div>
+		<% if fabric.id.nil? %>
+			<div class="col-md-6 col-12">
+				<div class="form-group">
+					<label class="control-label check_boxes optional">Selecione as características sustentáveis e os selos desse tecido:</label>				
+					<div class="label-choices">
+						<% Label.all.each do |label| %>
+							<div >
+								<input  type="checkbox" hidden="true" value="<%= label.id %>" name="fabric[label_ids][]" id="fabric_label_ids_<%= label.id %>">
+								<label class="label-choice" for="fabric_label_ids_<%= label.id %>">
+									<%= label.name %>
+								</label>
+							</div>
+						<% end %>
+					</div>
+				</div>	
+			</div>
+		<% else %>
+			<div class="col-md-6 col-12">
+				<div class="form-group">
+					<label class="control-label check_boxes optional">Selecione as características sustentáveis e os selos desse tecido:</label>				
+					<div class="label-choices">
+						<% Label.all.each do |label| %>
+							<div >
+								<% active = fabric.labels.include?(label) %>
+								<input  type="checkbox" hidden="true" value="<%= label.id %>" <%= "checked" if active %> name="fabric[label_ids][]" id="fabric_label_ids_<%= label.id %>">
+								<label class="label-choice <%= "active" if active  %>" for="fabric_label_ids_<%= label.id %>">
+									<%= label.name %>
+								</label>
+							</div>
+						<% end %>
+					</div>
+				</div>	
+			</div>
+		<% end %>
+		
 
 	</div>
 
