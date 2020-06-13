@@ -732,11 +732,14 @@ end
 puts "Created #{DeliveryPoint.count} Delivery Points"
 puts "------------"
 
-puts "Seed Done!!!"
-
-
-(1..64).each_with_index do |index|
+fabrics_count = Fabric.all.count
+(1..fabrics_count).each_with_index do |index|
 	fabric = Fabric.find(index)
 	fabric.sample_price = rand(5..10)
 	fabric.save!
 end
+
+puts "Samples prices OK"
+puts "------------"
+
+puts "Seed Done!!!"
