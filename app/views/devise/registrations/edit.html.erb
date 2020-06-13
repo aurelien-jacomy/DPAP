@@ -3,8 +3,8 @@
     <div class="col-12 col-sm-8">
       
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Edit <%= resource_name.to_s.humanize %></h2>
-        <%= link_to "Back", :back %>
+        <h2>Editar perfil</h2>
+        <%= link_to "Voltar", :back %>
       </div>
       
       <% if current_user.photo.attached? %>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Update", class: "btn btn-primary" %>
+          <%= f.button :submit, "Atualizar", class: "btn btn-primary" %>
         </div>
       <% end %>
 
