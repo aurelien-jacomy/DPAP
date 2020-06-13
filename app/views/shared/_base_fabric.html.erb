@@ -1,8 +1,12 @@
 <div class="card mx-2 p-1" id="fabric">
     <% unless fabric.photos[0].nil?%>
+    <%= link_to fabric_path(fabric) do %>
     <%=  cl_image_tag fabric.photos[0].key, :transformation=>[{:width=>400, :height=>250, :crop=>"fill"}] %>
+    <% end %>
     <% else %>
+    <%= link_to fabric_path(fabric) do %>
     <%= image_tag "textile_roll.png", size: "250x250" %>
+    <% end %>
     <% end %>
     <div class="card-body fabric">
         <h5 class="card-title"><%= fabric.name %></h5>
@@ -25,7 +29,6 @@
             <% end %>
             <% end %>
             <% if params[:id].nil?%>
-            <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center btn-details" %>
             <%= simple_form_for @fabric_to_cart, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
             <%= f.input :fabric_id, :as => :hidden, :input_html => { :value => fabric.id } %>
             <%= f.hidden_field :is_sample,  :value => true  %>
@@ -40,6 +43,5 @@
             <% end %>
             <% end %>
         </div>
-
     </div>
 </div>
