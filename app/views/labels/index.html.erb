@@ -5,20 +5,28 @@
 	</div>
 </div>
 <div class="container">
-	<div class="select-categories">
-		<div class="select-category d-flex">
-			<% @categories.each do |category| %>
+	<div class="category-choices my-3">
+		
+		<% @categories.each do |category| %>
+			<div class="category-choice active">
 				<%= category.name  %>
-			<% end %>
-		</div>
+			</div>
+		<% end %>
+
 	</div>
 	<% @impacts.each do |impact| %>
 		<div>
 			<h2><%= impact.name %></h2>
 			<% @labels.select { |l| l.label_impact == impact }.each do |label| %>
-				<div class="card-label" data-category="<%= label.label_category %>">
+				<div class="card-label mb-4" data-category="<%= label.label_category.id %>">
 					<div class="card-label-header">
-						<h3><%= label.name %></h3>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="d-flex align-items-center">
+								<%= cl_image_tag label.photo.key, alt: "label", width: 50, crop: :scale %>
+								<h3><%= label.name %></h3>
+							</div>
+							<i class="fas fa-caret-down"></i>
+						</div>
 					</div>
 					<div class="card-label-content">
 						<strong><%= label.full_name unless label.full_name.nil? %></strong>
