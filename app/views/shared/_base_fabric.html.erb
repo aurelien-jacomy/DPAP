@@ -9,17 +9,22 @@
     <% end %>
     <% end %>
     <div class="card-body fabric">
-        <h5 class="card-title"><%= fabric.name %></h5>
         <div class="content">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title"><%= fabric.name %></h5>
+                <p class="card-text"><strong>R$<%= fabric.price/100 %>/m</strong></p>
+            </div>
             <p class="card-text"><%= fabric.composition %></p>
-            <p class="card-text">R$<%= fabric.price/100 %>/m</p>
             <p class="hidden" id="searchable-item-color"><%= fabric.colour %></p>
             <p class="hidden" id="searchable-item-fabric-type"><%= fabric.fabric_type %></p>
             <p class="hidden" id="searchable-item-price"><%= fabric.price %></p>
             <%  unless fabric.labels.empty? %>
-            <%  fabric.labels.each do |label| %>
-            <p class="hidden" id="searchable-item-labels"><%= label.name %></p>
-            <% end %>
+                <%  fabric.labels.each do |label| %>
+                    <p class="hidden" id="searchable-item-labels"><%= label.name %></p>
+                <% end %>
+                <div class="my-1 d-flex justify-content-center">
+                    <%= render './shared/labels_grid', fabric: fabric, size: 30 %>
+                </div>
             <% end %>
         </div>
         <div class="edit-links mx-2">
