@@ -22,7 +22,15 @@ class FabricPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.what_company == record.company
+    if user.what_company == record.company
+      if record.company.owner == user
+        true
+      else
+        user.company_user.status == "active"
+      end
+    else
+      false
+    end
   end
 
   def update?

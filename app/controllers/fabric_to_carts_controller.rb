@@ -24,7 +24,7 @@ class FabricToCartsController < ApplicationController
 			if params[:commit] == "COMPRAR AGORA"
 				redirect_to cart_path
 			else
-				sleep 3
+				sleep 2
 				redirect_to fabrics_path
 			end
 		else

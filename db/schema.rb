@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_06_11_210643) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +127,18 @@ ActiveRecord::Schema.define(version: 2020_06_11_210643) do
     t.index ["company_id"], name: "index_fabrics_on_company_id"
   end
 
+  create_table "label_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "label_impacts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "label_to_fabrics", force: :cascade do |t|
     t.bigint "label_id", null: false
     t.bigint "fabric_id", null: false
@@ -138,6 +152,14 @@ ActiveRecord::Schema.define(version: 2020_06_11_210643) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "full_name"
+    t.bigint "label_impact_id"
+    t.string "apply_on"
+    t.bigint "label_category_id"
+    t.string "website"
+    t.text "description"
+    t.index ["label_category_id"], name: "index_labels_on_label_category_id"
+    t.index ["label_impact_id"], name: "index_labels_on_label_impact_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -193,6 +215,8 @@ ActiveRecord::Schema.define(version: 2020_06_11_210643) do
   add_foreign_key "fabrics", "companies"
   add_foreign_key "label_to_fabrics", "fabrics"
   add_foreign_key "label_to_fabrics", "labels"
+  add_foreign_key "labels", "label_categories"
+  add_foreign_key "labels", "label_impacts"
   add_foreign_key "orders", "delivery_points"
   add_foreign_key "orders", "users"
 end
