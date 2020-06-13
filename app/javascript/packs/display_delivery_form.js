@@ -4,6 +4,7 @@ const displayDeliveryForm = () => {
 		.addEventListener("click", (event) => {
 			document.getElementById("delivery-point-form").classList.remove("hidden");
 		});
+		
 }
 
 export { displayDeliveryForm };
