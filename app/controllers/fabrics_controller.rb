@@ -25,7 +25,7 @@ class FabricsController < ApplicationController
     def new
         @company = current_user.what_company
         authorize @company
-        @fabric = Fabric.new
+        @fabric = Fabric.new  
     end
 
     def create
@@ -33,6 +33,15 @@ class FabricsController < ApplicationController
         authorize @company
         @fabric = Fabric.new(fabric_params)
         @fabric.company = @company
+        
+        params[:fabric][:label_ids].each do |label_id|
+            label = Label.find(label_id)
+            LabelToFabric.create(
+                label: label,
+                fabric: @fabric
+            )    
+        end
+
         if @fabric.save
             redirect_to @fabric
         else
@@ -77,6 +86,7 @@ class FabricsController < ApplicationController
             :sample_price,
             :shipment_time,
             :minimum_qty,
+            label_ids: [],
             photos: []
             )
     end

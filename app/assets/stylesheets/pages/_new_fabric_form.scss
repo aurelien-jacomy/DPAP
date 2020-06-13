@@ -1,0 +1,30 @@
+.label-choice {
+	background: $light-gray;
+	width: 100%;
+  	padding: 16px;
+  	border-radius: 5px;
+  	opacity: .4;
+  	flex: 0 0 30%;
+  	text-align: center;
+  	height: 80px;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	border: .5px solid rgb(200,200,200);
+  	&:hover {
+    	opacity: 1;
+    	cursor: pointer;
+	}
+	&.active {
+		background: $green;
+		color: white;
+		opacity: 1;
+	}
+}
+
+.label-choices {
+  	display: grid;
+  	grid-template-columns: 1fr 1fr 1fr;
+  	grid-gap: 8px;
+  	margin-top: 0px;
+}

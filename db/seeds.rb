@@ -19,6 +19,7 @@ Fabric.destroy_all
 DeliveryPoint.destroy_all
 FabricToOrder.destroy_all
 Order.destroy_all
+Label.destroy_all
 
 
 puts "Database empty"
@@ -527,42 +528,138 @@ Fabric.all.each do |item|
 end
 puts "------------"
 
+
+puts "Creating Label Categories & Impacts"
+
+me = LabelImpact.create(name: "Meio ambiente")
+rs = LabelImpact.create(name: "Responsabilidade social")
+
+og = LabelCategory.create(name: "Orgânico")
+tox = LabelCategory.create(name: "Menos água, menos químicos e agrotóxicos")
+pp = LabelCategory.create(name: "Pequenos produtores")
+bio = LabelCategory.create(name: "Biodegradáveis e fibras naturais")
+local = LabelCategory.create(name: "Sourcing local")
+
 puts "Creating Labels: image download can take some time..."
 
-Label.create!(
-	name: "Orgânicos do Brasil"
+label = Label.create!(
+	name: "GOTS",
+	full_name: "GLOBAL ORGANIC TEXTILE STANDARD",
+	label_impact: me,
+	apply_on: "Tecido",
+	label_category: og,
+	description: "O padrão de tecidos orgânicos GOTS é reconhecido como uma referência global para tecidos feitos de fibras orgânicas. Ele define critérios ambientais de alto nível em toda a cadeia de suprimentos para têxteis orgânicos e também requer conformidade com critérios sociais.",
+	website: "https://www.global-standard.org",
 )
 
-file = URI.open('https://www.portaldofranchising.com.br/wp-content/uploads/2017/07/selo-verde-216x300.jpg')
-label = Label.last
-label.photo.attach(io: file, filename: 'label.jpg', content_type: 'image/jpg')
+file = URI.open('https://getvectorlogo.com/wp-content/uploads/2018/10/global-organic-textile-standard-gots-vector-logo.png')
+label.photo.attach(io: file, filename: 'gots.png', content_type: 'image/png')
 
-puts "Label ##{Label.count} done"
+puts "Label #{label.name} ##{Label.count} done"
 
-Label.create!(
-	name: "Fair Trade"
+label = Label.create!(
+	name: "OCS",
+	full_name: "Organic 100 Content Standard".upcase,
+	label_impact: me,
+	apply_on: "Matéria prima",
+	label_category: og,
+	description: "OCS é um selo têxtil orgânico para têxteis / fibras emitido a partir de agricultura 100% orgânica. O selo é emitido pela Textile Exchange (anteriormente a Organic Exchange) e é aceito globalmente.",
+	website: "https://textileexchange.org",
 )
 
-file = URI.open('https://institutooxford.com.br/wp-content/uploads/2016/12/selo-empresa-amiga-meio-ambiente-1.png')
-label = Label.last
-label.photo.attach(io: file, filename: 'label.png', content_type: 'image/png')
+file = URI.open('https://www.ekowarehouse.com/files/certification_logos/Certified-to-Organic%20Exchange-100-Standard.jpg')
+label.photo.attach(io: file, filename: 'oe.jpg', content_type: 'image/jpg')
 
-puts "Label ##{Label.count} done"
+puts "Label #{label.name} ##{Label.count} done"
 
-Label.create!(
-	name: "Ecolabel"
+label = Label.create!(
+	name: "ECOTEX",
+	label_impact: me,
+	apply_on: "Tecido",
+	label_category: tox,
+	description: "ECOTEX garante uma produção ecológico, de acordo com as normas europeas.",
+	website: "http://www.texencomendas.com.br/eco-tex/",
 )
 
-file = URI.open('https://www.lesnouvellesdelaboulangerie.fr/sites/default/files/ckfinder/userfiles/images/web-NF-environnement.jpg')
-label = Label.last
-label.photo.attach(io: file, filename: 'label.jpg', content_type: 'image/jpg')
+file = URI.open('https://www.ecomark.com.tr/media/k2/items/cache/aaa082d2257ab65aecf61c2340e9c5b9_L.jpg')
+label.photo.attach(io: file, filename: 'ecotex.jpg', content_type: 'image/jpg')
 
-puts "Label ##{Label.count} done"
+puts "Label #{label.name} ##{Label.count} done"
 
-puts "Created #{Label.count} labels:"
-Label.all.each do |item|
-	puts "  - #{item.name}"
+label = Label.create!(
+	name: "FAIR TRADE",
+	label_impact: rs,
+	apply_on: "Matéria prima",
+	label_category: pp,
+	description: "Há muito algodão por aí, mas quando você opta por produtos de algodão Fairtrade, está capacitando pequenos agricultores e pressionando a indústria para se tornar sustentável.",
+	website: "https://www.fairtrade.net",
+)
+
+file = URI.open('https://i.pinimg.com/originals/e6/45/59/e6455995873cc93de3ce2eea89250bf6.png')
+label.photo.attach(io: file, filename: 'faire_trade.png', content_type: 'image/png')
+
+puts "Label #{label.name} ##{Label.count} done"
+
+label = Label.create!(
+	name: "biodegradáveis".upcase,
+	label_impact: me,
+	apply_on: "Tecido",
+	label_category: bio,
+	description: "Tecidos biodegradáveis ou feitos a partir de fibras naturais",
+)
+
+file = URI.open('https://www.bamboostick.net/img/cms/Rassurance/logo_biodegradable.jpg')
+label.photo.attach(io: file, filename: 'bio.jpg', content_type: 'image/jpg')
+
+puts "Label #{label.name} ##{Label.count} done"
+
+label = Label.create!(
+	name: "BCI",
+	full_name: "BETTER COTTON INITIATIVE",
+	label_impact: me,
+	apply_on: "Matéria prima",
+	label_category: tox,
+	description: "O Better Cotton Standard System é uma abordagem holística da produção sustentável de algodão,
+	que abrange todos os três pilares da sustentabilidade: ambiental, social e econômico. 
+	Cada um dos elementos - dos Princípios e Critérios aos mecanismos de monitoramento que mostram resultados e impacto - 
+	trabalham em conjunto para apoiar o Sistema Padrão Better Cotton e a credibilidade da Better Cotton e da BCI. 
+	O sistema foi projetado para garantir o intercâmbio de boas práticas e incentivar a ampliação da ação coletiva para estabelecer o Better Cotton como uma mercadoria mainstream sustentável.",
+	website: "https://bettercotton.org",
+)
+
+file = URI.open('https://www.commodafrica.com/sites/commodafrica.com/files/logo-share-new.png')
+label.photo.attach(io: file, filename: 'bci.png', content_type: 'image/png')
+
+puts "Label #{label.name} ##{Label.count} done"
+
+label = Label.create!(
+	name: "SOU DE ALGODÃO",
+	label_impact: rs,
+	apply_on: "Matéria prima",
+	label_category: local,
+	description: "Sou de Algodão é um movimento único no Brasil que nasceu em 2016 para despertar uma consciência coletiva em torno da moda e do consumo responsável. 
+	O label garente que o algodão do seu tecido foi produzido no Brasil.",
+	website: "https://soudealgodao.com.br",
+)
+
+file = URI.open('https://www.clubedecostura.com.br/wp-content/uploads/2017/06/sou-de-algodao.png')
+label.photo.attach(io: file, filename: 'sou_de_algodao.png', content_type: 'image/png')
+
+puts "Label #{label.name} ##{Label.count} done"
+
+
+puts "Associating labels to fabrics"
+
+
+Fabric.all.each do |fabric|
+	LabelToFabric.create(
+		label: Label.all.sample,
+		fabric: fabric
+		)
 end
+
+puts "Association done"
+
 
 puts 'Creating Label To Fabric'
 
