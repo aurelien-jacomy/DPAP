@@ -1,7 +1,9 @@
 <div class="labels-grid">
 	<% fabric.label_to_fabrics.each do |label_to_fabric| %>
 		<div class="label-show">
-			<%= cl_image_tag label_to_fabric.label.photo.key, height: size, crop: :scale %>
+			<%= link_to labels_path do %>
+				<%= cl_image_tag label_to_fabric.label.photo.key, height: size, crop: :scale %>
+			<% end %>
 		</div>
 	<% end %>
 </div>
