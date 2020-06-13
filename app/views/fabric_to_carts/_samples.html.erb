@@ -1,0 +1,37 @@
+<div class="wrapp-supplier">
+<h3 class="amostras-title">Amostras</h3>
+ <% @samples.each do |sample| %>
+ <div class="row justify-content-end">
+     <div class="col-11">
+         <div class="card-product">
+             <% if sample.fabric.photos.attached? %>
+             <%= cl_image_tag sample.fabric.photos[0].key, alt: "textile picture" %>
+             <% else %>
+             <%= image_tag "textile_roll", alt: "undefined textile" %>
+             <% end %>
+             <div class="card-product-infos">
+                 <div>
+                     <h3><%= sample.fabric.name %></h3>
+                      <p><%= sample.fabric.company.name %></p>
+
+                     <% unless sample.delivery_point.nil? %>
+                     <p>Entregar para: <%= fabric_to_cart.delivery_point.name %></p>
+                     <% end %>
+                 </div>
+                 <div class="card-options">
+                     <p>R$
+                          <%= sample.sample_price %>,00 
+                     </p>
+
+
+
+                     <%= link_to sample, method: :delete, data: {confirm: "Deseja apagar esse item?"} do  %>
+                     <i class="fas fa-trash mx-2"></i>
+                     <% end %>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <%end%>
+</div>

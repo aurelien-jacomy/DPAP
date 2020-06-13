@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_11_122216) do
+ActiveRecord::Schema.define(version: 2020_06_11_210643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_06_11_122216) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "delivery_point_id"
+    t.boolean "is_sample"
     t.index ["delivery_point_id"], name: "index_fabric_to_carts_on_delivery_point_id"
     t.index ["fabric_id"], name: "index_fabric_to_carts_on_fabric_id"
     t.index ["user_id"], name: "index_fabric_to_carts_on_user_id"
@@ -119,6 +120,7 @@ ActiveRecord::Schema.define(version: 2020_06_11_122216) do
     t.integer "minimum_qty"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "sample_price"
     t.index ["company_id"], name: "index_fabrics_on_company_id"
   end
 
