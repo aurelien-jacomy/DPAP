@@ -14,9 +14,9 @@
     <button class="btn btn-success">Descubra nossos tecidos</button>
     <% end %>
     <% else %>
-    <% @samples.each do |sample| %>
+
     <%= render partial: 'samples', locals: { cart: @samples} %>
-    <% end %>
+
     <% @cart.keys.each do |company| %>
     <%= render partial: 'company_card', locals: {company: company, cart: @cart} %>
     <% end %>

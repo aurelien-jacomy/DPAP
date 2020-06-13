@@ -24,6 +24,7 @@
             <i class="fas fa-edit green mr-2"></i>
             <% end %>
             <% end %>
+            <% if params[:id].nil?%>
             <%= link_to  "Ver detalhes", fabric_path(fabric), class: "btn btn-outline-primary center btn-details" %>
             <%= simple_form_for @fabric_to_cart, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
             <%= f.input :fabric_id, :as => :hidden, :input_html => { :value => fabric.id } %>
@@ -31,6 +32,8 @@
             <!-- Button name "COMPRAR AGORA" linked to controller. Both need to be changed if needed -->
             <%= f.submit "Pedir Amostra", class: "btn btn-success ml-4" %>
             <% end %>
+            <% end %>
+
             <% if user_signed_in? && policy(fabric).destroy? %>
             <%= link_to fabric, method: :delete, data: {confirm: "Tem certeza que quer retirar esse produto da venda?"} do %>
             <i class="fas fa-trash red ml-2"></i>

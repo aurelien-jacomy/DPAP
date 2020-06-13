@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 2020_06_11_210643) do
     t.string "userid"
     t.bigint "delivery_point_id"
     t.string "delivery_address"
-    t.integer "checkout_session_id"
+    t.string "checkout_session_id"
     t.string "status"
     t.datetime "paid_at"
     t.datetime "created_at", precision: 6, null: false
