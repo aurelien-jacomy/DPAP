@@ -732,8 +732,7 @@ end
 puts "Created #{DeliveryPoint.count} Delivery Points"
 puts "------------"
 
-fabrics_count = Fabric.all.count
-(1..fabrics_count).each_with_index do |index|
+(Fabric.first.id..Fabric.last.id).each_with_index do |index|
 	fabric = Fabric.find(index)
 	fabric.sample_price = rand(5..10)
 	fabric.save!
