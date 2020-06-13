@@ -22,10 +22,10 @@ class OrdersController < ApplicationController
 				)
  
 			cart[supplier].each do |f_to_c|
-			
+				
+				fabric = f_to_c.fabric
 				if f_to_c.is_sample
 					
-				fabric = f_to_c.fabric
 				FabricToOrder.create(
 					order: order,
 					fabric: fabric,
