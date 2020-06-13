@@ -120,8 +120,7 @@ ActiveRecord::Schema.define(version: 2020_06_11_210643) do
     t.integer "minimum_qty"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "sample_price"
-    t.string "integer"
+    t.integer "sample_price"
     t.index ["company_id"], name: "index_fabrics_on_company_id"
   end
 
