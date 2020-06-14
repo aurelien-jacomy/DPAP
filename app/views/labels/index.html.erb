@@ -1,10 +1,10 @@
 <div class="sustainable-background">
 	<div class="container my-5">
 		<h1>A sustentabilidade no setor da moda</h1>
-		<p>Saiba mais sobre os critérios de sustentabilide no setor da moda, e os selos que comprovam os processos implementados nas empresas</p>
+		<p>Saiba mais sobre os critérios de sustentabilidade no setor da moda, e os selos que comprovam os processos implementados nas empresas</p>
 	</div>
 </div>
-<div class="container">
+<div class="container mb-5">
 	<div class="category-choices my-3">
 		
 		<% @categories.each do |category| %>
@@ -19,18 +19,18 @@
 			<h2><%= impact.name %></h2>
 			<hr>
 			<% @labels.select { |l| l.label_impact == impact }.each do |label| %>
-				<div class="card-label mb-4" data-category="<%= label.label_category.id %>">
+				<div class="card-label mb-4 <%= "cat-#{label.label_category.id}" %>">
 					<div class="card-label-header">
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="d-flex align-items-center">
 								<%= cl_image_tag label.photo.key, alt: "label", width: 50, crop: :scale %>
-								<h3><%= label.name %> <%= ":#{label.full_name}" unless label.full_name.nil? %></h3>
+								<h3><%= label.name %> <%= ": #{label.full_name}" unless label.full_name.nil? %></h3>
 							</div>
 							<i class="fas fa-caret-down"></i>
 						</div>
 					</div>
+
 					<div class="card-label-content" hidden="true">
-						<strong><%= label.full_name unless label.full_name.nil? %></strong>
 						<p>Escopo do selo: <%= label.apply_on %></p>
 						<p><%= label.description %></p>
 						<p>Saiba mais: <a href="<%= label.website %>" target="blank"><%= label.name %></a></p>

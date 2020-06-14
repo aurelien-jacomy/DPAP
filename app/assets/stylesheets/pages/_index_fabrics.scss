@@ -14,14 +14,17 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 16px;
+    height: 30%
 }
 
 .card{
-    margin: 0 auto; 
+  margin: 0 auto; 
+  img {
+    width: 100%;
   }
-
-  .card:hover{
+  &:hover{
     opacity: 0.8;
+  }
 }
 
 @media (min-width: 576px) {

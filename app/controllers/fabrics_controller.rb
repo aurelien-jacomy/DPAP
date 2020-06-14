@@ -6,6 +6,7 @@ class FabricsController < ApplicationController
         @fabric_colors = Fabric.select(:colour).distinct.map {|x| x.colour}
         @fabric_types = Fabric.select(:fabric_type).distinct.map {|x| x.fabric_type}
         @fabric_labels = Label.select(:name).distinct.map {|x| x.name}
+        @fabric_to_cart = FabricToCart.new
         
     if params[:search].nil?
         @fabrics = policy_scope(Fabric)
@@ -82,6 +83,7 @@ class FabricsController < ApplicationController
             :fabric_type,
             :composition,
             :price,
+            :sample_price,
             :shipment_time,
             :minimum_qty,
             label_ids: [],

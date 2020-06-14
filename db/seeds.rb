@@ -20,6 +20,9 @@ DeliveryPoint.destroy_all
 FabricToOrder.destroy_all
 Order.destroy_all
 Label.destroy_all
+LabelToFabric.destroy_all
+LabelImpact.destroy_all
+LabelCategory.destroy_all
 
 
 puts "Database empty"
@@ -730,6 +733,15 @@ User.all.each do |user|
 end
 
 puts "Created #{DeliveryPoint.count} Delivery Points"
+puts "------------"
+
+(Fabric.first.id..Fabric.last.id).each_with_index do |index|
+	fabric = Fabric.find(index)
+	fabric.sample_price = rand(5..10)
+	fabric.save!
+end
+
+puts "Samples prices OK"
 puts "------------"
 
 puts "Seed Done!!!"

@@ -14,13 +14,17 @@ const initSelectLabelCategory = () => {
 	categories.forEach((category) => {
 		category.addEventListener( "click", (event) => {
 			category.classList.toggle("active");
-			toggleLabel(category.dataset.category);
+			showCategory(category.dataset.category);
 		});
 	});
 }
 
-const toggleLabel = (id) => {
-	
+const showCategory = (category_id) => {
+	let labels = [];
+	labels = document.querySelectorAll(`.cat-${category_id}`);
+	labels.forEach((label) => {
+		label.toggleAttribute("hidden");
+	});
 }
 
 export { initSelectLabel, initSelectLabelCategory };
