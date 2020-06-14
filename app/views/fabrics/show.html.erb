@@ -81,8 +81,16 @@
 		    <p class="card-text">Largura: <%= @fabric.width %>m - Gramatura: <%= @fabric.gramatura %>g/m</p>
 		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>
 		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido mínimo: <%= @fabric.minimum_qty %>m</p>
-
-			<%= render './shared/labels_grid', fabric: @fabric, size: 50 %>		    
+			<div class="card-sustainable">
+				<h3>Esse tecidos respeita o meio ambiente: <i class="fas fa-seedling"></i></h3>
+				<div class="d-flex flex-wrap">
+					<% @categories.each do |label_category| %>
+						<p class="mr-1">#<%= label_category.name %></p>
+					<% end %>
+				</div>
+				<%= render './shared/labels_grid', fabric: @fabric, size: 50 %>
+			</div>
+					    
 		</div>
 	</div>
 </div>

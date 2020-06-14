@@ -20,6 +20,10 @@ class FabricsController < ApplicationController
 
     def show
         @fabric_to_cart = FabricToCart.new
+        @categories = []
+        @fabric.labels.each do |label|
+            @categories << label.label_category
+        end
     end
 
     def new
