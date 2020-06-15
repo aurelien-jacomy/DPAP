@@ -1,10 +1,11 @@
 <%= simple_form_for :search, url: fabrics_path, method: :get do |f| %>
-  <div class="search-form-control form-group">
+  <div class="search-form-control form-group my-0">
     <%= f.input :query, 
     	class: "form-control string required",
     	remote: true,
     	label: false,  
-    	input_html: {value: @query}
+    	input_html: {value: @query},
+      placeholder: "Qual tecido você procura?"
     %>
     <button name="button" type="submit" class="btn btn-flat">
       <i class="fas fa-search"></i> Search
