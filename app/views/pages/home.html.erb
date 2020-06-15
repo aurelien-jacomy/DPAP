@@ -1,17 +1,7 @@
-        <% if !current_user.nil? && current_user.company.nil? && current_user.owned_company.nil?  %>
-        <div class="d-flex justify-content-center m-2">
-            <div class="banner-create-join-company">
-                <div class="d-flex justify-content-center align-items-center">
-                    <h1>Bem vindo, <%= current_user.name%>!</h1>
-                </div>
-                <div class="container d-flex justify-content-center align-items-center">
-                    <%= link_to "Cadastre sua empresa", new_company_path, class: "btn-primary m-2 p-2 btn-create-join-company"  %>
-                    <%= link_to "Junte-se a uma empresa", search_company_path, class: "btn-primary m-2 p-2 btn-create-join-company"  %>
-                </div>
-            </div>
-        </div>
-        <% end  %>
         <div class="container-background" id="home">
+            <% if !current_user.nil? && current_user.company.nil? && current_user.owned_company.nil?  %>
+                <%= render 'banner_join_company' %>
+            <% end  %>
             <div class="container">
                 <h1>Da Pluma à Pele</h1>
                 <p>Create clothes, build connections</p>

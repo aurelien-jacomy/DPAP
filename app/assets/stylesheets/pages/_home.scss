@@ -11,6 +11,7 @@
   padding: 30vh 10px;
   margin-bottom: 20px;
   margin-top: -60px;
+  position: relative;
 
   img {
     width: 60px;
@@ -64,6 +65,8 @@ img.thumbnail {
   background-color: rgba(137, 164, 69, 0.7);
   padding-bottom: 120px;
   padding-top: 21px;
+  position: absolute;
+  top: 68px;
 }
 .btn-create-join-company:hover {
   background-color: rgba(151, 167, 112, 0.3);
