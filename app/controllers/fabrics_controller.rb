@@ -18,9 +18,9 @@ class FabricsController < ApplicationController
         end
 
         if params[:label_search]
-            label_id = params[:label_search][:label_id]
-            @fabrics = policy_scope(Fabric).joins(:label_to_fabrics).where('label_to_fabric.label_id = ?', label_id)
-            @query = Label.find(label_id)
+            label_id = params[:label_search][:label_id].to_i
+            @fabrics = policy_scope(Fabric).joins(:label_to_fabrics).where('label_to_fabrics.label_id = ?', label_id)
+            @query = Label.find(label_id).name
         end
     end
 

@@ -16,7 +16,7 @@
 	</div>
 	<% @impacts.each do |impact| %>
 		<div>
-			<h2><%= impact.name %></h2>
+			<h2 class="mt-5"><%= impact.name %></h2>
 			<hr>
 			<% @labels.select { |l| l.label_impact == impact }.each do |label| %>
 				<div class="card-label mb-4 <%= "cat-#{label.label_category.id}" %>">
@@ -34,7 +34,7 @@
 							    	label: false,  
 							    	value: label.id
 						    	%>
-							    <button name="button" type="submit" class="btn btn-success">
+							    <button name="button" type="submit" class="btn btn-success ml-3">
 							      <i class="fas fa-search"></i> Search
 							    </button>
 							<% end %>	
@@ -42,8 +42,8 @@
 					</div>
 
 					<div class="card-label-content" hidden="true">
-						<p>Escopo do selo: <%= label.apply_on %></p>
-						<p><%= label.description %></p>
+						<p class="mb-2">Escopo do selo: <%= label.apply_on %></p>
+						<p class="mb-2"><%= label.description %></p>
 						<p>Saiba mais: <a href="<%= label.website %>" target="blank"><%= label.name %></a></p>
 					</div>
 				</div>
