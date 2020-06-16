@@ -27,21 +27,18 @@
 			format: "%u %n"
 			)%>
 		</p>
-		<p>
-			Pagamento: 
-				<% if order.status == "pending" %>
-					<span class="bg-info m-2 p-2">
-						Aguardando pagamento
-					</span>
-				<% elsif order.status == "paid" %>
-					<span class="bg-success m-2 p-2">
-						Pago
-					</span>
-				<% elsif order.status == "canceled" %>
-					<span class="bg-danger m-2 p-2">
-						Recusado
-					</span>						
-				<% end %>
-		</p>
+		<% if order.status == "pending" %>
+			<p class="order-status pending">
+				Aguardando pagamento
+			</p>
+		<% elsif order.status == "paid" %>
+			<p class="order-status success">
+				Pagamento realizado
+			</p>
+		<% elsif order.status == "canceled" %>
+			<p class="order-status failed">
+				Pagamento recusado
+			</p>						
+		<% end %>
 	</div>
 </div>
