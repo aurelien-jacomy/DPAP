@@ -1,3 +1,5 @@
+require 'csv'
+
 class Fabric < ApplicationRecord
   belongs_to :company
   has_many :fabric_to_carts, dependent: :destroy
@@ -20,5 +22,16 @@ class Fabric < ApplicationRecord
       tsearch: { prefix: true } 
     }
 
+  def self.read_colors
+    filepath    = 'app/assets/colors_in_pt.csv'
+    colors = []
+    CSV.foreach(filepath) do |row|
+      colors << row[0]
+    end
+
+    colors
+  end
+
+  COLORS = self.read_colors
 
 end

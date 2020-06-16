@@ -24,6 +24,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import 'select2';
 import { initSelectDeliveryPoint } from "./select_delivery_point";
 import { displayDeliveryForm } from "./display_delivery_form";
 import { showDeliveryPart } from "./show_delivery_part";
@@ -32,6 +33,7 @@ import { initChangeImage } from "./change_image";
 import { advancedSearch } from "./advanced_search";
 import {bubble} from './bubble_value_range';
 import { initUpdateNavbarOnScroll } from '../components/navbar';
+import { initSelect2 } from './init_select2';
 import { initSelectLabel, initSelectLabelCategory } from './select_box';
 import { showLabel } from '../components/label';
 
@@ -76,6 +78,10 @@ document.addEventListener('turbolinks:load', () => {
 
   if (document.querySelector(".label-choices")) {
     initSelectLabel();
+  }
+
+  if (document.querySelector(".select2")) {
+    initSelect2();
   }
 
   if (document.querySelector(".card-label")) {
