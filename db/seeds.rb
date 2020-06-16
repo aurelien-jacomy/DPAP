@@ -705,7 +705,7 @@ puts "------------"
 
 (Fabric.first.id..Fabric.last.id).each_with_index do |index|
 	fabric = Fabric.find(index)
-	fabric.sample_price = rand(5..10)
+	fabric.sample_price = rand(5..10)*100
 	fabric.save!
 end
 

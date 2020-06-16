@@ -11,9 +11,18 @@ class FabricToCart < ApplicationRecord
   def self.total_price(fabric_to_carts)
   	sum = 0
   	fabric_to_carts.each do |fabric_to_cart|
-  		sum += fabric_to_cart.quantity * fabric_to_cart.fabric.price
+  		sum += fabric_to_cart.quantity * fabric_to_cart.fabric.price unless fabric_to_cart.is_sample
   	end
   	return sum
+  end
+
+  def self.total_sample_price(user)
+    sum = 0
+    fabric_to_carts = FabricToCart.where(user: user).where(is_sample: true)
+    fabric_to_carts.each do |fabric_to_cart|
+      sum += fabric_to_cart.quantity * fabric_to_cart.fabric.sample_price
+    end
+    return sum
   end
 
   def price

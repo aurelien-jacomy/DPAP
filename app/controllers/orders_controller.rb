@@ -25,20 +25,19 @@ class OrdersController < ApplicationController
 				
 				fabric = f_to_c.fabric
 				if f_to_c.is_sample
-					
-				FabricToOrder.create(
-					order: order,
-					fabric: fabric,
-					fabric_sku: fabric.id,
-					price: fabric.price,
-					quantity: f_to_c.quantity
-					)
-				else
 					FabricToOrder.create(
 						order: order,
 						fabric: fabric,
 						fabric_sku: fabric.id,
 						price: fabric.sample_price,
+						quantity: f_to_c.quantity
+						)
+				else
+					FabricToOrder.create(
+						order: order,
+						fabric: fabric,
+						fabric_sku: fabric.id,
+						price: fabric.price,
 						quantity: f_to_c.quantity
 						)
 				end
