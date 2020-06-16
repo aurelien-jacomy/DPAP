@@ -1,29 +1,56 @@
+<%= render "./shared/company_banner", company: @company %>
+
 <div class="container">
-<div class="employees">
-<h1><%= @company.name %></h1>
+    <div class="employees">
+        <% unless @pending_users.empty? %>
+            <h2>Solicitações de cadastro na sua empresa</h2>
+            <hr>
 
-<% if @pending_users.empty? %>
-  <p>Sem funcionário a ser incluído</p>
-<% else %>
-  <p>Adicionar funcionários à sua empresa</p>
-<% end %>
-
-<% @pending_users.each do |pending_user|%>
-<div class="d-flex justify-content-between m-1">
-<%= pending_user.user.name %>
-        <%= simple_form_for :company_user,url: company_user_path(pending_user), method: :patch do |f| %>
-        <%= f.hidden_field :id, :value => pending_user.id %>        
-        <%= f.hidden_field :company_id, :value => @company.id %>
-        <%= f.hidden_field :user_id, :value => pending_user.user.id %>
-        <%=  f.hidden_field :role, :value => :standard %>
-        <%= f.hidden_field :status, :value => :active %>
-        <%= f.submit "Aceitar", class: "btn btn-sm btn-success" %>
-        <% end  %>
-</div>
-<% end %>
-</div>
-
-
-
-
+            <% @pending_users.each do |pending_user|%>            
+            <div class="d-flex justify-content-between m-1">
+                <%= pending_user.user.name %> : <%= pending_user.user.email %>
+                <div class="d-flex align-items-center">
+                    <%= simple_form_for :company_user,url: company_user_path(pending_user), method: :patch do |f| %>
+                        <%= f.hidden_field :id, :value => pending_user.id %>        
+                        <%= f.hidden_field :company_id, :value => @company.id %>
+                        <%= f.hidden_field :user_id, :value => pending_user.user.id %>
+                        <%=  f.hidden_field :role, :value => :standard %>
+                        <%= f.hidden_field :status, :value => :active %>
+                        <%= f.submit " Aceitar ", class: "btn btn-sm btn-success" %>
+                    <% end  %>
+                    <%= simple_form_for :company_user,url: company_user_path(pending_user), method: :patch do |f| %>
+                        <%= f.hidden_field :id, :value => pending_user.id %>        
+                        <%= f.hidden_field :company_id, :value => @company.id %>
+                        <%= f.hidden_field :user_id, :value => pending_user.user.id %>
+                        <%=  f.hidden_field :role, :value => :standard %>
+                        <%= f.hidden_field :status, :value => :inactive %>
+                        <%= f.submit " Recusar ", class: "btn btn-sm btn-danger ml-2", data: { confirm: "Tem certeza que deseja recusar esse funcionário? Essa ação não poderá ser cancelada." } %>
+                    <% end  %>
+                </div>
+            </div>
+            <% end %>
+        <% end %>
+    </div>
+    <div class="employees my-5">
+        <% if @company_users.nil? && @pending_users.empty? %>
+            <h2>Você não tem funcionários cadastros na plataforma</h2>
+            <hr>
+        <% else %>  
+          <h2>Seus funcionários</h2>
+          <hr>
+            <% @active_users.each do |company_user|%>   
+                <div class="d-flex justify-content-between m-1">         
+                    <%= company_user.user.name %> : <%= company_user.user.email %>
+                    <%= simple_form_for :company_user,url: company_user_path(company_user), method: :patch do |f| %>
+                        <%= f.hidden_field :id, :value => company_user.id %>        
+                        <%= f.hidden_field :company_id, :value => @company.id %>
+                        <%= f.hidden_field :user_id, :value => company_user.user.id %>
+                        <%= f.hidden_field :role, :value => :standard %>
+                        <%= f.hidden_field :status, :value => :inactive %>
+                        <%= f.submit "Desativar", class: "btn btn-sm btn-danger", data: { confirm: "Tem certeza que deseja desativar esse funcionário? Essa ação não poderá ser cancelada."} %>
+                    <% end  %>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
 </div>
