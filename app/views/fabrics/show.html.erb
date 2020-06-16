@@ -39,7 +39,7 @@
 	<div class="card w-50 bg-transparent border-0 align-items-center">
 		<div class="card-body">
 			<h5 class="card-title"><%= @fabric.name %></h5>
-		    <h5 class="card-title"><strong><%= number_to_currency(@fabric.price.fdiv(100), unit: 'R$', separator: ".", delimitor: ",", format: "%u %n") %> / m</strong></h5>
+		    <h5 class="card-title"><strong><%= number_to_currency(@fabric.price.fdiv(100), unit: 'R$', separator: ",", delimiter: ".", format: "%u %n") %> / m</strong></h5>
 		    <hr>
 		    <div>
 		    	<p class="mb-1">Quantidade</p>
