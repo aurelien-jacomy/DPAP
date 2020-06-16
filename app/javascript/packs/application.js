@@ -24,6 +24,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import 'select2';
 import { initSelectDeliveryPoint } from "./select_delivery_point";
 import { displayDeliveryForm } from "./display_delivery_form";
 import { showDeliveryPart } from "./show_delivery_part";
@@ -33,6 +34,7 @@ import { advancedSearch } from "./advanced_search";
 import {bubble} from './bubble_value_range';
 import { initUpdateNavbarOnScroll } from '../components/navbar';
 import { initSelectLabel } from './select_label';
+import { initSelect2 } from './init_select2';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -75,6 +77,10 @@ document.addEventListener('turbolinks:load', () => {
 
   if (document.querySelector(".label-choices")) {
     initSelectLabel();
+  }
+
+  if (document.querySelector(".select2")) {
+    initSelect2();
   }
   
 });
