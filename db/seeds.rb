@@ -351,7 +351,7 @@ Fabric.create!(
 	minimum_qty: rand(50..200)
 )
 
-3.times do 
+4.times do 
 file = URI.open(yellow.sample)
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content_type: 'image/jpg')
@@ -359,7 +359,7 @@ fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content
 puts "Photo ##{fabric.photos.count}"
 end
 
-puts "Photo ##{fabric.photos.count}"
+puts "#{fabric.photos.count} photos added"
 
 puts "Fabric ##{Fabric.count} done"
 
@@ -382,7 +382,7 @@ Fabric.create!(
 	minimum_qty: rand(50..200)
 )
 
-3.times do 
+4.times do 
 file = URI.open(black.sample)
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content_type: 'image/jpg')
@@ -390,7 +390,7 @@ fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content
 puts "Photo ##{fabric.photos.count}"
 end
 
-puts "Photo ##{fabric.photos.count}"
+puts "#{fabric.photos.count} photos added"
 
 puts "Fabric ##{Fabric.count} done"
 
@@ -413,7 +413,7 @@ Fabric.create!(
 	minimum_qty: rand(50..200)
 )
 
-3.times do 
+4.times do 
 file = URI.open(black.sample)
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content_type: 'image/jpg')
@@ -421,7 +421,7 @@ fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content
 puts "Photo ##{fabric.photos.count}"
 end
 
-puts "Photo ##{fabric.photos.count}"
+puts "#{fabric.photos.count} photos added"
 
 puts "Fabric ##{Fabric.count} done"
 
@@ -444,7 +444,7 @@ Fabric.create!(
 	minimum_qty: rand(50..200)
 )
 
-3.times do 
+4.times do 
 file = URI.open(blue.sample)
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content_type: 'image/jpg')
@@ -452,7 +452,7 @@ fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content
 puts "Photo ##{fabric.photos.count}"
 end
 
-puts "Photo ##{fabric.photos.count}"
+puts "#{fabric.photos.count} photos added"
 
 puts "Fabric ##{Fabric.count} done"
 
@@ -475,7 +475,7 @@ Fabric.create!(
 	minimum_qty: rand(50..200)
 )
 
-3.times do 
+4.times do 
 file = URI.open(green.sample)
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content_type: 'image/jpg')
@@ -483,7 +483,7 @@ fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content
 puts "Photo ##{fabric.photos.count}"
 end
 
-puts "Photo ##{fabric.photos.count}"
+puts "#{fabric.photos.count} photos added"
 
 puts "Fabric ##{Fabric.count} done"
 
@@ -506,7 +506,7 @@ Fabric.create!(
 	minimum_qty: rand(50..200)
 )
 
-3.times do 
+4.times do 
 file = URI.open(red.sample)
 fabric = Fabric.last
 fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content_type: 'image/jpg')
@@ -514,7 +514,7 @@ fabric.photos.attach(io: file, filename: "fabrics#{rand(1...1000)}.jpg", content
 puts "Photo ##{fabric.photos.count}"
 end
 
-puts "Photo ##{fabric.photos.count}"
+puts "#{fabric.photos.count} photos added"
 
 puts "Fabric ##{Fabric.count} done"
 
@@ -655,49 +655,17 @@ puts "Associating labels to fabrics"
 
 
 Fabric.all.each do |fabric|
-	LabelToFabric.create(
-		label: Label.all.sample,
-		fabric: fabric
-		)
+	labels = Label.all.sample(rand(1..5))
+	labels.each do |label|
+		LabelToFabric.create(
+			label: label,
+			fabric: fabric
+		)	
+	end
 end
 
 puts "Association done"
 
-
-puts 'Creating Label To Fabric'
-
-Fabric.all.each do |fabric|
-	2.times do
-		label_to_fabric = LabelToFabric.new
-		label_to_fabric.fabric = fabric
-		labels_count = Label.count
-		label_to_fabric.label = Label.all.sample
-		label_to_fabric.save!
-	end
-end
-
-puts "Linked #{LabelToFabric.count} Labels to Fabrics"
-puts "------------"
-
-FabricToCart.create!(
-	user: User.first,
-	fabric: Company.first.fabrics[0],
-	quantity: 200
-)
-
-FabricToCart.create!(
-	user: User.first,
-	fabric: Company.first.fabrics[1],
-	quantity: 250
-)
-
-FabricToCart.create!(
-	user: User.first,
-	fabric: Fabric.last,
-	quantity: 225
-)
-
-puts "Added #{FabricToCart.count} fabrics to user #{FabricToCart.first.user.name}"
 puts "------------"
 
 User.all.each do |user|
@@ -742,6 +710,30 @@ puts "------------"
 end
 
 puts "Samples prices OK"
+puts "------------"
+
+User.all.each do |user|
+	
+	6.times do
+		FabricToCart.create!(
+			user: user,
+			fabric: Fabric.all.sample,
+			quantity: rand(200..250),
+		)
+	end
+	
+	5.times do
+		FabricToCart.create!(
+			user: user,
+			fabric: Fabric.all.sample,
+			is_sample: true,
+			quantity: 1,
+		)
+	end
+
+	puts "Added fabrics and samples to #{user.name}'s cart"
+end
+
 puts "------------"
 
 puts "Seed Done!!!"

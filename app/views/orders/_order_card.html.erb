@@ -22,8 +22,8 @@
 		<p>Preço: <%= number_to_currency(
 			order.price.fdiv(100),
 			unit: 'R$',
-			separator: ".",
-			delimitor: ",",
+			separator: ",",
+			delimiter: ".",
 			format: "%u %n"
 			)%>
 		</p>

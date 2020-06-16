@@ -1,30 +1,27 @@
-        <% if !current_user.nil? && current_user.company.nil? && current_user.owned_company.nil?  %>
-        <div class="d-flex justify-content-center m-2">
-            <div class="banner-create-join-company">
-                <div class="d-flex justify-content-center align-items-center">
-                    <h1>Bem vindo, <%= current_user.name%>!</h1>
-                </div>
-                <div class="container d-flex justify-content-center align-items-center">
-                    <%= link_to "Cadastre sua empresa", new_company_path, class: "btn-primary m-2 p-2 btn-create-join-company"  %>
-                    <%= link_to "Junte-se a uma empresa", search_company_path, class: "btn-primary m-2 p-2 btn-create-join-company"  %>
-                </div>
-            </div>
-        </div>
-        <% end  %>
         <div class="container-background" id="home">
+            <% if !current_user.nil? && current_user.company.nil? && current_user.owned_company.nil?  %>
+                <%= render 'banner_join_company' %>
+            <% end  %>
             <div class="container">
                 <h1>Da Pluma à Pele</h1>
                 <p>Create clothes, build connections</p>
                 <p>Aqui você pode construir sua cadeia produtiva de forma mais sustentável, da produção de algodão até a confecção da roupa. Encontre produtos e fornecedores que prezam por um maior respeito às pessoas e ao meio ambiente.</p>
                 <%= link_to fabrics_path do %>
-                <button class="btn btn-success">Descubra nossos tecidos</button>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-success mb-3">Descubra nossos tecidos</button>    
+                    <div class="flex-grow-1 ml-4">
+                        <%= render "./shared/search" %>
+                    </div>
+                    
+                </div>
+                
                 <% end %>
             </div>
         </div>
         <div class="container">
             <div class="row my-5">
                 <div class="col-12">
-                    <%= render "./shared/search" %>
+                    
                 </div>
             </div>
         </div>

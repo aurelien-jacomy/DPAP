@@ -13,8 +13,8 @@
         <p><%= number_to_currency(
 				FabricToCart.total_price(cart[company]).fdiv(100),
 				unit: 'R$',
-				separator: ".",
-				delimitor: ",",
+				separator: ",",
+				delimiter: ".",
 				format: "%u %n"
 				)
 			%>
@@ -48,8 +48,8 @@
                             <%= number_to_currency(
 										fabric_to_cart.price.fdiv(100),
 										unit: 'R$',
-										separator: ".",
-										delimitor: ",",
+										separator: ",",
+										delimiter: ".",
 										format: "%u %n"
 									) 
 								%>

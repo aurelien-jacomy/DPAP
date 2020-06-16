@@ -1,26 +1,11 @@
 <%= render "./shared/company_banner", company: @fabric.company %>
-<hr>
-<% if user_signed_in? %>
-	<% if policy(@fabric).edit? %>
-		<div class="container">
-		    <p>Esse produto é oferecido por sua empresa. Você pode
-		        <%= link_to "editá-lo", edit_fabric_path(@fabric) %>
-		        <% if policy(@fabric).destroy? %>
-		        	ou <%= link_to "retirá-lo", @fabric, method: :delete, data: {confirm: "Tem certeza que deseja retirar esse produto do seu sortimento?"} %> do seu sortimento	
-		        <% else %>
-		        	.
-		        <% end %>
-		        
-		    </p>
-		</div>
-	<% end %>	
-<% end %>
 
 <div class="container d-flex justify-content-between my-4">
 	<div>
 		<% unless @fabric.photos[0].nil?%>
-			<div>
+			<div class="card-fabric">
         		<%= cl_image_tag @fabric.photos[0].key, height: 500, width: 400, crop: :fill, id:"main-pic" %>
+        		<%= render './shared/edit_links', fabric: @fabric %>
         	</div>
         	<% next_photos = @fabric.photos[1..6] %>
         	<div class="d-flex">
@@ -39,7 +24,7 @@
 	<div class="card w-50 bg-transparent border-0 align-items-center">
 		<div class="card-body">
 			<h5 class="card-title"><%= @fabric.name %></h5>
-		    <h5 class="card-title"><strong><%= number_to_currency(@fabric.price.fdiv(100), unit: 'R$', separator: ".", delimitor: ",", format: "%u %n") %> / m</strong></h5>
+		    <h5 class="card-title"><strong><%= number_to_currency(@fabric.price.fdiv(100), unit: 'R$', separator: ",", delimiter: ".", format: "%u %n") %> / m</strong></h5>
 		    <hr>
 		    <div>
 		    	<p class="mb-1">Quantidade</p>
@@ -81,8 +66,16 @@
 		    <p class="card-text">Largura: <%= @fabric.width %>m - Gramatura: <%= @fabric.gramatura %>g/m</p>
 		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>
 		    <p class="card-text">Dias para entrega: <%= @fabric.shipment_time %> - Pedido mínimo: <%= @fabric.minimum_qty %>m</p>
-
-			<%= render './shared/labels_grid', fabric: @fabric, size: 50 %>		    
+			<div class="card-sustainable">
+				<h3>Esse tecidos respeita o meio ambiente: <i class="fas fa-seedling"></i></h3>
+				<div class="d-flex flex-wrap">
+					<% @categories.each do |label_category| %>
+						<p class="mr-1">#<%= label_category.name %></p>
+					<% end %>
+				</div>
+				<%= render './shared/labels_grid', fabric: @fabric, size: 50 %>
+			</div>
+					    
 		</div>
 	</div>
 </div>

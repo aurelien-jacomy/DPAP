@@ -1,0 +1,18 @@
+	<% edit = (user_signed_in? && policy(fabric).edit?) %>
+	<% destroy = user_signed_in? && policy(fabric).destroy? %>
+	
+	<% if edit || destroy %>	
+			<div class="edit-links justify-content-center">
+				<% if edit %>
+	                <%= link_to edit_fabric_path(fabric) do %>
+	                	<i class="fas fa-edit mr-2"></i>
+	                <% end %>
+	            <% end %>
+	            
+	            <% if destroy %>
+	                <%= link_to fabric, method: :delete, data: {confirm: "Tem certeza que quer retirar esse produto da venda?"} do %>
+	                	<i class="fas fa-trash ml-2"></i>
+	                <% end %>
+	            <% end %>
+	        </div>
+    <% end %>

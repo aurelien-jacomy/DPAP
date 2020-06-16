@@ -8,18 +8,28 @@ class FabricsController < ApplicationController
         @fabric_labels = Label.select(:name).distinct.map {|x| x.name}
         @fabric_to_cart = FabricToCart.new
         
-    if params[:search].nil?
-        @fabrics = policy_scope(Fabric)
-         elsif params[:search][:query].blank?
+        if params[:search].nil?
+            @fabrics = policy_scope(Fabric)
+        elsif params[:search][:query].blank?
             @fabrics = policy_scope(Fabric)
         else
             @query = params[:search][:query]
             @fabrics = policy_scope(Fabric.search_by_name_colour_width_gramatura_composition_and_fabric_type("#{@query}")) 
         end
+
+        if params[:label_search]
+            label_id = params[:label_search][:label_id].to_i
+            @fabrics = policy_scope(Fabric).joins(:label_to_fabrics).where('label_to_fabrics.label_id = ?', label_id)
+            @query = Label.find(label_id).name
+        end
     end
 
     def show
         @fabric_to_cart = FabricToCart.new
+        @categories = []
+        @fabric.labels.each do |label|
+            @categories << label.label_category
+        end
     end
 
     def new

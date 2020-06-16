@@ -33,8 +33,9 @@ import { initChangeImage } from "./change_image";
 import { advancedSearch } from "./advanced_search";
 import {bubble} from './bubble_value_range';
 import { initUpdateNavbarOnScroll } from '../components/navbar';
-import { initSelectLabel } from './select_label';
 import { initSelect2 } from './init_select2';
+import { initSelectLabel, initSelectLabelCategory } from './select_box';
+import { showLabel } from '../components/label';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -81,6 +82,14 @@ document.addEventListener('turbolinks:load', () => {
 
   if (document.querySelector(".select2")) {
     initSelect2();
+  }
+
+  if (document.querySelector(".card-label")) {
+    showLabel();
+  }
+
+  if (document.querySelector(".category-choices")) {
+    initSelectLabelCategory();
   }
   
 });

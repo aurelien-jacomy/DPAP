@@ -20,7 +20,8 @@ class CompaniesController < ApplicationController
     def show
         @company = policy_scope(Company).find_by(owner: current_user)
         authorize @company
-        @pending_users = CompanyUser.where(status: :pending).where("company_id = ?", @company.id) 
+        @pending_users = CompanyUser.where(status: :pending).where("company_id = ?", @company.id)
+        @active_users = CompanyUser.where(status: [:active]).where("company_id = ?", @company.id)
     end
 
     def search
