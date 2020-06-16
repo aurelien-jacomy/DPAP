@@ -655,28 +655,17 @@ puts "Associating labels to fabrics"
 
 
 Fabric.all.each do |fabric|
-	LabelToFabric.create(
-		label: Label.all.sample,
-		fabric: fabric
-		)
+	labels = Label.all.sample(rand(1..5))
+	labels.each do |label|
+		LabelToFabric.create(
+			label: label,
+			fabric: fabric
+		)	
+	end
 end
 
 puts "Association done"
 
-
-puts 'Creating Label To Fabric'
-
-Fabric.all.each do |fabric|
-	2.times do
-		label_to_fabric = LabelToFabric.new
-		label_to_fabric.fabric = fabric
-		labels_count = Label.count
-		label_to_fabric.label = Label.all.sample
-		label_to_fabric.save!
-	end
-end
-
-puts "Linked #{LabelToFabric.count} Labels to Fabrics"
 puts "------------"
 
 User.all.each do |user|
