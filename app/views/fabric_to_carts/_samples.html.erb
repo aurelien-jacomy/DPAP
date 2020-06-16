@@ -16,7 +16,7 @@
             <div class="col-11">
                 <div class="card-product">
                     <% if sample.fabric.photos.attached? %>
-                        <%= cl_image_tag sample.fabric.photos[0].key, alt: "textile picture", class: "avatar", height: 50, width: 50, crop: :scale %>
+                        <%= cl_image_tag sample.fabric.photos[0].key, alt: "textile picture" %>
                     <% else %>
                         <%= image_tag "textile_roll", alt: "undefined textile" %>
                     <% end %>
@@ -26,8 +26,12 @@
                             <p><%= sample.fabric.company.name %></p>
                         </div>
                         <div class="card-options">
-                            <p>R$
-                                <%= sample.sample_price %>,00 
+                            <p><%= number_to_currency(
+                                    sample.sample_price.fdiv(100),
+                                    unit: 'R$',
+                                    separator: ",",
+                                    delimiter: ".",
+                                    format: "%u %n") %>
                             </p>
 
                             <%= link_to sample, method: :delete, data: {confirm: "Deseja apagar esse item?"} do  %>
