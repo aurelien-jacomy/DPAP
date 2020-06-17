@@ -4,3 +4,26 @@
   right: 16px;
   z-index: 1000;
 }
+
+.order-status {
+	color: $cotton-white;
+	padding: 8px;
+	border-radius: 4px;
+	margin: 4px 0px;
+	width: fit-content;
+	p {
+		margin: 0px;
+	}
+}
+
+.order-status.pending {
+		background-color: $orange;
+	}
+
+.order-status.success {
+		background-color: $green;
+	}
+
+.order-status.failed {
+		background-color: $red;
+	}
