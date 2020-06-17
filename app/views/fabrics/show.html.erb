@@ -28,19 +28,20 @@
 		    <hr>
 		    <div>
 		    	<p class="mb-1">Quantidade</p>
-		    	<%= simple_form_for @fabric_to_cart, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
+		    	<%= simple_form_for @fabric_to_cart do |f| %>
 			    	<%= f.input :fabric_id, :as => :hidden, :input_html => { :value => @fabric.id } %>
-			    	<%= f.input :quantity, :input_html => { :value => @fabric.minimum_qty } %>
+			    	<%= f.input :quantity, label: false, :input_html => { :value => @fabric.minimum_qty } %>
 			    	<!-- Button name "COMPRAR AGORA" linked to controller. Both need to be changed if needed -->
-			    	<%= f.submit "COMPRAR AGORA", class: "btn btn-success ml-4" %>
+			    	<%= f.submit "Adicionar ao carrinho", class: "btn btn-secondary" %>
+			    	<%= f.submit "COMPRAR AGORA", class: "btn btn-success" %>
 			    	<!-- Button trigger modal -->
-			    	<div data-toggle="modal", data-target="#addedProduct" class="mt-3">
-			    		<%= f.submit "Adicionar ao carrinho", class: "btn btn-secondary" %>
-			    	</div>
+			    	<!-- <div data-toggle="modal", data-target="#addedProduct" class="mt-3"> -->
+			    	
+			    	<!-- </div> -->
 		    	<% end %>
 		    </div>
 		    <!-- Modal -->
-		    <div class="modal fade" id="addedProduct" tabindex="-1" role="dialog" aria-labelledby="addedProductLabel" aria-hidden="true">
+		    <!-- <div class="modal fade" id="addedProduct" tabindex="-1" role="dialog" aria-labelledby="addedProductLabel" aria-hidden="true">
 		    	<div class="modal-dialog" role="document">
 		    		<div class="modal-content">
 		    			<div class="modal-header">
@@ -61,7 +62,7 @@
 		    			</div>
 		    		</div>
 		    	</div>
-		    </div>		    			
+		    </div> -->		    			
 		    <p class="card-text mt-3">Cor: <%= @fabric.colour %></p>
 		    <p class="card-text">Largura: <%= @fabric.width %>m - Gramatura: <%= @fabric.gramatura %>g/m</p>
 		    <p class="card-text">Tipo: <%= @fabric.fabric_type %> - Composição: <%= @fabric.composition %></p>

@@ -18,15 +18,14 @@ class FabricToCartsController < ApplicationController
 		@fabric_to_cart.user = current_user
         @fabric_to_cart.fabric = @fabric
 
-    current_user.update(checkout_session_id: nil)
+    	current_user.update(checkout_session_id: nil)
 
-    if @fabric_to_cart.save
-			if params[:commit] == "COMPRAR AGORA"
-				redirect_to cart_path
-			else
-				sleep 2
-				redirect_to fabrics_path
-			end
+	    if @fabric_to_cart.save
+				if params[:commit] == "COMPRAR AGORA"
+					redirect_to cart_path
+				else
+					redirect_to fabrics_path, notice: 'Produto adicionado ao carrinho!'
+				end
 		else
 			render "fabrics/show"
 		end
