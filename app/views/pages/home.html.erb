@@ -6,16 +6,18 @@
                 <h1>Da Pluma à Pele</h1>
                 <p>Create clothes, build connections</p>
                 <p>Aqui você pode construir sua cadeia produtiva de forma mais sustentável, da produção de algodão até a confecção da roupa. Encontre produtos e fornecedores que prezam por um maior respeito às pessoas e ao meio ambiente.</p>
-                <%= link_to fabrics_path do %>
+                
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-success mb-3">Descubra nossos tecidos</button>    
+                    <%= link_to fabrics_path do %>
+                        <button class="btn btn-success mb-3">Descubra nossos tecidos</button>    
+                    <% end %>
                     <div class="flex-grow-1 ml-4">
                         <%= render "./shared/search" %>
                     </div>
                     
                 </div>
                 
-                <% end %>
+                
             </div>
         </div>
         <div class="container">
