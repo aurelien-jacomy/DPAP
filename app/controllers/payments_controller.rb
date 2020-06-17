@@ -5,8 +5,8 @@ class PaymentsController < ApplicationController
 		
 		cart.each do |ftc| 
 			line_items <<	{
-	      name: ftc.fabric.name,
-	      amount: ftc.fabric.price,
+	      name: "#{ftc.fabric.name} #{"sample" if ftc.is_sample}",
+	      amount: ftc.is_sample ? ftc.fabric.sample_price : ftc.fabric.price,
 	      currency: 'brl',
 	      quantity: ftc.quantity
 	    }
