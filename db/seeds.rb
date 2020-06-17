@@ -139,7 +139,7 @@ puts "------------"
 
 CompanyUser.create!(
 	user: samuel,
-	company: chanel,
+	company: algodao,
 	status: :active,
 	role: :standard
 )
@@ -153,8 +153,8 @@ CompanyUser.create!(
 
 CompanyUser.create!(
 	user: marco,
-	company: tecidou,
-	status: :active,
+	company: algodao,
+	status: :pending,
 	role: :standard
 )
 
@@ -206,7 +206,7 @@ Fabric.create!(
 	company: Company.last,
 	price: 20000,
 	shipment_time: 5,
-	minimum_qty: 100
+	minimum_qty: 60
 )
 
 file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/ASPEN.jpeg')
@@ -247,7 +247,7 @@ Fabric.create!(
 	company: Company.last,
 	price: 20000,
 	shipment_time: 5,
-	minimum_qty: 100
+	minimum_qty: 20
 )
 
 file = URI.open('https://gvallone.com.br/wp-content/uploads/2019/05/AGNES.jpeg')
@@ -288,7 +288,7 @@ Fabric.create!(
 	company: Company.last,
 	price: 20000,
 	shipment_time: 5,
-	minimum_qty: 100
+	minimum_qty: 40
 )
 
 file = URI.open('https://d26lpennugtm8s.cloudfront.net/stores/994/149/products/artigo-marselha1-832ca871874872cf0e15886905775436-320-0.jpeg')
@@ -348,7 +348,7 @@ Fabric.create!(
 	company: Company.first,
 	price: rand(1000..20000),
 	shipment_time: rand(1..50),
-	minimum_qty: rand(50..200)
+	minimum_qty: rand(1..6) * 10
 )
 
 4.times do 
@@ -376,10 +376,10 @@ Fabric.create!(
 	gramatura: rand(100..200),
 	fabric_type: tipos.sample,
 	composition: "#{rand(50..100)}% #{tipos.sample}",
-	company: Company.second,
+	company: Company.last,
 	price: rand(1000..20000),
 	shipment_time: rand(1..50),
-	minimum_qty: rand(50..200)
+	minimum_qty: rand(1..6) * 10
 )
 
 4.times do 
@@ -410,7 +410,7 @@ Fabric.create!(
 	company: Company.last,
 	price: rand(1000..20000),
 	shipment_time: rand(1..50),
-	minimum_qty: rand(50..200)
+	minimum_qty: rand(1..6) * 10
 )
 
 4.times do 
@@ -438,10 +438,10 @@ Fabric.create!(
 	gramatura: rand(100..200),
 	fabric_type: tipos.sample,
 	composition: "#{rand(50..100)}% #{tipos.sample}",
-	company: Company.second,
+	company: Company.first,
 	price: rand(1000..20000),
 	shipment_time: rand(1..50),
-	minimum_qty: rand(50..200)
+	minimum_qty: rand(1..6) * 10
 )
 
 4.times do 
@@ -472,7 +472,7 @@ Fabric.create!(
 	company: Company.last,
 	price: rand(1000..20000),
 	shipment_time: rand(1..50),
-	minimum_qty: rand(50..200)
+	minimum_qty: rand(1..6) * 10
 )
 
 4.times do 
@@ -501,9 +501,9 @@ Fabric.create!(
 	fabric_type: tipos.sample,
 	composition: "#{rand(50..100)}% #{tipos.sample}",
 	company: Company.first,
-	price: rand(1000..20000),
+	price: rand(1000..10000),
 	shipment_time: rand(1..50),
-	minimum_qty: rand(50..200)
+	minimum_qty: rand(1..6) * 10
 )
 
 4.times do 
@@ -714,15 +714,15 @@ puts "------------"
 
 User.all.each do |user|
 	
-	6.times do
+	4.times do
 		FabricToCart.create!(
 			user: user,
 			fabric: Fabric.all.sample,
-			quantity: rand(200..250),
+			quantity: rand(6..10) * 10,
 		)
 	end
 	
-	5.times do
+	1.times do
 		FabricToCart.create!(
 			user: user,
 			fabric: Fabric.all.sample,
