@@ -27,45 +27,37 @@
             <% end %>
             <div class="my-1 d-flex justify-content-center">
                 <%= render './shared/labels_grid', fabric: fabric, size: 30 %>
-                <div class="samplebtn">
-                    <form class="simple_form form-inline" id="new_fabric_to_cart" novalidate="novalidate" action="/fabric_to_carts" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="ZEEmtY/QGEfDdKrv9Jnthk48b5u+zSkF3Yv12a9+mBSVpN9eIjwiicE+uwHAFAeQGd4ZRzdRy/6kO3sOAPO1HQ==">
-                        <span class="hidden fabric_to_cart_fabric_id"><input class="form-control hidden" value="11" type="hidden" name="fabric_to_cart[fabric_id]" id="fabric_to_cart_fabric_id"></span>
-                        <input value="true" type="hidden" name="fabric_to_cart[is_sample]" id="fabric_to_cart_is_sample">
-
-                        <button type="submit" class="btn btn-success btn-sm btn-card-index-sample">
-                            <i class="fas fa-swatchbook"></i>
-                        </button>
-                    </form>
-                </div>
             </div>
             <% end %>
         </div>
         <div>
+            <div class="d-flex align-items-end  justify-content-between">
 
-            <% if params[:id].nil?%>
-            <%= simple_form_for @fabric_to_cart do |f| %>
-            <%= f.input :fabric_id, :as => :hidden, :input_html => { :value => fabric.id } %>
-
-
-            <div class="d-flex align-items-baseline  justify-content-between">
-                <div class="d-flex align-items-baseline">
-                    <div class="form-group integer required fabric_to_cart_quantity form-index-fabric"><input class="form-control numeric integer required" value="<%=fabric.minimum_qty%>" type="number" step="1" name="fabric_to_cart[quantity]" id="fabric_to_cart_quantity"></div>
-
+                    <%= simple_form_for @fabric_to_cart, html: {class: "d-flex align-items-end"} do |f| %>
+                    <%= f.input :fabric_id, :as => :hidden, :input_html => { :value => fabric.id } %>
+                <div class="d-flex align-items-end">
+                    <%= f.input :quantity, label: false, :input_html => { :value => fabric.minimum_qty, style: "opacity: 0.5"}, :wrapper_html => {class: "form-index-fabric"}%>
                     <label>m</label>
                 </div>
-                <div>
-                    <button type="submit" class="btn btn-success btn-card-index-cart">
-                        <i class="fas fa-cart-arrow-down"></i>
-                    </button>
-                </div>
+                <button type="submit" class="btn btn-success btn-card-index-cart" title="Adicionar ao Carrinho">
+                    <i class="fas fa-cart-arrow-down"></i>
+                </button>
+
+                <% end %>
+                <% if params[:id].nil?%>
+                <%= simple_form_for @fabric_to_cart, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
+                <%= f.input :fabric_id, :as => :hidden, :input_html => { :value => fabric.id } %>
+                <%= f.hidden_field :is_sample,  :value => true  %>
+
+                <button type="submit" class="btn btn-success btn-sm btn-card-index-sample" title="Pedir Amostra">
+                    <i class="fas fa-swatchbook"></i>
+                </button>
+                <% end %>
+                <% end %>
+
             </div>
 
-            <% end %>
-            <% end %>
+
         </div>
-
-
-
-
     </div>
 </div>
