@@ -1,14 +1,14 @@
 <div class="card card-fabric mx-2 p-1" id="fabric">
     <% unless fabric.photos[0].nil?%>
-        <%= link_to fabric_path(fabric) do %>
-            <%=  cl_image_tag fabric.photos[0].key, :transformation=>[{:width=>400, :height=>250, :crop=>"fill"}] %>
-        <% end %>
-    <% else %>
-        <%= link_to fabric_path(fabric) do %>
-            <%= image_tag "textile_roll.png", size: "250x250" %>
-        <% end %>
+    <%= link_to fabric_path(fabric) do %>
+    <%=  cl_image_tag fabric.photos[0].key, :transformation=>[{:width=>400, :height=>250, :crop=>"fill"}] %>
     <% end %>
-    
+    <% else %>
+    <%= link_to fabric_path(fabric) do %>
+    <%= image_tag "textile_roll.png", size: "250x250" %>
+    <% end %>
+    <% end %>
+
     <%= render './shared/edit_links', fabric: fabric %>
 
     <div class="card-body fabric">
@@ -22,26 +22,62 @@
             <p class="hidden" id="searchable-item-fabric-type"><%= fabric.fabric_type %></p>
             <p class="hidden" id="searchable-item-price"><%= fabric.price %></p>
             <%  unless fabric.labels.empty? %>
-                <%  fabric.labels.each do |label| %>
-                    <p class="hidden" id="searchable-item-labels"><%= label.name %></p>
-                <% end %>
-                <div class="my-1 d-flex justify-content-center">
+            <%  fabric.labels.each do |label| %>
+            <p class="hidden" id="searchable-item-labels"><%= label.name %></p>
+            <% end %>
+            <div class="my-1 d-flex justify-content-center">
+                <div class="labels">
                     <%= render './shared/labels_grid', fabric: fabric, size: 30 %>
                 </div>
+                <div class="samplebtn">
+                <form class="simple_form form-inline" id="new_fabric_to_cart" novalidate="novalidate" action="/fabric_to_carts" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="ZEEmtY/QGEfDdKrv9Jnthk48b5u+zSkF3Yv12a9+mBSVpN9eIjwiicE+uwHAFAeQGd4ZRzdRy/6kO3sOAPO1HQ==">
+                    <span class="hidden fabric_to_cart_fabric_id"><input class="form-control hidden" value="11" type="hidden" name="fabric_to_cart[fabric_id]" id="fabric_to_cart_fabric_id"></span>
+                    <input value="true" type="hidden" name="fabric_to_cart[is_sample]" id="fabric_to_cart_is_sample">
+                    
+                    <button type="submit" class="btn btn-success btn-sm btn-card-index-sample">
+                        <i class="fas fa-swatchbook"></i>
+                    </button>
+                </form>
+                </div>
+                <div class="samplebtn"></div>
+                <%= simple_form_for @fabric_to_cart do |f| %>
+                <%= f.input :fabric_id, :as => :hidden, :input_html => { :value => fabric.id } %>
+            </div>
             <% end %>
         </div>
-        <div>
-            <% if params[:id].nil?%>
-                <%= simple_form_for @fabric_to_cart, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
-                    <%= f.input :fabric_id, :as => :hidden, :input_html => { :value => fabric.id } %>
-                    <%= f.hidden_field :is_sample,  :value => true  %>
-                    <!-- Button name "COMPRAR AGORA" linked to controller. Both need to be changed if needed -->
-                    <%= f.submit "Pedir Amostra", class: "btn btn-outline-primary center btn-details" %>
-                <% end %>
-            <% end %>
 
-            
-            
+
+        <div class="carrinho-index">
+
+
+            <div class="d-flex align-items-end">
+                <input class="form-control numeric integer required form-index-fabric" value="<%=fabric.minimum_qty%>" type="number" step="1" name="fabric_to_cart[quantity]" id="fabric_to_cart_quantity">
+            <label >m</label>
+                <!-- Button name "COMPRAR AGORA" linked to controller. Both need to be changed if needed -->
+
+
+                <button type="submit" class="btn btn-success btn-card-index-cart">
+                    <i class="fas fa-cart-arrow-down"></i>
+                </button>
+
+
+                <!--<i class="fas fa-swatchbook"></i>
+                <!--fas fa-cart-arrow-down
+                <!-- Button trigger modal -->
+                <!-- <div data-toggle="modal", data-target="#addedProduct" class="mt-3"> -->
+
+                <!-- </div> -->
+                <% end %>
+            </div>
+
+
+
+
+
+
+
+
+
         </div>
     </div>
 </div>
