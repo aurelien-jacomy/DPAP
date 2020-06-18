@@ -37,7 +37,7 @@
                     <%= f.input :fabric_id, :as => :hidden, :input_html => { :value => fabric.id } %>
                 <div class="d-flex align-items-end">
                     <%= f.input :quantity, label: false, :input_html => { :value => fabric.minimum_qty, style: "opacity: 0.5"}, :wrapper_html => {class: "form-index-fabric"}%>
-                    <label>m</label>
+                    <label style="opacity: 0.5">m</label>
                 </div>
                 <button type="submit" class="btn btn-success btn-card-index-cart" title="Adicionar ao Carrinho">
                     <i class="fas fa-cart-arrow-down"></i>
