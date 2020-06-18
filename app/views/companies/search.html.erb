@@ -2,17 +2,17 @@
 
 
     <%= simple_form_for :search, url: search_company_path, method: :get do |f| %>
-    <div class="search-form-control form-group">
-        <%= f.input :query, 
-    	class: "form-control string required",
-    	remote: true,
-        label: false,
-        placeholder: "CNPJ da empresa",
-    	input_html: {value: @query}
-    %>
-        <button name="button" type="submit" class="btn btn-flat">
-            <i class="fas fa-search"></i> Search
-        </button>
+        <div class="search-form-control form-group">
+            <%= f.input :query, 
+            	class: "form-control string required",
+            	remote: true,
+                label: false,
+                placeholder: "CNPJ da empresa",
+            	input_html: {value: @query}
+            %>
+            <button name="button" type="submit" class="btn btn-flat">
+                <i class="fas fa-search"></i> Search
+            </button>
     </div>
     <% end %>
 
