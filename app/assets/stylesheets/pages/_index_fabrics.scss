@@ -1,28 +1,28 @@
-.btn-details{
-    background-color: rgba(136, 163, 83,0.9);
-    color: $cotton-white;
-    border-color:rgba(136, 163, 83,0.9);
+.btn-details {
+  background-color: rgba(136, 163, 83, 0.9);
+  color: $cotton-white;
+  border-color: rgba(136, 163, 83, 0.9);
 }
 
-.btn-details:hover{
-    background-color: rgba(136, 163, 83,0.6);
-    color: $cotton-white;
-    border-color:rgba(136, 163, 83,0.6);
+.btn-details:hover {
+  background-color: rgba(136, 163, 83, 0.6);
+  color: $cotton-white;
+  border-color: rgba(136, 163, 83, 0.6);
 }
 
-.cards{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 16px;
-    height: 30%
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  height: 30%;
 }
 
-.card{
-  margin: 0 auto; 
+.card {
+  margin: 0 auto;
   img {
     width: 100%;
   }
-  &:hover{
+  &:hover {
     opacity: 0.8;
   }
 }
@@ -33,7 +33,6 @@
   }
 }
 
-
 @media (min-width: 992px) {
   .cards {
     grid-template-columns: 1fr 1fr;
@@ -42,6 +41,37 @@
 
 @media (min-width: 1200px) {
   .cards {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr; 
   }
+}
+
+.btn-card-index-cart {
+  background-color: rgba(136, 163, 83, 0.6);
+  border-color: rgba(136, 163, 83, 0);
+  margin-right: 8px;
+}
+
+.btn-card-index-sample {
+  background-color: rgba(22, 29, 4, 0.75);
+  border-color: rgba(186, 197, 158, 0);
+}
+
+.btn-card-index-cart:hover {
+  background-color: rgba(136, 163, 83, 1);
+  border-color: rgba(136, 163, 83, 0);
+  margin-right: 8px;
+}
+
+.btn-card-index-sample:hover {
+  background-color: rgba(22, 29, 4, 1);
+  border-color: rgba(186, 197, 158, 0);
+}
+
+.form-index-fabric {
+  margin-right: 2px;
+  margin-bottom: 0px;
+}
+
+.card-text {
+  text-align: left;
 }
